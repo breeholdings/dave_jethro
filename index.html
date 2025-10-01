@@ -98,21 +98,67 @@
     .intro p {font-size:1.1rem; color:#444;}
 
     /* About Highlight */
-    .highlight {
-      display:flex; flex-wrap:wrap; align-items:center; gap:40px;
-      padding:80px 40px; background:#f9f9f9;
-    }
-    .highlight img {
-      flex:1; max-width:500px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.15);
-    }
-    .highlight-content {flex:1; min-width:280px;}
-    .highlight-content h2 {color:#d4af37; margin-bottom:20px; font-size:2rem;}
-    .highlight-content p {margin-bottom:25px; font-size:1.05rem; color:#555;}
-    .highlight-content a {
-      background:#000; color:#d4af37; padding:12px 25px; border-radius:25px;
-      text-decoration:none; transition:.3s;
-    }
-    .highlight-content a:hover {background:#d4af37; color:#000;}
+.highlight {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  padding: 80px 40px;
+  background: #f9f9f9;
+}
+
+.highlight img {
+  flex: 1;
+  max-width: 100%;   /* ✅ make image shrink on small screens */
+  width: 100%;       /* ✅ force scaling with container */
+  height: auto;      /* ✅ maintain proportions */
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.highlight-content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.highlight-content h2 {
+  color: #d4af37;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.highlight-content p {
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+  color: #555;
+}
+
+.highlight-content a {
+  background: #000;
+  color: #d4af37;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.highlight-content a:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* Mobile tweak */
+@media(max-width: 768px) {
+  .highlight {
+    flex-direction: column;   /* ✅ stack image on top of text */
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .highlight img {
+    margin-bottom: 20px;
+  }
+}
+
 
     /* Grid Sections */
     .grid-section {padding:80px 40px; background:#fff;}
@@ -335,5 +381,6 @@
   </script>
 </body>
 </html>
+
 
 
