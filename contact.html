@@ -26,76 +26,46 @@
     }
 
     /* Header */
-    header {
-      background: #000;
-      color: #fff;
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo img {
-      height: 50px;
-    }
-    .logo h1 {
-      font-size: 1rem;
-      color: #d4af37;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      font-size: 1rem;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #d4af37;
-    }
+    header {background:#000;color:#fff;padding:15px 0;position:sticky;top:0;z-index:1000;}
+    .header-inner {display:flex;justify-content:space-between;align-items:center;}
+    .logo {display:flex;align-items:center;gap:10px;}
+    .logo img {height:50px;}
+    .logo h1 {font-size:1rem;color:#d4af37;}
 
-    /* Mobile menu */
+    nav ul {
+      list-style:none;
+      display:flex;
+      gap:25px;
+      font-size:1rem;
+    }
+    nav a {color:#fff;text-decoration:none;font-weight:bold;transition:color .3s;}
+    nav a:hover {color:#d4af37;}
+
+    /* Hamburger menu (hidden desktop) */
     .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
     }
     .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background: #d4af37;
+      width:25px;height:3px;background:#d4af37;
     }
+
+    /* Mobile */
     @media(max-width: 768px) {
       nav ul {
-        display: none;
-        flex-direction: column;
-        background: #000;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 200px;
-        padding: 15px;
+        display:none; /* hide by default */
+        flex-direction:column;
+        background:#000;
+        position:absolute;
+        top:60px; right:20px;
+        width:200px;
+        padding:15px;
+        border-radius:8px;
       }
-      nav ul.show {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
+      nav ul.show {display:flex;} /* show when toggled */
+      .menu-toggle {display:flex;} /* show hamburger */
     }
 
     /* Hero */
@@ -199,18 +169,20 @@
   </style>
 </head>
 <body>
+  <body>
   <header>
     <div class="container header-inner">
       <div class="logo">
         <img src="logo.jpg" alt="Dave Jethro Logo" />
-        <h1>Music & Experience</h1>
+        <h1>Music To Experience</h1>
       </div>
       <nav>
-        <div class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('show')">
+        <div class="menu-toggle">
           <span></span><span></span><span></span>
         </div>
         <ul>
           <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
           <li><a href="music.html">Music Career</a></li>
           <li><a href="sound.html">Sound System</a></li>
           <li><a href="band.html">Band</a></li>
@@ -340,3 +312,4 @@
   </script>
 </body>
 </html>
+
