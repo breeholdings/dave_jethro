@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insight</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #fff;
+      color: #222;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Header */
+    header {background:#000;color:#fff;padding:15px 0;position:sticky;top:0;z-index:1000;}
+    .header-inner {display:flex;justify-content:space-between;align-items:center;}
+    .logo {display:flex;align-items:center;gap:10px;}
+    .logo img {height:50px;}
+    .logo h1 {font-size:1rem;color:#d4af37;}
+
+    nav ul {
+      list-style:none;
+      display:flex;
+      gap:25px;
+      font-size:1rem;
+    }
+    nav a {color:#fff;text-decoration:none;font-weight:bold;transition:color .3s;}
+    nav a:hover {color:#d4af37;}
+
+    /* Hamburger menu (hidden desktop) */
+    .menu-toggle {
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+    }
+    .menu-toggle span {
+      width:25px;height:3px;background:#d4af37;
+    }
+
+    /* Mobile Nav */
+    @media(max-width: 768px) {
+      nav ul {
+        display:none;
+        flex-direction:column;
+        background:#000;
+        position:absolute;
+        top:60px; right:20px;
+        width:200px;
+        padding:15px;
+        border-radius:8px;
+      }
+      nav ul.show {display:flex;}
+      .menu-toggle {display:flex;}
+    }
+
+    /* Page Hero */
+    .hero-insight {
+      height:50vh;
+      background:url('concert.jpg') no-repeat center/cover;
+      position:relative;
+      display:flex;justify-content:center;align-items:center;text-align:center;
+    }
+    .hero-insight::after {content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);}
+    .hero-insight h2 {position:relative;z-index:1;color:#d4af37;font-size:3rem;}
+
+    /* Section */
+    section {padding:70px 20px;}
+    section h2 {text-align:center;color:#d4af37;margin-bottom:40px;font-size:2rem;}
+
+    /* Events */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .event-card {
+      background:#fff;
+      border:1px solid #eee;
+      border-radius:12px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.08);
+      overflow:hidden;
+      transition:.3s;
+    }
+    .event-card:hover {transform:translateY(-8px);}
+    .event-card img {
+      width: 100%;
+      height: 220px;       /* fixed uniform height */
+      object-fit: cover;   /* makes image fill nicely */
+      border-bottom: 1px solid #eee;
+    }
+
+    .event-info {padding:20px;}
+    .event-info h3 {color:#000;margin-bottom:10px;}
+    .event-info p {color:#555;font-size:0.95rem;margin-bottom:15px;}
+    .event-info span {display:block;color:#d4af37;font-weight:bold;margin-bottom:10px;}
+    .event-info a {
+      background:#000;color:#d4af37;padding:10px 20px;border-radius:20px;
+      text-decoration:none;font-size:0.9rem;transition:.3s;
+    }
+    .event-info a:hover {background:#d4af37;color:#000;}
+
+    /* Footer */
+    footer {background:#000;color:#fff;margin-top:60px;}
+    .footer-top {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;padding:50px 0;border-bottom:1px solid #333;}
+    .footer-top h4 {color:#d4af37;margin-bottom:15px;}
+    .footer-top p,.footer-top li,.footer-top a {font-size:0.95rem;color:#ccc;}
+    .footer-top ul {list-style:none;padding:0;}
+    .footer-top a {text-decoration:none;transition:.3s;}
+    .footer-top a:hover {color:#d4af37;}
+    .social-links {display:flex;gap:20px;margin-top:10px;font-size:1.5rem;}
+    .social-links a {color:#d4af37;transition:.3s;}
+    .social-links a:hover {color:#fff;}
+    .footer-bottom {text-align:center;padding:15px 0;font-size:0.9rem;color:#aaa;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <img src="logo.jpg" alt="Dave Jethro Logo" />
+        <h1>Music To Experience</h1>
+      </div>
+      <nav>
+        <div class="menu-toggle"><span></span><span></span><span></span></div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/music/">Music Career</a></li>
+          <li><a href="/sound/">Sound System</a></li>
+          <li><a href="/band/">Band</a></li>
+          <li><a href="/merch/">Merchandise</a></li>
+          <li><a href="/insight/" class="active">Insight</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero-insight">
+    <h2>Dave Jethro Insights</h2>
+  </section>
+
+  <!-- Upcoming Events -->
+  <section>
+    <h2>Upcoming Events & Tours</h2>
+    <div class="container events-grid">
+      <div class="event-card">
+        <img src="concert.jpg" alt="Concert">
+        <div class="event-info">
+          <h3>Live in Kampala</h3>
+          <span>December 15, 2025</span>
+          <p>A night of soulful performances with Dave Jethro & Auera Band at Kololo Grounds.</p>
+          <a href="#">Book Tickets</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="event2.jpg" alt="Tour">
+        <div class="event-info">
+          <h3>Africa Tour 2026</h3>
+          <span>January - March 2026</span>
+          <p>Dave Jethro takes his music across Africa, from Nairobi to Lagos, Johannesburg to Accra.</p>
+          <a href="#">View Details</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="higher.jpg" alt="Album">
+        <div class="event-info">
+          <h3>Album Launch: HIGHER</h3>
+          <span>February 10, 2026</span>
+          <p>Celebrate the release of Dave’s latest Afro-Gospel album with a launch concert in Kampala.</p>
+          <a href="#">Listen Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Music Highlights -->
+  <section>
+    <h2>Music Releases</h2>
+    <div class="container events-grid">
+      <div class="event-card">
+        <img src="single1.jpg" alt="Single">
+        <div class="event-info">
+          <h3>New Single: "Say I Do"</h3>
+          <span>Released: July 2025</span>
+          <p>A soulful ballad celebrating love, now streaming on all platforms.</p>
+          <a href="#">Stream Now</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <img src="single2.jpg" alt="Single">
+        <div class="event-info">
+          <h3>New Single: "Higher"</h3>
+          <span>Released: September 2025</span>
+          <p>Afro-gospel vibes that lift your spirit and ignite your faith.</p>
+          <a href="#">Stream Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-top">
+      <!-- Inspiration -->
+      <div>
+        <h4>Inspiration</h4>
+        <p>"Music is not just sound – it’s the heartbeat of every moment, the language of the soul, and the bridge that connects us all."</p>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/events/">Events</a></li>
+          <li><a href="/insight/">Insight</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <h4>Contact Us</h4>
+        <p>Phone: +256 764 188 054</p>
+        <p>Email: info@davejethro.com</p>
+        <p>Location: Kampala, Uganda</p>
+      </div>
+      <!-- Follow Us -->
+      <div>
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1A6gNxgX9R/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/dave_jethro?igsh=MW4wYjIydGh2eHQzeg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/dave_jethro1?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Dave Jethro. All rights reserved. | Built and maintained by Breeford Technologies</p>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => menu.classList.toggle('show'));
+  </script>
+</body>
+</html>
