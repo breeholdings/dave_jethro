@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dave Jethro</title>
   <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -55,10 +55,10 @@
       width:25px;height:3px;background:#d4af37;
     }
 
-    /* Mobile */
+    /* Mobile Nav */
     @media(max-width: 768px) {
       nav ul {
-        display:none; /* hide by default */
+        display:none;
         flex-direction:column;
         background:#000;
         position:absolute;
@@ -67,9 +67,10 @@
         padding:15px;
         border-radius:8px;
       }
-      nav ul.show {display:flex;} /* show when toggled */
-      .menu-toggle {display:flex;} /* show hamburger */
+      nav ul.show {display:flex;}
+      .menu-toggle {display:flex;}
     }
+
     /* Hero */
     .hero {
       height:95vh;
@@ -101,67 +102,70 @@
     .intro p {font-size:1.1rem; color:#444;}
 
     /* About Highlight */
-.highlight {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 40px;
-  padding: 80px 40px;
-  background: #f9f9f9;
-}
+    .highlight {
+      display: flex;
+      flex-direction: row;   /* ✅ side by side on large screens */
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 40px;
+      padding: 80px 40px;
+      background: #f9f9f9;
+    }
 
-.highlight img {
-  flex: 1;
-  max-width: 100%;   /* ✅ make image shrink on small screens */
-  width: 100%;       /* ✅ force scaling with container */
-  height: auto;      /* ✅ maintain proportions */
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
+    .highlight img {
+      flex: 1;
+      max-width: 400px;   /* 👈 limit max size */
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
 
-.highlight-content {
-  flex: 1;
-  min-width: 280px;
-}
 
-.highlight-content h2 {
-  color: #d4af37;
-  margin-bottom: 20px;
-  font-size: 2rem;
-}
+    .highlight-content {
+      flex: 1;
+      min-width: 280px;
+    }
 
-.highlight-content p {
-  margin-bottom: 25px;
-  font-size: 1.05rem;
-  color: #555;
-}
+    .highlight-content h2 {
+      color: #d4af37;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
 
-.highlight-content a {
-  background: #000;
-  color: #d4af37;
-  padding: 12px 25px;
-  border-radius: 25px;
-  text-decoration: none;
-  transition: .3s;
-}
+    .highlight-content p {
+      margin-bottom: 25px;
+      font-size: 1.05rem;
+      color: #555;
+    }
 
-.highlight-content a:hover {
-  background: #d4af37;
-  color: #000;
-}
+    .highlight-content a {
+      background: #000;
+      color: #d4af37;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: .3s;
+    }
 
-/* Mobile tweak */
-@media(max-width: 768px) {
-  .highlight {
-    flex-direction: column;   /* ✅ stack image on top of text */
-    padding: 40px 20px;
-    text-align: center;
-  }
-  .highlight img {
-    margin-bottom: 20px;
-  }
-}
+    .highlight-content a:hover {
+      background: #d4af37;
+      color: #000;
+    }
 
+    /* Mobile tweak */
+    @media(max-width: 768px) {
+      .highlight {
+        flex-direction: column;
+        flex-wrap: wrap;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .highlight img {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+    }
 
     /* Grid Sections */
     .grid-section {padding:80px 40px; background:#fff;}
@@ -191,6 +195,7 @@
       transition:transform .3s;
     }
     .gallery img:hover {transform:scale(1.05);}
+
     /* Footer */
     footer {
       background: #000;
@@ -295,32 +300,31 @@
   </section>
 
   <!-- Services -->
-  <!-- Services -->
-<section class="grid-section">
-  <h2>Explore</h2>
-  <div class="grid">
-    <div class="card">
-      <i class="fas fa-music fa-2x" style="color:#d4af37;"></i>
-      <h3>Music</h3>
-      <p>From soulful tracks to electrifying live shows, Dave Jethro delivers music that inspires and connects.</p>
+  <section class="grid-section">
+    <h2>Explore</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-music fa-2x" style="color:#d4af37;"></i>
+        <h3>Music</h3>
+        <p>From soulful tracks to electrifying live shows, Dave Jethro delivers music that inspires and connects.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-volume-up fa-2x" style="color:#d4af37;"></i>
+        <h3>GG Sounds</h3>
+        <p>Premium sound systems for hire, tailored to make every wedding, concert, or event sound flawless.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-microphone-alt fa-2x" style="color:#d4af37;"></i>
+        <h3>Auera Band</h3>
+        <p>Experience live music like never before with a full band of talented singers and instrumentalists.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-shopping-bag fa-2x" style="color:#d4af37;"></i>
+        <h3>Merchandise</h3>
+        <p>Exclusive fashion and lifestyle products designed to celebrate Dave’s artistry and legacy.</p>
+      </div>
     </div>
-    <div class="card">
-      <i class="fas fa-volume-up fa-2x" style="color:#d4af37;"></i>
-      <h3>GG Sounds</h3>
-      <p>Premium sound systems for hire, tailored to make every wedding, concert, or event sound flawless.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-microphone-alt fa-2x" style="color:#d4af37;"></i>
-      <h3>Auera Band</h3>
-      <p>Experience live music like never before with a full band of talented singers and instrumentalists.</p>
-    </div>
-    <div class="card">
-      <i class="fas fa-shopping-bag fa-2x" style="color:#d4af37;"></i>
-      <h3>Merchandise</h3>
-      <p>Exclusive fashion and lifestyle products designed to celebrate Dave’s artistry and legacy.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Gallery Highlights -->
   <section class="gallery-section">
@@ -384,9 +388,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
