@@ -16,7 +16,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-    }
     body {
       font-family: 'Times New Roman', Times, serif;
       line-height: 1.6;
@@ -32,15 +31,30 @@
     /* Header */
     header {background:white;color:#0d0c6d;padding:15px 0;position:sticky;top:0;z-index:1000;}
     .header-inner {display:flex;justify-content:space-between;align-items:center;}
-    .logo {display:flex;align-items:center;gap:10px;}
-    .logo img {height:50px;}
-    .logo h1 {font-size:1rem;color:#0d0c6d;}
+    
+   .logo {
+  width: 80px;              /* Adjust size of the logo container */
+  height: 80px;
+  border-radius: 50%;        /* Makes it circular */
+  overflow: hidden;          /* Ensures image stays inside the circle */
+  display: flex;             /* Centers image if needed */
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;    /* Optional: background for contrast */
+  border: 2px solid #ddd;    /* Optional: circular border */
+}
+
+.logo img {
+  width: 100%;               /* Makes image fit neatly inside */
+  height: 100%;
+  object-fit: cover;         /* Ensures image doesn’t distort */
+}
 
     nav ul {
       list-style:none;
       display:flex;
       gap:25px;
-      font-size:1rem;
+      font-size:1.3rem;
     }
     nav a {color:#0d0c6d;text-decoration:none;font-weight:bold;transition:color .3s;}
     nav a:hover {color:#d4af37;}
@@ -71,6 +85,8 @@
       nav ul.show {display:flex;}
       .menu-toggle {display:flex;}
     }
+
+
 
     /* Hero */
     .hero {
@@ -256,7 +272,6 @@
     <div class="container header-inner">
       <div class="logo">
         <img src="logo.jpg" alt="Dave Jethro Logo" />
-        <h1>Music To Experience</h1>
       </div>
       <nav>
         <div class="menu-toggle">
@@ -388,6 +403,7 @@
   </script>
 </body>
 </html>
+
 
 
 
