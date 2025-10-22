@@ -74,7 +74,7 @@
     /* Hero */
     .hero{
       position:relative; min-height:50vh;
-      background:url('contact/hero-contact.jpg') no-repeat center/cover;
+      background:url('/contact.jpg') no-repeat center/cover;
       display:flex; justify-content:center; align-items:center; text-align:center;
       color:#fff; padding:20px;
     }
@@ -176,7 +176,7 @@
   <header>
     <div class="container header-inner">
       <div class="logo">
-        <img src="logo.jpg" alt="Dave Jethro Logo" />
+        <img src="/logo.jpg" alt="Dave Jethro Logo" />
         <h1>Music To Experience</h1>
       </div>
       <nav>
