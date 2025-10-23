@@ -68,7 +68,6 @@
       list-style: none;
       display: flex;
       gap: 25px;
-      font-size: 1nrem;
     }
     nav a {
       color: white;
@@ -125,16 +124,6 @@
       text-align: center;
     }
 
-    /* Overlay */
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
     .hero-content {
       position: relative;
       z-index: 1;
@@ -147,7 +136,7 @@
       color: #d4af37;
       letter-spacing: 3px;
     }
-    .hero-content P {
+    .hero-content p {
       font-size: 1.3rem;
       margin-bottom: 30px;
     }
@@ -242,19 +231,81 @@
       color: #000;
     }
 
-    /* Mobile tweak */
-    @media (max-width: 768px) {
-      .highlight {
-        flex-direction: column;
-        flex-wrap: wrap;
-        text-align: center;
-        padding: 40px 20px;
-      }
-      .highlight img {
-        max-width: 100%;
-        margin-bottom: 20px;
-      }
+    /* Music section */
+    .music-section {
+      padding: 80px 40px;
+      background: black;
+      text-align: center;
     }
+    .music-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #d4af37;
+    }
+    .music-buttons {
+      margin-bottom: 40px;
+    }
+    .music-buttons a {
+      display: inline-block;
+      margin: 0 15px;
+      padding: 12px 25px;
+      border: 2px solid #d4af37;
+      border-radius: 30px;
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background .3s, color .3s;
+    }
+    .music-buttons a:hover {
+      background: #d4af37;
+      color: #000;
+    }
+
+    .music-images {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .music-platform-image {
+      width: 320px; /* bigger images */
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .music-platform-image:hover {
+      transform: scale(1.05);
+    }
+
+    .track-list {
+      list-style: none;
+      color: white;
+      text-align: left;
+      max-width: 600px;
+      margin: 20px auto 0;
+    }
+
+    .coming-soon-image {
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  .coming-soon-image img {
+    width: auto;
+    height: 200px; /* ✅ controlled height */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: transform 0.3s;
+    object-fit: cover; /* keeps proportions tidy */
+  }
+
+  .coming-soon-image img:hover {
+    transform: scale(1.05);
+  }
 
     /* Grid Sections */
     .grid-section {
@@ -410,15 +461,54 @@
     <p>Dave Jethro is more than an artist — he is an experience. With ventures spanning from music to sound systems, live bands, and merchandise, his brand brings people together through creativity, quality, and passion. Step into his world and discover excellence in every detail.</p>
   </section>
 
-  <!-- Highlight About -->
+  <!-- About -->
   <section class="highlight">
     <img src="/index.jpg" alt="Dave Jethro performing">
     <div class="highlight-content">
       <h2>Who is Dave Jethro?</h2>
-      <p>Dave Jethro (David Muwanguzi) is a Ugandan vocalist, choir director, and vocal coach celebrated for his rich R&B/Soul and Afro-Gospel sound, with singles like “GLO” (2024), “Real Love” (2025), and “HIGHER” (2025). Beyond his solo artistry, he directs choirs and mentors singers, while also running GG Sounds, a professional sound system service, and performing with the Auera Band, a dynamic collective of musicians for live events. Expanding his brand further, Dave offers exclusive merchandise for fans who want to connect with his journey. His music and ventures reflect passion, excellence, and creativity, available worldwide on streaming platforms and through his growing community.</p>
+      <p>Dave Jethro (David Muwanguzi) is a Ugandan vocalist, choir director, and vocal coach celebrated for his rich R&B/Soul and Afro-Gospel sound, with singles like “GLO” (2024), “Real Love” (2025), and “HIGHER” (2025). Beyond his solo artistry, he directs choirs and mentors singers, while also running GG Sounds, a professional sound system service, and performing with the Auera Band.</p>
       <a href="/about/">Read More</a>
     </div>
   </section>
+
+  <!-- ✅ MUSIC SECTION -->
+<section id="music" class="music-section">
+  <h2>Listen on Streaming Platforms</h2>
+
+  <!-- Buttons -->
+  <div class="music-buttons">
+    <a href="https://soundcloud.com/{YOUR_SOUNDCLOUD_LINK}" target="_blank">
+      <i class="fab fa-soundcloud"></i> SoundCloud
+    </a>
+    <a href="https://www.deezer.com/artist/{YOUR_DEEZER_ID}" target="_blank">
+      <i class="fab fa-deezer"></i> Deezer
+    </a>
+    <a href="https://open.spotify.com/artist/{SPOTIFY_ARTIST_ID}" target="_blank">
+      <i class="fab fa-spotify"></i> Spotify
+    </a>
+    <a href="https://music.apple.com/artist/{APPLE_MUSIC_ARTIST_ID}" target="_blank">
+      <i class="fab fa-apple"></i> Apple Music
+    </a>
+    <a href="https://www.youtube.com/@davejethro" target="_blank">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+  </div>
+
+  <h3>Latest Tracks</h3>
+
+<!-- Coming Soon List -->
+<ul id="trackList" class="track-list">
+  <li>Coming soon...</li>
+</ul>
+
+<!-- Coming Soon Image -->
+<div class="coming-soon-image">
+  <img src="apple.jpeg" alt="Coming Soon Music" />
+  <img src="apple.jpeg" alt="Coming Soon Music" />
+  <img src="apple.jpeg" alt="Coming Soon Music" />
+  <img src="apple.jpeg" alt="Coming Soon Music" />
+</div>
+</section>
 
   <!-- Services -->
   <section class="grid-section">
@@ -426,7 +516,7 @@
     <div class="grid">
       <div class="card">
         <i class="fas fa-music fa-2x" style="color:#d4af37;"></i>
-        <h3></h3><a href="/music/"><nnh3>Music</h3></a>
+        <h3></h3><a href="/music/"><h3>Music</h3></a>
         <p>From soulful tracks to electrifying live shows, Dave Jethro delivers music that inspires and connects.</p>
       </div>
       <div class="card">
@@ -507,15 +597,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
