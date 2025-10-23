@@ -16,8 +16,8 @@
     body {
       font-family: 'Times New Roman', Times, serif;
       line-height: 1.6;
-      background: #fff;
-      color: black;
+      background: black;
+      color: white;
     }
     .container {
       width: 90%;
@@ -26,63 +26,86 @@
     }
 
     /* Header */
-    header {background:whitesmoke;color:black;padding:15px 0;position:sticky;top:0;z-index:1000;}
-    .header-inner {display:flex;justify-content:space-between;align-items:center;}
-    
-   .logo {
-  width: 80px;              /* Adjust size of the logo container */
-  height: 80px;
-  border-radius: 50%;        /* Makes it circular */
-  overflow: hidden;          /* Ensures image stays inside the circle */
-  display: flex;             /* Centers image if needed */
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;    /* Optional: background for contrast */
-  border: 2px solid #ddd;    /* Optional: circular border */
-}
+    header {
+      background: black;
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.logo img {
-  width: 100%;               /* Makes image fit neatly inside */
-  height: 100%;
-  object-fit: cover;         /* Ensures image doesn’t distort */
-}
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border: 2px solid black;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     nav ul {
-      list-style:none;
-      display:flex;
-      gap:25px;
-      font-size:1.3rem;
+      list-style: none;
+      display: flex;
+      gap: 25px;
     }
-    nav a {color:black;text-decoration:none;font-weight:bold;transition:color .3s;}
-    nav a:hover {color:#d4af37;}
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color .3s;
+    }
+    nav a:hover {
+      color: #d4af37;
+    }
 
     /* Hamburger menu (hidden desktop) */
     .menu-toggle {
-      display:none;
-      flex-direction:column;
-      gap:5px;
-      cursor:pointer;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
     }
     .menu-toggle span {
-      width:25px;height:3px;background:#d4af37;
+      width: 25px;
+      height: 3px;
+      background: #d4af37;
     }
 
     /* Mobile Nav */
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       nav ul {
-        display:none;
-        flex-direction:column;
-        background:white;
-        position:absolute;
-        top:60px; right:20px;
-        width:200px;
-        padding:15px;
-        border-radius:8px;
+        display: none;
+        flex-direction: column;
+        background: black;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        padding: 15px;
+        border-radius: 8px;
       }
-      nav ul.show {display:flex;}
-      .menu-toggle {display:flex;}
+      nav ul.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
     }
-
     /* Hero */
     .hero {position:relative; height:75vh; background:url('/dave.jpg') no-repeat center/cover; display:flex; justify-content:center; align-items:center; text-align:center; color:#fff;}
     .hero::after {content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);}
