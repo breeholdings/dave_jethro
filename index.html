@@ -113,47 +113,34 @@
       }
     }
 
-    /* Hero */
+    /* HERO VIDEO */
     .hero {
-      height: 75vh;
-      background: url('/heross.jpeg') no-repeat center/cover;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+      position:relative;
+      height:80vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      overflow:hidden;
     }
-
+    .hero video {
+      position:absolute;
+      top:0; left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      filter:brightness(0.5);
+    }
     .hero-content {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      animation: fadeIn 2s ease;
+      position:relative;
+      z-index:1;
+      color:#fff;
     }
-    .hero-content h2 {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      color: #d4af37;
-      letter-spacing: 3px;
-    }
-    .hero-content p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
-    }
-    .hero-content a {
-      background: #d4af37;
-      color: #000;
-      padding: 14px 35px;
-      border-radius: 30px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: .3s;
-    }
-    .hero-content a:hover {
-      background: #000;
-      color: #d4af37;
-      border: 1px solid #d4af37;
+    .hero-content h1 {
+      font-size:3rem;
+      color:#d4af37;
+      letter-spacing:3px;
     }
 
     /* ✅ Change background image for phones */
@@ -163,72 +150,70 @@
       }
     }
 
-    /* Intro */
-    .intro {
-      padding: 80px 20px;
-      text-align: center;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .intro h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-      color: #d4af37;
-    }
-    .intro p {
-      font-size: 1.1rem;
-      color: white;
-    }
+    /* SONGS SECTION */
+    .songs {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+.songs h2 {
+  color: #d4af37;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+.video-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+iframe {
+  width: 100%;
+  max-width: 480px;
+  height: 270px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.watch-full {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color .3s;
+}
+.watch-full:hover {
+  color: white;
+}
 
-    /* About Highlight */
-    .highlight {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      gap: 40px;
-      padding: 80px 40px;
-      background: black;
+    /* PLATFORMS */
+    .platforms {
+      padding:80px 20px;
+      text-align:center;
+      background:#111;
     }
-
-    .highlight img {
-      flex: 1;
-      max-width: 250px;
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    .platforms h2 {
+      color:#d4af37;
+      margin-bottom:25px;
     }
-
-    .highlight-content {
-      flex: 1;
-      min-width: 280px;
+    .platform-links a {
+      display:inline-block;
+      margin:10px 15px;
+      padding:12px 25px;
+      border:2px solid #d4af37;
+      border-radius:30px;
+      color:#d4af37;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
     }
-
-    .highlight-content h2 {
-      color: #d4af37;
-      margin-bottom: 20px;
-      font-size: 2rem;
-    }
-
-    .highlight-content p {
-      margin-bottom: 25px;
-      font-size: 1.05rem;
-      color: white;
-    }
-
-    .highlight-content a {
-      background: #000;
-      color: #d4af37;
-      padding: 12px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      transition: .3s;
-    }
-
-    .highlight-content a:hover {
-      background: #d4af37;
-      color: #000;
+    .platform-links a:hover {
+      background:#d4af37;
+      color:#000;
     }
 
     /* Music section */
@@ -281,68 +266,69 @@
       transform: scale(1.05);
     }
 
-    .track-list {
-      list-style: none;
-      color: white;
-      text-align: left;
-      max-width: 600px;
-      margin: 20px auto 0;
+    /* EVENTS */
+    .events {
+      padding:80px 20px;
+      background:black;
     }
-
-    .coming-soon-image {
-    text-align: center;
-    margin-top: 25px;
-  }
-
-  .coming-soon-image img {
-    width: auto;
-    height: 200px; /* ✅ controlled height */
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    transition: transform 0.3s;
-    object-fit: cover; /* keeps proportions tidy */
-  }
-
-  .coming-soon-image img:hover {
-    transform: scale(1.05);
-  }
-
-    /* Grid Sections */
-    .grid-section {
-      padding: 80px 40px;
-      background: black;
+    .events h2 {
+      text-align:center;
+      color:#d4af37;
+      margin-bottom:40px;
     }
-    .grid-section h2 {
-      text-align: center;
-      margin-bottom: 50px;
-      font-size: 2rem;
-      color: white;
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+      gap:20px;
+    }
+    .gallery img {
+      width:100%;
+      height:200px;
+      border-radius:10px;
+      object-fit:cover;
+      transition:transform .3s;
+    }
+    .gallery img:hover { transform:scale(1.05); }
+    .events .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.events .gallery img,
+.events .gallery .event-video iframe {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+    /* EXPLORE */
+    .explore {
+      padding:80px 20px;
+      background:#111;
+    }
+    .explore h2 {
+      text-align:center;
+      color:#d4af37;
+      margin-bottom:40px;
     }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 30px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:30px;
     }
     .card {
-      background: #fff;
-      border: 1px solid #eee;
-      padding: 25px;
-      text-align: center;
-      border-radius: 15px;
-      transition: transform .3s, box-shadow .3s;
+      background:white;
+      color:black;
+      text-align:center;
+      padding:25px;
+      border-radius:15px;
+      transition:transform .3s;
     }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      margin: 15px 0;
-      color: #000;
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: #080808;
-    }
+    .card:hover { transform:translateY(-8px); }
+    .card h3 { margin:10px 0; }
 
     /* Gallery Highlights */
     .gallery-section {
@@ -427,7 +413,8 @@
 </head>
 
 <body>
-  <header>
+
+<header>
     <div class="container header-inner">
       <div class="logo">
         <img src="/logo.jpg" alt="Dave Jethro Logo" />
@@ -449,29 +436,63 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
+<!-- HERO VIDEO -->
+<section class="hero">
+  <video autoplay muted loop playsinline poster="poster.jpg">
+    <source src="hero-video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
+    <h1>Welcome to Dave Jethro’s World</h1>
+  </div>
+</section>
+
+<!-- SONGS SECTION -->
+<section class="songs">
+  <h2>Featured Songs</h2>
+  <div class="video-grid">
+
+    <!-- Real Love -->
+    <div class="video-item">
+      <iframe width="853" height="480" 
+        src="https://www.youtube.com/embed/BRbOCPROcq0?start=0&end=60&rel=0" 
+        title="Real Love - Dave Jethro (Lyrics)" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+      <a class="watch-full" href="https://www.youtube.com/watch?v=BRbOCPROcq0" target="_blank">🎧 Watch Full on YouTube</a>
     </div>
-  </section>
 
-  <!-- Intro -->
-  <section class="intro">
-    <h2>A Journey Beyond Music</h2>
-    <p>Dave Jethro is more than an artist — he is an experience. With ventures spanning from music to sound systems, live bands, and merchandise, his brand brings people together through creativity, quality, and passion. Step into his world and discover excellence in every detail.</p>
-  </section>
-
-  <!-- About -->
-  <section class="highlight">
-    <img src="/index.jpg" alt="Dave Jethro performing">
-    <div class="highlight-content">
-      <h2>Who is Dave Jethro?</h2>
-      <p>Dave Jethro (David Muwanguzi) is a Ugandan vocalist, choir director, and vocal coach celebrated for his rich R&B/Soul and Afro-Gospel sound, with singles like “GLO” (2024), “Real Love” (2025), and “HIGHER” (2025). Beyond his solo artistry, he directs choirs and mentors singers, while also running GG Sounds, a professional sound system service, and performing with the Auera Band.</p>
-      <a href="/about/">Read More</a>
+    <!-- HIGHER -->
+    <div class="video-item">
+      <iframe width="853" height="480" 
+        src="https://www.youtube.com/embed/FWH2_OC2qVs?start=0&end=60&rel=0" 
+        title="HIGHER - Dave Jethro (Official Lyrics Video)" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+      <a class="watch-full" href="https://www.youtube.com/watch?v=FWH2_OC2qVs" target="_blank">🎧 Watch Full on YouTube</a>
     </div>
-  </section>
 
-  <!-- ✅ MUSIC SECTION -->
+    <!-- GLO -->
+    <div class="video-item">
+      <iframe width="853" height="480" src="https://www.youtube.com/embed/vuuuAADGBCM?start=0&end=60&rel=0" title="Dave Jethro - GLO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <a class="watch-full" href="https://www.youtube.com/watch?v=vuuuAADGBCM" target="_blank">🎧 Watch Full on YouTube</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms">
+  <h2>Available on Major Platforms</h2>
+  <div class="platform-links">
+    <a href="https://open.spotify.com/artist/{SPOTIFY_ID}" target="_blank"><i class="fab fa-spotify"></i> Spotify</a>
+    <a href="https://music.apple.com/artist/{APPLE_ID}" target="_blank"><i class="fab fa-apple"></i> Apple Music</a>
+  </div>
+</section>
+
+<!-- ✅ MUSIC SECTION -->
 <section id="music" class="music-section">
   <h2>Listen on Streaming Platforms</h2>
 
@@ -493,51 +514,52 @@
       <i class="fab fa-youtube"></i> YouTube
     </a>
   </div>
-
-  <h3>Latest Tracks</h3>
-
-<!-- Coming Soon List -->
-<ul id="trackList" class="track-list">
-  <li>Coming soon...</li>
-</ul>
-
-<!-- Coming Soon Image -->
-<div class="coming-soon-image">
-  <img src="soon.jpg" alt="Coming Soon Music" />
-  <img src="soon.jpg" alt="Coming Soon Music" />
-  <img src="soon.jpg" alt="Coming Soon Music" />
-  <img src="soon.jpg" alt="Coming Soon Music" />
-</div>
 </section>
 
-  <!-- Services -->
-  <section class="grid-section">
-    <h2>Explore</h2>
-    <div class="grid">
-      <div class="card">
-        <i class="fas fa-music fa-2x" style="color:#d4af37;"></i>
-        <h3></h3><a href="/music/"><h3>Music</h3></a>
-        <p>From soulful tracks to electrifying live shows, Dave Jethro delivers music that inspires and connects.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-volume-up fa-2x" style="color:#d4af37;"></i>
-        <a href="/sound/"><h3>GG Sounds</h3></a>
-        <p>Premium sound systems for hire, tailored to make every wedding, concert, or event sound flawless.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-microphone-alt fa-2x" style="color:#d4af37;"></i>
-        <a href="/band/"><h3>Auera Band</h3></a>
-        <p>Experience live music like never before with a full band of talented singers and instrumentalists.</p>
-      </div>
-      <div class="card">
-        <i class="fas fa-shopping-bag fa-2x" style="color:#d4af37;"></i>
-        <a href="/merch/"><h3>Merchandise</h3></a>
-        <p>Exclusive fashion and lifestyle products designed to celebrate Dave’s artistry and legacy.</p>
-      </div>
-    </div>
-  </section>
+<!-- EVENTS -->
+<section class="events">
+  <h2>Latest Events</h2>
+  <div class="gallery">
+    <!-- Images -->
+    <img src="per6.jpg" alt="Event">
 
-  <!-- Gallery Highlights -->
+     <!-- YouTube Video -->
+    <div class="event-video">
+      <iframe width="853" height="480" src="https://www.youtube.com/embed/Fj2Y5sCmNck" title="Dave Jethro Performs ‘If There’s a Question of My Heart’ Live at Irene Ntale’s Wedding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <img src="per4.jpg" alt="Event">
+    <img src="per8.jpg" alt="Event">
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="explore">
+  <h2>Explore</h2>
+  <div class="grid">
+    <div class="card">
+      <i class="fas fa-music fa-2x" style="color:#d4af37;"></i>
+      <h3>Music</h3>
+      <p>Experience the latest soulful and Afro-gospel releases.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-volume-up fa-2x" style="color:#d4af37;"></i>
+      <h3>GG Sounds</h3>
+      <p>High-quality sound for every event.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-microphone-alt fa-2x" style="color:#d4af37;"></i>
+      <h3>Auera Band</h3>
+      <p>Live performances that move audiences.</p>
+    </div>
+    <div class="card">
+      <i class="fas fa-shopping-bag fa-2x" style="color:#d4af37;"></i>
+      <h3>Merchandise</h3>
+      <p>Shop exclusive apparel and collectibles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Highlights -->
   <section class="gallery-section">
     <h2>Latest Highlights</h2>
     <div class="gallery">
@@ -550,7 +572,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
+<!-- Footer -->
   <footer id="contact">
     <div class="container footer-top">
       <div>
@@ -580,7 +602,6 @@
           <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
           <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
           <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
@@ -589,12 +610,12 @@
     </div>
   </footer>
 
-  <script>
+<script>
     // Toggle mobile menu
     const toggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('nav ul');
     toggle.addEventListener('click', () => menu.classList.toggle('show'));
   </script>
+  
 </body>
 </html>
-
