@@ -340,38 +340,68 @@ iframe {
 
 <body>
 
-<header>
-    <div class="container header-inner">
-      <div class="logo">
-        <img src="/logo.jpg" alt="Dave Jethro Logo" />
+<!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="/">
+          <img src="/logo.jpg" alt="Dave Jethro logo" loading="lazy">
+          <div>
+            <h1>Dave Jethro</h1>
+            <div style="font-size:.82rem;color:var(--muted);margin-top:2px">Gospel Artist · Songwriter · Contemporary</div>
+          </div>
+        </a>
+
+        <nav>
+          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/music/">Music Career</a></li>
+            <li><a href="/sound/">Sound System</a></li>
+            <li><a href="/band/">Band</a></li>
+            <li><a href="/merch/">Merchandise</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <div class="menu-toggle">
-          <span></span><span></span><span></span>
-        </div>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about/">About Us</a></li>
-          <li><a href="/music/">Music Career</a></li>
-          <li><a href="/sound/">Sound System</a></li>
-          <li><a href="/band/">Band</a></li>
-          <li><a href="/merch/">Merchandise</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
-<!-- HERO VIDEO -->
-<section class="hero">
-  <video autoplay muted loop playsinline poster="poster.jpg">
-    <source src="hero-video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <div class="hero-content">
-    <h1>Welcome to Dave Jethro’s World</h1>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero — Dave Jethro">
+    <div class="hero-inner container">
+      <div class="hero-copy fade">
+        <div class="kicker">New Single</div>
+        <h2 class="hero-title">Grace Flow</h2>
+        <p class="hero-sub">Gospel & worship music that invites hearts to rest, reflect and rejoice. Official single out now.</p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#music">Listen</a>
+          <a class="btn btn-ghost" href="#videos">Watch Video</a>
+          <a class="btn btn-ghost" href="#booking">Book</a>
+        </div>
+      </div>
+
+      <div class="hero-card fade">
+        <div class="profile">
+          <div class="pfp"><img src="/merch.jpg" alt="Dave Jethro portrait" loading="lazy"></div>
+          <div class="pfp-info">
+            <h3>Dave Jethro</h3>
+            <p class="muted">Gospel · Worship Artist — Kampala, Uganda</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn btn-ghost" href="https://youtube.com/@davejethro" target="_blank" rel="noopener">YouTube</a>
+            <a class="btn btn-ghost" href="https://open.spotify.com/artist/yourArtistID" target="_blank" rel="noopener">Spotify</a>
+            <a class="btn btn-ghost" href="https://music.apple.com/artist/yourAppleID" target="_blank" rel="noopener">Apple Music</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 <!-- SONGS SECTION -->
 <section class="songs">
@@ -599,4 +629,5 @@ iframe {
 
 </body>
 </html>
+
 
