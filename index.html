@@ -357,7 +357,23 @@ iframe {
       transform: scale(1.05);
     }
 
-    67/* Footer */
+    /* Sections */
+    .section {
+      padding: 60px 20px;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #d4af37;
+    }
+    .section p {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 20px;
+    }
+
+    /* Footer */
     footer {
       background: #000;
       color: #fff;
@@ -559,44 +575,94 @@ iframe {
   </div>
 </section>
 
-<!-- Gallery Highlights -->
-  <section class="gallery-section">
-    <h2>Latest Highlights</h2>
-    <div class="gallery">
-      <img src="/highers.jpeg" alt="Performance">
-      <img src="/reals.jpeg" alt="Interview">
-      <img src="/glos.jpeg" alt="Band rehearsal">
-      <img src="/fun6.jpg" alt="Merch launch">
-      <img src="/per.jpg" alt="Merch launch">
-      <img src="/per5.jpg" alt="Merch launch">
+<!-- MOMENTS IN MOTION -->
+<section class="section" style="background:#111; overflow:hidden;">
+  <h2>Moments in Motion</h2>
+  <div class="slider">
+    <div class="slide-track">
+      <div class="slide"><img src="/per4.jpg" alt="Studio"></div>
+      <div class="slide"><img src="/per6.jpg" alt="Performance"></div>
+      <div class="slide"><img src="/fun5.jpg" alt="Audience"></div>
+      <div class="slide"><img src="/fun2.jpg" alt="Backstage"></div>
+      <div class="slide"><img src="/per5.jpg" alt="Studio"></div>
+      <div class="slide"><img src="/per7.jpg" alt="Performance"></div>
+      <div class="slide"><img src="/fun6.jpg" alt="Audience"></div>
+      <div class="slide"><img src="/per2.jpg" alt="Backstage"></div>
     </div>
-  </section>
+  </div>
+
+  <style>
+    .slider {
+      height: 220px;
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .slide-track {
+      display: flex;
+      width: calc(250px * 8);
+      animation: scroll 30s linear infinite;
+    }
+
+    .slide {
+      height: 200px;
+      width: 250px;
+      flex-shrink: 0;
+      margin: 0 10px;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-250px * 4));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slider {
+        height: 150px;
+      }
+      .slide {
+        height: 130px;
+        width: 180px;
+      }
+    }
+  </style>
+</section>
 
 <!-- Footer -->
   <footer id="contact">
     <div class="container footer-top">
-      <!-- Inspiration -->
       <div>
         <h4>Inspiration</h4>
         <p>"Music is not just sound – it’s the heartbeat of every moment, the language of the soul, and the bridge that connects us all."</p>
       </div>
-      <!-- Quick Links -->
       <div>
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="/fans/">Family</a></li>
+          <li><a href="/events/">Events</a></li>
           <li><a href="/insight/">Insight</a></li>
-          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/gallery/">Gallery</a></li>
         </ul>
       </div>
-      <!-- Contact -->
       <div>
         <h4>Contact Us</h4>
         <p>Phone: +256 764 188 054</p>
         <p>Email: info@davejethro.com</p>
         <p>Location: Kampala, Uganda</p>
       </div>
-      <!-- Follow Us -->
       <div>
         <h4>Follow Us</h4>
         <div class="social-links">
@@ -620,7 +686,6 @@ iframe {
     const menu = document.querySelector('nav ul');
     toggle.addEventListener('click', () => menu.classList.toggle('show'));
   </script>
-  
+
 </body>
 </html>
-
