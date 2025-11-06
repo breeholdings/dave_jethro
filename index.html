@@ -32,124 +32,34 @@
     }
 
     /* Header */
-    header {
-      background: black;
-      color: white;
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    header{position:sticky;top:0;z-index:60;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:54px;height:54px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,0.06)}
+    .brand h1{font-family:"Lora";font-size:1.05rem;font-weight:700}
+    nav ul{display:flex;gap:16px;list-style:none}
+    nav a{color:var(--muted);font-size:.95rem;padding:8px;border-radius:8px;transition:all .18s}
+    nav a:hover{color:var(--soft-gold);background:rgba(212,175,55,0.06)}
+    .menu-toggle{display:none;background:transparent;border:none;color:var(--white);font-size:1.6rem;cursor:pointer}
 
-    .logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #fff;
-      border: 2px solid black;
-    }
+    /* HERO */
+    .hero{margin-top:18px;border-radius:14px;overflow:hidden;position:relative;background:#111;min-height:56vh;display:flex;align-items:center}
+    .hero::before{content:"";position:absolute;inset:0;background:url('/hero.jpg')center/cover no-repeat;filter:contrast(.9) saturate(.95);z-index:0}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.65));z-index:1}
+    .hero-inner{position:relative;z-index:2;padding:44px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between}
+    .hero-copy{flex:1 1 340px;max-width:600px}
+    .kicker{color:var(--soft-gold);font-weight:600;font-size:.92rem;background:rgba(212,175,55,0.06);padding:6px 10px;border-radius:8px;display:inline-block}
+    .hero-title{font-family:"Lora";font-size:2.4rem;margin:12px 0 8px;line-height:1.1}
+    .hero-sub{color:var(--muted);font-size:1rem;max-width:54ch}
+    .hero-ctas{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.95rem;cursor:pointer}
+    .btn-primary{background:var(--soft-gold);color:#000;border:none}
+    .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.06)}
+    .hero-card{width:320px;max-width:100%;background:var(--card);border-radius:12px;padding:14px;box-shadow:0 12px 30px rgba(0,0,0,0.6)}
 
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color .3s;
-    }
-    nav a:hover {
-      color: #d4af37;
-    }
-
-    /* Hamburger menu (hidden desktop) */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-    }
-    .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background: #d4af37;
-    }
-
-    /* Mobile Nav */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background: black;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 200px;
-        padding: 15px;
-        border-radius: 8px;
-      }
-      nav ul.show {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    /* HERO VIDEO */
-    .hero {
-      position:relative;
-      height:80vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      overflow:hidden;
-    }
-    .hero video {
-      position:absolute;
-      top:0; left:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      z-index:0;
-      filter:brightness(0.5);
-    }
-    .hero-content {
-      position:relative;
-      z-index:1;
-      color:#fff;
-    }
-    .hero-content h1 {
-      font-size:3rem;
-      color:#d4af37;
-      letter-spacing:3px;
-    }
-
-    /* ✅ Change background image for phones */
-    @media (max-width: 768px) {
-      .hero {
-        background: url('/HEROS.jpeg') no-repeat center/cover;
-      }
-    }
-
+    .profile{display:flex;gap:12px;align-items:center}
+    .pfp{width:76px;height:76px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,0.04)}
+    .pfp img{width:100%;height:100%;object-fit:cover}
     /* SONGS SECTION */
     .songs {
   background: black;
@@ -689,3 +599,4 @@ iframe {
 
 </body>
 </html>
+
