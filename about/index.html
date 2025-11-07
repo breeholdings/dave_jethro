@@ -381,65 +381,100 @@
   <!-- VIDEO SECTION -->
 <section class="section video-section">
   <h2>Featured Video</h2>
-  <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/Fj2Y5sCmNck"
-      title="Dave Jethro Video"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+  <div class="video-row">
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/Fj2Y5sCmNck"
+        title="Dave Jethro Video"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/9kWT6y2JWYI"
+        title="Worship Medley – The Blood of Jesus | Dave Jethro"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/Y6vhIQhqb8k"
+        title="The Best Part – Savy Henry (Live Wedding Cover)"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
   </div>
 
-<style>
-  /* Prevent horizontal scroll */
-  html, body {
-    overflow-x: hidden;
-  }
-
-  /* Video section */
-  .video-section {
-    background: #111;
-    padding: 30px 10px;
-    text-align: center;
-  }
-
-  .video-section h2 {
-    color: #fff;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
-  }
-
-  /* Smaller video box */
-  .video-container {
-    position: relative;
-    width: 100%;
-    max-width: 400px; /* narrower */
-    margin: 0 auto;
-    padding-bottom: 30%; /* shorter height */
-    height: 0;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-  }
-
-  .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }67y
-
-  @media (max-width: 768px) {
-    .video-container {
-      max-width: 90%;
-      padding-bottom: 40%; /* slightly taller on mobile */
+  <style>
+    html, body {
+      overflow-x: hidden;
     }
-  }
-</style>
-</section>
 
+    .video-section {
+      background: #111;
+      padding: 30px 10px;
+      text-align: center;
+    }
+
+    .video-section h2 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    /* Flex row for videos */
+    .video-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: nowrap; /* all in one line */
+      gap: 20px;
+      overflow-x: auto; /* allows horizontal scroll on smaller screens */
+      padding-bottom: 10px;
+    }
+
+    .video-container {
+      position: relative;
+      flex: 0 0 30%; /* three videos per row */
+      max-width: 400px;
+      padding-bottom: 17%; /* keep aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Stack vertically on smaller screens */
+    @media (max-width: 900px) {
+      .video-row {
+        flex-wrap: wrap;
+      }
+      .video-container {
+        flex: 1 1 90%;
+        max-width: 90%;
+        padding-bottom: 50%;
+      }
+    }
+  </style>
+</section>
+  
   <!-- Message -->
   <section class="message">
     <h2>A Message from Dave Jethro</h2>
