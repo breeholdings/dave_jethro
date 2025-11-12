@@ -394,10 +394,18 @@
     .social-links a:hover{color:#fff}
     .footer-bottom{text-align:center;padding:15px 0;font-size:.9rem;color:#aaa}
 
-
-      .menu-toggle {
-        display: block;
+    /* MOBILE RESPONSIVE STYLES */
+    @media(max-width:820px){
+      .menu-toggle{display:flex}
+      nav ul{
+        display:none;position:absolute;right:18px;top:74px;
+        background:#080708;padding:12px;border-radius:10px;
+        flex-direction:column;min-width:200px;
+        box-shadow:0 18px 40px rgba(0,0,0,0.7)
       }
+      nav ul.show{display:flex}
+      nav ul li{margin:6px 0}
+    }
 
       .hero-inner {
         flex-direction: column;
