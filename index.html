@@ -766,14 +766,15 @@
   </footer>
 
 <script>
-    // Mobile nav toggle
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('nav ul');
-    toggle.addEventListener('click', () => menu.classList.toggle('show'));
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('nav ul').classList.toggle('show');
+    });
   </script>
 
 </body>
 </html>
+
 
 
 
