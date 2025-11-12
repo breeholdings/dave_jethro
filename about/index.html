@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About Dave Jethro</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dave Jethro</title>
 
-   <!-- Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* ---------------- RESET ---------------- */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;overflow-x:hidden}
-    body{
-      font-family:"Inter","Helvetica Neue",Arial,sans-serif;
-      background:#050405;color:#fff;--soft-gold:#d4af37;
-      -webkit-font-smoothing:antialiased;line-height:1.45;
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+      line-height: 1.6;
+      background: black;
+      color: white;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
     a{color:inherit;text-decoration:none}
     .container{width:92%;max-width:1200px;margin:0 auto}
 
-    /* ---------------- HEADER ---------------- */
-    header{position:sticky;top:0;z-index:60;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px)}
+  /* ---------------- HEADER ---------------- */
+  header{position:sticky;top:0;z-index:60;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand img{width:54px;height:54px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,0.06)}
@@ -47,47 +59,110 @@
       nav ul li{margin:6px 0}
     }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      height: 75vh;
-      background: url('/hero.jpg') no-repeat center center/cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+  .hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
 
-    .hero-content {
-      z-index: 1;
-      position: relative;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 20px;
-      border-radius: 10px;
-    }
+#soundWaveCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
 
-    .hero-content h2 {
-      font-size: 3rem;
-      color: #d4af37;
-    }
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
 
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #fff;
-    }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0,0,0,0.55);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(6px);
+  animation: fadeUp 1.5s ease forwards;
+}
 
-    @media (max-width: 768px) {
-      .hero {
-        height: 60vh;
-        background: url('/HEROS.jpeg') no-repeat center center/cover;
-      }
-      .hero-content h2 {
-        font-size: 2rem;
-      }
-      .hero-content p {
-        font-size: 1rem;
-      }
-    }
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #d4af37;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #eee;
+}
+
+.play-audio {
+  margin-top: 25px;
+  background: #d4af37;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  transition: 0.3s;
+}
+
+.play-audio:hover {
+  background: #fff;
+  color: #000;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s forwards;
+}
+
+.fade-in-delay {
+  opacity: 0;
+  animation: fadeIn 1.2s 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 { font-size: 2rem; }
+  .hero-content p { font-size: 1rem; }
+  .hero { height: 80vh; }
+}
+
 
     /* Sections */
     .section {
@@ -291,7 +366,7 @@
 </head>
 
 <body>
-<!-- HEADER -->
+  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="nav">
@@ -320,13 +395,26 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>About Dave Jethro</h2>
-      <p>Music. Passion. Purpose.</p>
-    </div>
-  </section>
+<!-- HERO SECTION -->
+<section class="hero">
+  <canvas id="soundWaveCanvas"></canvas>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1>Welcome to Dave Jethro</h1>
+    <p>Where sound meets soul, and every story has rhythm.</p>
+    <button id="play-audio" class="play-audio">
+      <i class="fas fa-play"></i> Play Welcome Message
+    </button>
+  </div>
+
+  <audio id="welcome-audio" preload="auto">
+    <source src="/welcome-message.ogg" type="audio/mpeg">
+  </audio>
+</section>
+
+
 
   <!-- About Section -->
   <section class="section">
@@ -475,7 +563,8 @@
     }
   </style>
 </section>
-  
+
+
   <!-- Message -->
   <section class="message">
     <h2>A Message from Dave Jethro</h2>
@@ -622,7 +711,7 @@
           <a href="https://x.com/dave_jethro1?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
           <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
           <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://wa.me/256764188054?text=Hello%20Dave%2C%20I%20would%20like%20to%20inquire..."" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
@@ -647,11 +736,59 @@
     },{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
 
-    // Audio player
-    function playSample(src){
-      const player=document.getElementById('player');
-      player.src=src;player.play();
+  // SOUND WAVE BACKGROUND
+const canvas = document.getElementById('soundWaveCanvas');
+const ctx = canvas.getContext('2d');
+let width, height, wavePhase = 0;
+
+function resizeCanvas() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function drawSoundWaves() {
+  ctx.clearRect(0, 0, width, height);
+  const centerY = height / 2;
+  const amplitude = height / 6;
+  const waveCount = 4;
+
+  for (let i = 0; i < waveCount; i++) {
+    ctx.beginPath();
+    const hue = 45 + i * 10; // golden tones
+    ctx.strokeStyle = `hsla(${hue}, 80%, 60%, 0.7)`;
+    ctx.lineWidth = 2 + i;
+    const freq = 0.015 + i * 0.005;
+
+    for (let x = 0; x < width; x++) {
+      const y = centerY + Math.sin(x * freq + wavePhase + i) * amplitude / (i + 1);
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
     }
+    ctx.stroke();
+  }
+
+  wavePhase += 0.03;
+  requestAnimationFrame(drawSoundWaves);
+}
+drawSoundWaves();
+
+// AUDIO LOGIC
+const audio = document.getElementById('welcome-audio');
+const playButton = document.getElementById('play-audio');
+
+audio.volume = 0.8;
+
+// Attempt autoplay
+audio.play().catch(() => {
+  // Show play button if autoplay is blocked
+  playButton.style.display = 'inline-block';
+});
+
+playButton.addEventListener('click', () => {
+  audio.play();
+  playButton.style.display = 'none';
+});
   </script>
 </body>
 </html>
