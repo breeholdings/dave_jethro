@@ -402,16 +402,25 @@
 
   <!-- Scripts -->
   <script>
-    // Mobile menu toggle (clean version)
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navList = document.querySelector('nav ul');
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navList.classList.toggle('show');
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('nav ul').classList.toggle('show');
     });
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('nav')) navList.classList.remove('show');
-    });
+
+    // Scroll reveal
+    const reveals=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting)entry.target.classList.add('visible');
+      });
+    },{threshold:0.2});
+    reveals.forEach(r=>observer.observe(r));
+
+    // Audio player
+    function playSample(src){
+      const player=document.getElementById('player');
+      player.src=src;player.play();
+    }
 
     // Audio preview limit
     document.querySelectorAll('audio[data-preview]').forEach(aud => {
