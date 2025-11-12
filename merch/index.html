@@ -352,7 +352,6 @@
           <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
           <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
           <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
@@ -362,10 +361,25 @@
   </footer>
 
   <script>
-    // Toggle mobile menu
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('nav ul');
-    toggle.addEventListener('click', () => menu.classList.toggle('show'));
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('nav ul').classList.toggle('show');
+    });
+
+    // Scroll reveal
+    const reveals=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting)entry.target.classList.add('visible');
+      });
+    },{threshold:0.2});
+    reveals.forEach(r=>observer.observe(r));
+
+    // Audio player
+    function playSample(src){
+      const player=document.getElementById('player');
+      player.src=src;player.play();
+    }
   </script>
 </body>
 </html>
