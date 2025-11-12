@@ -2,17 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Insight</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insight | Dave Jethro — Official Music Page</title>
 
-   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0e0b14;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Reduced Section Spacing */
+    section { padding: 50px 8%; }
+
+    h2.section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(90deg, #ff3366, #ffcc66);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
     /* ---------------- RESET ---------------- */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow-x:hidden}
@@ -47,68 +70,222 @@
       nav ul li{margin:6px 0}
     }
 
-    /* Page Hero */
-    .hero-insight {
-      height:50vh;
-      background:url('/concert.jpg') no-repeat center/cover;
-      position:relative;
-      display:flex;justify-content:center;align-items:center;text-align:center;
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(rgba(10, 10, 15, 0.6), rgba(10, 10, 15, 0.6)),
+        url('https://i.pinimg.com/736x/ca/7b/6e/ca7b6ebbeadc1f394daedff8810902d2.jpg') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 10px;
     }
-    .hero-insight::after {content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);}
-    .hero-insight h2 {position:relative;z-index:1;color:#d4af37;font-size:3rem;}
+    .hero h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #ff3366, #ffcc66);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: #ddd;
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
 
-    /* Section */
-    section {padding:70px 20px;}
-    section h2 {text-align:center;color:#d4af37;margin-bottom:40px;font-size:2rem;}
-
-    /* Events */
-    .events-grid {
+    /* ABOUT */
+    .about {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      align-items: center;
     }
-    .event-card {
-      background:#fff;
-      border:1px solid #eee;
-      border-radius:12px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.08);
-      overflow:hidden;
-      transition:.3s;
-    }
-    .event-card:hover {transform:translateY(-8px);}
-    .event-card img {
+    .about img {
       width: 100%;
-      height: 220px;       /* fixed uniform height */
-      object-fit: cover;   /* makes image fill nicely */
-      border-bottom: 1px solid #eee;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+    }
+    .about p { color: #ccc; font-size: 1rem; }
+
+    /* ALBUM SECTION */
+    .album {
+      background: #181621;
+      border-radius: 15px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 51, 102, 0.1);
+    }
+    .album h3 {
+      font-size: 1.6rem;
+      color: #ffcc66;
+      margin-bottom: 15px;
+    }
+    .album img {
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 51, 102, 0.4);
+      margin-bottom: 15px;
+    }
+    .album p {
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
+    }
+    .album-tracklist {
+      margin-top: 10px;
+      background: #1c1a24;
+      padding: 15px 25px;
+      border-radius: 12px;
+      display: inline-block;
+      text-align: left;
+    }
+    .album-tracklist h4 {
+      color: #ff3366;
+      margin-bottom: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .album-tracklist li {
+      margin: 4px 0;
+      color: #bbb;
+      font-size: 0.95rem;
     }
 
-    .event-info {padding:20px;}
-    .event-info h3 {color:#000;margin-bottom:10px;}
-    .event-info p {color:#555;font-size:0.95rem;margin-bottom:15px;}
-    .event-info span {display:block;color:#d4af37;font-weight:bold;margin-bottom:10px;}
-    .event-info a {
-      background:#000;color:#d4af37;padding:10px 20px;border-radius:20px;
-      text-decoration:none;font-size:0.9rem;transition:.3s;
+    /* COUNTDOWN */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
     }
-    .event-info a:hover {background:#d4af37;color:#000;}
+    .countdown div {
+      background: #1b1b25;
+      padding: 15px;
+      border-radius: 8px;
+      min-width: 70px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 51, 102, 0.2);
+    }
+    .countdown span {
+      font-size: 1.5rem;
+      color: #ffcc66;
+      display: block;
+    }
+    .countdown small {
+      color: #aaa;
+      font-size: 0.7rem;
+    }
+
+    /* MUSIC EVOLUTION */
+    .evolution {
+      background: #181621;
+      border-radius: 15px;
+      padding: 35px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 51, 102, 0.1);
+    }
+    .evolution p { color: #ccc; max-width: 700px; margin: 0 auto; }
+
+    /* TRACKS */
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .track {
+      background: #1b1b25;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .track:hover { background: #252535; transform: translateY(-4px); }
+    .track i { font-size: 1.8rem; color: #ff3366; margin-bottom: 8px; }
+    .track h4 { margin-bottom: 6px; color: #fff; font-size: 1rem; }
+    .track p { color: #aaa; font-size: 0.9rem; }
+
+    /* CREATIVE JOURNEY */
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .milestone {
+      background: #1c1a24;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .milestone:hover { background: #262433; transform: translateY(-4px); }
+    .milestone h4 { color: #ffcc66; margin-bottom: 8px; font-size: 1rem; }
+    .milestone p { font-size: 0.9rem; color: #ccc; }
+
+    /* REFLECTION */
+    .reflection {
+      background: #14121a;
+      border-radius: 15px;
+      padding: 35px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255, 51, 102, 0.1);
+    }
+    .reflection p {
+      font-style: italic;
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    /* FUTURE PROJECTS */
+    .future {
+      background: #181621;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 51, 102, 0.1);
+    }
+    .future h3 {
+      font-size: 1.3rem;
+      color: #ffcc66;
+      margin-bottom: 8px;
+    }
+    .future p { color: #bbb; font-size: 0.95rem; }
 
     /* Footer */
-    footer {background:#000;color:#fff;margin-top:60px;}
-    .footer-top {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;padding:50px 0;border-bottom:1px solid #333;}
-    .footer-top h4 {color:#d4af37;margin-bottom:15px;}
-    .footer-top p,.footer-top li,.footer-top a {font-size:0.95rem;color:#ccc;}
-    .footer-top ul {list-style:none;padding:0;}
-    .footer-top a {text-decoration:none;transition:.3s;}
-    .footer-top a:hover {color:#d4af37;}
-    .social-links {display:flex;gap:20px;margin-top:10px;font-size:1.5rem;}
-    .social-links a {color:#d4af37;transition:.3s;}
-    .social-links a:hover {color:#fff;}
-    .footer-bottom {text-align:center;padding:15px 0;font-size:0.9rem;color:#aaa;}
+    footer{background:#000;color:#fff}
+    .footer-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;padding:50px 0;border-bottom:1px solid #333}
+    .footer-top h4{color:var(--soft-gold);margin-bottom:15px}
+    .footer-top p,.footer-top li,.footer-top a{font-size:.95rem;color:#ccc}
+    .footer-top ul{list-style:none;padding:0}
+    .footer-top a:hover{color:var(--soft-gold)}
+    .social-links{display:flex;gap:20px;margin-top:10px;font-size:1.5rem}
+    .social-links a{color:var(--soft-gold);transition:color .3s}
+    .social-links a:hover{color:#fff}
+    .footer-bottom{text-align:center;padding:15px 0;font-size:.9rem;color:#aaa}
+
+    @media (max-width: 768px) {
+      .hero { height: 70vh; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 0.95rem; }
+      h2.section-title { font-size: 1.7rem; }
+      section { padding: 40px 6%; }
+      .album img { width: 200px; }
+      .album p { font-size: 0.95rem; }
+      .countdown div { min-width: 60px; padding: 10px; }
+      .countdown span { font-size: 1.2rem; }
+    }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
+
+    <!-- HEADER -->
   <header>
     <div class="container">
       <div class="nav">
@@ -136,104 +313,147 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero-insight">
-    <h2>Dave Jethro Insights</h2>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Inside the Music</h1>
+    <p>Stories, Sounds & Moments That Define Dave Jethro</p>
   </section>
 
-  <!-- Upcoming Events -->
+  <!-- ABOUT -->
   <section>
-    <h2>Upcoming Events & Tours</h2>
-    <div class="container events-grid">
-      <div class="event-card">
-        <img src="/concert.jpg" alt="Concert">
-        <div class="event-info">
-          <h3>Live in Kampala</h3>
-          <span>December 15, 2025</span>
-          <p>A night of soulful performances with Dave Jethro & Auera Band at Kololo Grounds.</p>
-          <a href="#">Book Tickets</a>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="/event2.jpg" alt="Tour">
-        <div class="event-info">
-          <h3>Africa Tour 2026</h3>
-          <span>January - March 2026</span>
-          <p>Dave Jethro takes his music across Africa, from Nairobi to Lagos, Johannesburg to Accra.</p>
-          <a href="#">View Details</a>
-        </div>
-      </div>
-      <div class="event-card">
-        <img src="/higher.jpg" alt="Album">
-        <div class="event-info">
-          <h3>Album Launch: HIGHER</h3>
-          <span>February 10, 2026</span>
-          <p>Celebrate the release of Dave’s latest Afro-Gospel album with a launch concert in Kampala.</p>
-          <a href="https://youtu.be/FWH2_OC2qVs">Listen Now</a>
-        </div>
+    <h2 class="section-title">Beyond the Studio</h2>
+    <div class="about">
+      <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80" alt="Studio Image">
+      <div>
+        <p>Dave Jethro’s sound continues to evolve with every release — fusing gospel soul, R&B warmth, and heartfelt storytelling. From intimate worship ballads to genre-bending collaborations, his journey reflects authenticity, vulnerability, and a relentless pursuit of excellence.</p>
       </div>
     </div>
   </section>
 
-  <!-- Music Highlights -->
+  <!-- ALBUM -->
   <section>
-    <h2>Music Releases</h2>
-    <div class="container events-grid">
-      <div class="event-card">
-        <img src="/single1.jpg" alt="Single">
-        <div class="event-info">
-          <h3>New Single: "Say I Do"</h3>
-          <span>Released: July 2025</span>
-          <p>A soulful ballad celebrating love, now streaming on all platforms.</p>
-          <a href="https://youtu.be/BRbOCPROcq0">Stream Now</a>
-        </div>
+    <h2 class="section-title">2AM — The Album</h2>
+    <div class="album">
+      <img src="https://i.pinimg.com/1200x/68/8d/06/688d068f9058752d9af9021fae82e88c.jpg" alt="2AM Album Cover">
+      <h3>New Album Coming Soon</h3>
+      <p><strong>2AM</strong> is Dave Jethro’s most personal and emotionally charged project yet. Crafted during quiet midnight sessions, the album dives into themes of love, faith, restlessness, and late-night introspection. From stripped-down ballads to ambient R&B soundscapes, <em>2AM</em> captures the emotions that surface when the world sleeps but the heart stays awake.</p>
+
+      <div class="album-tracklist">
+        <h4>Tracklist Preview</h4>
+        <ul>
+          <li>1. Golden Hours</li>
+          <li>2. Unspoken</li>
+          <li>3. Lights Off</li>
+          <li>4. Echoes (ft. Bree)</li>
+          <li>5. 2AM</li>
+          <li>6. Hold You Still (ft. Bree)</li>
+          <li>7. Lost Letters</li>
+          <li>8. Horizon</li>
+        </ul>
       </div>
-      <div class="event-card">
-        <img src="/single2.jpg" alt="Single">
-        <div class="event-info">
-          <h3>New Single: "Higher"</h3>
-          <span>Released: September 2025</span>
-          <p>Afro-gospel vibes that lift your spirit and ignite your faith.</p>
-          <a href="https://youtu.be/FWH2_OC2qVs">Stream Now</a>
-        </div>
+
+      <div class="countdown" id="countdown">
+        <div><span id="days">00</span><small>Days</small></div>
+        <div><span id="hours">00</span><small>Hours</small></div>
+        <div><span id="minutes">00</span><small>Minutes</small></div>
+        <div><span id="seconds">00</span><small>Seconds</small></div>
       </div>
+      <p style="margin-top: 15px; color: #aaa;">Album Release: <strong>February 01, 2026</strong></p>
+    </div>
+  </section>
+
+  <!-- MUSIC EVOLUTION -->
+  <section>
+    <h2 class="section-title">Musical Evolution</h2>
+    <div class="evolution">
+      <p>From the early acoustic sessions that birthed “Grace Notes” to the powerful emotional resonance of <strong>2AM</strong>, Dave’s music tells a story of transformation. His sound has expanded to embrace live instrumentation, deeper lyricism, and bold collaborations that cross musical boundaries.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED SINGLES -->
+  <section>
+    <h2 class="section-title">Notable Singles & Collaborations</h2>
+    <div class="track-grid">
+      <div class="track">
+        <i class="fa-solid fa-heart"></i>
+        <h4>“Grace Notes”</h4>
+        <p>The breakout single that defined Dave’s soulful tone — a heartfelt reflection of faith and emotion.</p>
+      </div>
+      <div class="track">
+        <i class="fa-solid fa-handshake"></i>
+        <h4>“Hold You Still” ft. Bree</h4>
+        <p>An R&B collaboration blending vulnerability with silky harmonies and emotional honesty.</p>
+      </div>
+      <div class="track">
+        <i class="fa-solid fa-music"></i>
+        <h4>“Golden Hours”</h4>
+        <p>A cinematic love song released ahead of the 2AM album — intimate, tender, and timeless.</p>
+      </div>
+      <div class="track">
+        <i class="fa-solid fa-fire"></i>
+        <h4>“Echoes” ft. Bree</h4>
+        <p>Experimental yet spiritual, merging spoken word with ambient soul for a haunting experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section>
+    <h2 class="section-title">Creative Journey</h2>
+    <div class="journey">
+      <div class="milestone"><h4>2025</h4><p>Released debut worship single “Higher.”</p></div>
+      <div class="milestone"><h4>2026</h4><p>Collaborated with Bree on “Hold You Still.”</p></div>
+      <div class="milestone"><h4>2023</h4><p>Performed live at Worship Night Live before thousands.</p></div>
+      <div class="milestone"><h4>2026</h4><p>Unveiled “Golden Hours” and completed the 2AM Album sessions.</p></div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section>
+    <h2 class="section-title">Artist Reflection</h2>
+    <div class="reflection">
+      <p>“Every melody I write is a conversation with the soul — a dialogue between faith, love, and truth. The music isn’t just sound; it’s the echo of lived experience.”</p>
+    </div>
+  </section>
+
+  <!-- FUTURE -->
+  <section>
+    <h2 class="section-title">What’s Next?</h2>
+    <div class="future">
+      <h3>‘Moments of Grace’ EP (Coming Late 2026)</h3>
+      <p>A stripped-down collection exploring simplicity and spirit, blending live instruments with raw vocal sessions recorded across Kampala and Nairobi.</p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer id="contact">
     <div class="container footer-top">
-      <!-- Inspiration -->
       <div>
         <h4>Inspiration</h4>
         <p>"Music is not just sound – it’s the heartbeat of every moment, the language of the soul, and the bridge that connects us all."</p>
       </div>
-      <!-- Quick Links -->
       <div>
         <h4>Quick Links</h4>
         <ul>
-          <li><a href="/fans/">Family</a></li>
+          <li><a href="/fan/">Family</a></li>
           <li><a href="/insight/">Insight</a></li>
-          <li><a href="/faq/">FAQ</a></li>
+          <li><a href="/gallery/">Gallery</a></li>
         </ul>
       </div>
-      <!-- Contact -->
       <div>
         <h4>Contact Us</h4>
         <p>Phone: +256 764 188 054</p>
         <p>Email: info@davejethro.com</p>
         <p>Location: Kampala, Uganda</p>
       </div>
-      <!-- Follow Us -->
       <div>
         <h4>Follow Us</h4>
         <div class="social-links">
           <a href="https://www.facebook.com/share/1A6gNxgX9R/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/dave_jethro?igsh=MW4wYjIydGh2eHQzeg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://x.com/dave_jethro1?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="https://wa.me/256764188054?text=Hello%20Dave%2C%20I%20would%20like%20to%20inquire..."" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/dave_jethro" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/dave_jethro1" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com/@davejethro" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@dave_jethro" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
     </div>
@@ -242,6 +462,7 @@
     </div>
   </footer>
 
+  <!-- COUNTDOWN SCRIPT -->
   <script>
     // Mobile menu toggle
     document.querySelector('.menu-toggle').addEventListener('click', () => {
@@ -256,12 +477,27 @@
       });
     },{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
+    
+    const releaseDate = new Date("February 01, 2026 00:00:00").getTime();
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = releaseDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Audio player
-    function playSample(src){
-      const player=document.getElementById('player');
-      player.src=src;player.play();
-    }
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "<h3>The Album is Out Now!</h3>";
+      }
+    }, 1000);
   </script>
+
 </body>
 </html>
