@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GG Sounds — Live Sound & Events</title>
+  <title>Dave Jethro</title>
 
    <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -751,10 +751,16 @@
       });
     },{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
-  </script>
 
+    // Audio player
+    function playSample(src){
+      const player=document.getElementById('player');
+      player.src=src;player.play();
+    }
+  </script>
 </body>
 </html>
+
 
 
 
