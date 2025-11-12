@@ -766,14 +766,25 @@
   </footer>
 
 <script>
-    // Mobile menu toggle
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      document.querySelector('nav ul').classList.toggle('show');
-    });
-  </script>
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('nav ul');
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('show');
+  });
+
+  // Close menu if you tap outside it
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+</script>
+
 
 </body>
 </html>
+
 
 
 
