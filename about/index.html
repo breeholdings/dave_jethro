@@ -6,8 +6,8 @@
   <title>Dave Jethro</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="/x-icon" href="favicon.ico">
-  <link rel="icon" type="/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -59,68 +59,126 @@
       nav ul li{margin:6px 0}
     }
 
-/* ===== HERO SECTION ===== */
-    .hero-sound {
-      position: relative;
-      width: 100%;
-      height: 75vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: url('https://i.pinimg.com/1200x/1c/ec/a3/1ceca33b47ca49d3487f38dde92f7c88.jpg')
-                  no-repeat center center/cover;
-    }
+/* ===== HERO SECTION (Redesigned) ===== */
+.hero-sound {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
 
-    /* Canvas for wave animation */
-    canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
+/* Animated gradient background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #000000, #1a1a1a, #111, #000);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  z-index: 1;
+}
 
-    /* Overlay tint */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 2;
-    }
+/* Subtle glowing overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 255, 200, 0.1), rgba(0, 0, 0, 0.8));
+  z-index: 2;
+}
 
-    /* Content styling */
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      color: #fff;
-    }
+/* Centered content */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  animation: fadeInUp 2s ease forwards;
+}
 
-    .hero-content h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
-      animation: fadeIn 2.5s ease-in-out;
-    }
+/* Title */
+.glow-title {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 0 25px rgba(0, 255, 200, 0.8);
+  margin-bottom: 10px;
+  animation: glowPulse 4s ease-in-out infinite;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* Tagline */
+.hero-tagline {
+  font-size: 1.3rem;
+  color: #ccc;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeIn 2.5s 1s ease forwards;
+}
 
-    audio { display: none; }
+/* Button */
+.hero-btn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  color: #000;
+  background: #00ffc8;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .hero-sound {
-        height: 60vh;
-      }
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-    }
+.hero-btn:hover {
+  background: #00bfa5;
+  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(0, 255, 200, 0.8);
+}
+
+/* Audio remains hidden */
+audio { display: none; }
+
+/* ===== Animations ===== */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 25px rgba(0, 255, 200, 0.8); }
+  50% { text-shadow: 0 0 50px rgba(0, 255, 200, 1); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .glow-title {
+    font-size: 2.5rem;
+  }
+  .hero-tagline {
+    font-size: 1rem;
+  }
+  .hero-btn {
+    font-size: 0.9rem;
+    padding: 10px 22px;
+  }
+  .hero-sound {
+    height: 80vh;
+  }
+}
+
 
     /* Sections */
     .section {
@@ -131,7 +189,7 @@
       text-align: center;
       font-size: 2rem;
       margin-bottom: 20px;
-      color: #d4af37;
+      color: #00bfa5;
     }
 
     .section p {
@@ -140,92 +198,143 @@
       margin: 0 auto 20px;
     }
 
-    /* Grid & Cards */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 20px;
-    }
+    /* ---------------- GRID & CARDS (Compact Version) ---------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* slightly smaller base size */
+  gap: 20px; /* reduced spacing between cards */
+  margin-top: 15px;
+}
 
-    .card {
-      background: #fff;
-      color: #000;
-      border: 1px solid #d4af37;
-      border-radius: 10px;
-      text-align: center;
-      padding: 20px;
-      transition: transform 0.3s ease;
-    }
+.card {
+  background: #fff;
+  color: #000;
+  border: 1px solid #25d366;
+  border-radius: 8px;
+  text-align: center;
+  padding: 14px; /* reduced padding */
+  transition: transform 0.3s ease;
+}
 
-    .card:hover {
-      transform: translateY(-8px);
-    }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
+.card img {
+  width: 100%;
+  height: 130px; /* reduced from 180px */
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 10px; /* less space under image */
+}
 
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      background: #d4af37;
-      color: #000;
-      padding: 8px 15px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-    }
+.card p {
+  font-size: 0.9rem; /* slightly smaller text */
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
 
-    .card a:hover {
-      background: #000;
-      color: #fff;
-    }
+.card a {
+  display: inline-block;
+  margin-top: 6px;
+  background: #25d366;
+  color: #000;
+  padding: 6px 12px; /* smaller button */
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
 
-    /* Message Section */
-    .message {
-      background: #fff;
-      color: #000;
-      padding: 70px 20px;
-    }
+.card a:hover {
+  background: #000;
+  color: #ebd3d3;
+}
 
-    .message-content {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 30px;
-      align-items: center;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid {
+    gap: 15px;
+  }
 
-    .message img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
+  .card {
+    padding: 12px;
+  }
 
-    .message-text {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      font-style: italic;
-    }
+  .card img {
+    height: 110px;
+  }
 
-    .signature {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #d4af37;
-    }
+  .card a {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
 
-    @media (max-width: 768px) {
-      .message-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
+
+    /* ---------------- MESSAGE SECTION (Extra Compact) ---------------- */
+.message {
+  background: #fff;
+  color: #000;
+  padding: 12px 10px;          /* very small internal padding */
+  max-width: 700px;            /* narrower container */
+  margin: 25px auto;           /* reduced top/bottom margin */
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.message-content {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr; /* smaller image column */
+  gap: 10px;                          /* tighter gap */
+  align-items: center;
+}
+
+.message img {
+  width: 85%;                         /* smaller image */
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-text {
+  font-size: 0.85rem;                 /* smaller text */
+  line-height: 1.3;                   /* tighter spacing */
+  font-style: italic;
+  margin: 0;
+}
+
+.signature {
+  margin-top: 4px;
+  font-weight: bold;
+  color: #25d366;
+  font-size: 0.8rem;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .message {
+    padding: 10px 8px;
+    margin: 20px auto;
+    max-width: 90%;
+  }
+
+  .message-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .message img {
+    width: 70%;
+  }
+
+  .message-text {
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+}
+
 
     /* Moments in Motion Slider */
     .slider {
@@ -293,7 +402,7 @@
     .footer-top a {
       color: #ccc;
       text-decoration: none;
-      font-size: 0.95rem;
+      fontsize: 0.95rem;
     }
 
     .footer-top a:hover {
@@ -354,19 +463,23 @@
   </header>
 
 <!-- ===== HERO SECTION ===== -->
-  <section class="hero-sound">
-    <canvas id="soundCanvas"></canvas>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Welcome to Dave Jethro</h1>
-    </div>
+<section class="hero-sound">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
 
-    <!-- Background Message -->
-    <audio id="bgAudio" autoplay>
-      <source src="/Download.ogg" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-  </section>
+  <div class="hero-content">
+    <h1 class="glow-title">Dave Jethro</h1>
+    <p class="hero-tagline">Feel the Sound. Live the Vibe.</p>
+    <button class="hero-btn">Explore the Music</button>
+  </div>
+
+  <!-- Background Audio -->
+  <audio id="bgAudio" autoplay loop>
+    <source src="/Download.ogg" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+</section>
+
 
   <!-- About Section -->
   <section class="section">
@@ -378,25 +491,25 @@
         <img src="/musics.jpg" alt="Music">
         <h3>Dave Music</h3>
         <p>From soulful vocals to powerful songwriting, Dave’s music inspires and connects with audiences globally.</p>
-        <a href="music.html">Explore Music</a>
+        <a href="/music/">Explore Music</a>
       </div>
       <div class="card">
         <img src="/groove.jpg" alt="Sound System">
-        <h3>GG Sounds</h3>
+        <h3>GG Sound</h3>
         <p>A professional sound system service for events of all scales — from speakers to full sound packages.</p>
-        <a href="sound.html">Explore GG Sounds</a>
+        <a href="/sound/">Explore GG Sound</a>
       </div>
       <div class="card">
         <img src="/bands.jpg" alt="Band">
-        <h3>Auera Band</h3>
+        <h3>Aueral Band</h3>
         <p>A live band experience featuring talented artists for unforgettable performances.</p>
-        <a href="band.html">Meet the Band</a>
+        <a href="/band/">Meet the Band</a>
       </div>
       <div class="card">
         <img src="/merch.jpg" alt="Merchandise">
         <h3>Merchandise</h3>
         <p>Exclusive branded clothes, accessories, bottles, and flasks to keep the vibe alive beyond the stage.</p>
-        <a href="merch.html">Shop Merchandise</a>
+        <a href="/merch./">Shop Merchandise</a>
       </div>
     </div>
   </section>
@@ -521,7 +634,7 @@
   <section class="message">
     <h2>A Message from Dave Jethro</h2>
     <div class="message-content">
-      <img src="/per2.jpg" alt="Dave Jethro">
+      <img src="/fun2.jpg" alt="Dave Jethro">
       <div class="message-text">
         <p>“Every song I write, every performance I give, every business I build — it all comes from a place of passion and connection. Music and creativity are my way of reaching out to the world, to touch hearts and bring people together.”</p>
         <div class="signature">— Dave Jethro</div>
@@ -663,7 +776,7 @@
           <a href="https://x.com/dave_jethro1?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
           <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
           <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://wa.me/256764188054?text=Hello%20Dave%2C%20I%20would%20like%20to%20inquire..." target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </div>
