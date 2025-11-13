@@ -72,6 +72,55 @@
     }
     a{color:inherit}
 
+    /* HERO FIX — prevent header overlap on small screens */
+.stage {
+  position: relative;
+  min-height: calc(100vh - 70px); /* subtract header height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 70px; /* ensures header spacing */
+}
+
+/* When screen is smaller, allow more scroll space */
+@media (max-width: 600px) {
+  .stage {
+    min-height: calc(100vh - 60px);
+    margin-top: 60px;
+    padding-top: 20px;
+  }
+}
+
+/* Ensure hero card fits comfortably */
+.hero-card {
+  position: relative;
+  z-index: 8;
+  max-width: var(--maxWidth);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 32px;
+  padding: 36px;
+  border-radius: 20px;
+  margin: 0 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.7), 0 0 80px rgba(123,44,255,0.06) inset;
+  align-items: center;
+}
+
+/* Small screens: tighter spacing */
+@media (max-width: 600px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 18px;
+    margin: 0 12px;
+  }
+}
+
+
     /* === HERO / CINEMATIC STAGE === */
     /* Hero: animated neon background + particles via canvas */
     /* ----------- HERO ----------- */
@@ -118,10 +167,26 @@ main {
 }
 
 
-    .stage{
-      height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;position:relative;
-      overflow:hidden;
-    }
+    .stage {
+  position: relative;
+  min-height: calc(100vh - 70px); /* allow for header height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; /* stack nicely on small screens */
+  overflow: visible; /* show all content */
+  margin-top: 70px; /* keep header spacing */
+  padding: 40px 0; /* breathing space top/bottom */
+}
+
+/* On small devices, allow taller scroll space */
+@media (max-width: 600px) {
+  .stage {
+    min-height: auto; /* don't force screen height */
+    margin-top: 60px;
+    padding: 60px 0;
+  }
+}
     /* layered animated gradients */
     .bg-gradient{
       position:absolute;inset:0;z-index:0;background:
@@ -288,7 +353,7 @@ main {
       .hero-left h1{font-size:28px}
       .release .art{height:130px}
       .platforms{justify-content:center}
-      header{display:none} /* minimal header on tiny screens */
+      header{display:block} /* minimal header on tiny screens */
     }
 
     /* small helper */
@@ -477,7 +542,7 @@ main {
           <img src="/logo.jpg" alt="Dave Jethro logo" loading="lazy">
           <div>
             <h1>Dave Jethro</h1>
-            <div style="font-size:.82rem;color:var(--muted);margin-top:2px">Artist · Songwriter</div>
+            <div style="font-size:.82rem;color:var(--muted);margin-top:2px">Musician · Songwriter</div>
           </div>
         </a>
 
