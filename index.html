@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dave Jethro</title>
-
-   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dave Jethro | Official Website</title>
   <link rel="icon" type="image/png" href="favicon.png">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ---------------- RESET ---------------- */
-    *{box-sizing:border-box;margin:0;padding:0}
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:"Poppins",sans-serif;
+      background:#000;
+      color:#f4f4f4;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%;overflow-x:hidden}
     body{
       font-family:"Inter","Helvetica Neue",Arial,sans-serif;
@@ -23,6 +26,7 @@
     }
     a{color:inherit;text-decoration:none}
     .container{width:92%;max-width:1200px;margin:0 auto}
+
 
     /* ---------------- HEADER ---------------- */
     header{position:sticky;top:0;z-index:60;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px)}
@@ -227,176 +231,258 @@
       }
     }
 
-    /* SONGS SECTION */
-    .songs {
-      background: #000;
-      text-align: center;
-      padding: 80px 20px;
-      overflow-x: hidden;
+    /* GENERAL SECTION STYLES */
+    section{padding:4rem 8%;text-align:center;}
+    section h2{font-size:2.2rem;color:#00b7ff;margin-bottom:1rem;}
+    section p{max-width:700px;margin:0 auto 2rem;line-height:1.7;font-size:1.05rem;}
+
+    /* ABOUT */
+    .about{background:#000;}
+
+    /* MUSIC */
+    .music{background:#0a0a0a;}
+    .platforms{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:1rem;
+    }
+    .platforms a{
+      background:#111;
+      border:1px solid #00b7ff;
+      border-radius:50px;
+      padding:0.7rem 1.5rem;
+      color:#fff;
+      text-decoration:none;
+      transition:0.3s;
+    }
+    .platforms a:hover{
+      background:#00b7ff;
+      color:#000;
+      transform:translateY(-3px);
     }
 
-    .songs h2 {
-      color: var(--soft-gold);
-      margin-bottom: 30px;
-      font-size: 2rem;
+    /* DISCOGRAPHY */
+    .discography{
+      background:#000;
     }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      justify-items: center;
-      width: 100%;
+    .albums{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:2rem;
     }
-
-    iframe {
-      width: 100%;
-      max-width: 100%;
-      height: 220px;
-      border-radius: 10px;
-      border: none;
-      display: block;
+    .album{
+      background:#111;
+      border-radius:12px;
+      overflow:hidden;
+      transition:transform 0.3s, box-shadow 0.3s;
     }
-
-    .watch-full {
-      color: var(--soft-gold);
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 8px;
+    .album:hover{
+      transform:translateY(-5px);
+      box-shadow:0 0 20px rgba(0,183,255,0.4);
     }
-
-    .watch-full:hover {
-      color: white;
+    .album img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
     }
+    .album h3{margin:1rem 0;color:#00b7ff;}
+    .album p{font-size:0.9rem;color:#bbb;margin-bottom:1rem;}
 
-    /* PLATFORMS */
-    .platforms {
-      padding: 80px 20px;
-      text-align: center;
-      background: #111;
-      overflow-x: hidden;
+    /* SHOWS */
+    .shows{background:#0a0a0a;}
+    .show-list{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.5rem;
+      text-align:left;
     }
-
-    .platforms h2 {
-      color: var(--soft-gold);
-      margin-bottom: 25px;
+    .show{
+      background:#111;
+      padding:1rem 1.5rem;
+      border-radius:10px;
+      border-left:4px solid #00b7ff;
+      transition:transform 0.3s;
     }
+    .show:hover{transform:translateY(-5px);}
+    .show h4{color:#00b7ff;margin-bottom:0.3rem;}
+    .show p{color:#ccc;font-size:0.9rem;}
 
-    .platform-links a {
-      display: inline-block;
-      margin: 10px 15px;
-      padding: 12px 25px;
-      border: 2px solid var(--soft-gold);
-      border-radius: 30px;
-      color: var(--soft-gold);
-      font-weight: bold;
-      transition: 0.3s;
-      white-space: nowrap;
+    .videos{
+  background:#000;
+  text-align:center;
+}
+.video-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:1.2rem;
+  margin-top:1.5rem;
+}
+.video-grid iframe{
+  flex:1 1 22%;
+  min-width:280px;
+  height:220px;
+  border:none;
+  border-radius:12px;
+  box-shadow:0 0 20px rgba(0,183,255,0.3);
+  transition:transform 0.3s;
+}
+.video-grid iframe:hover{
+  transform:scale(1.03);
+}
+
+
+    .gallery{
+  background:#0a0a0a;
+  text-align:center;
+}
+.gallery-grid{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-top:1.5rem;
+}
+.gallery-grid img{
+  flex:1 1 22%;
+  min-width:220px;
+  border-radius:12px;
+  object-fit:cover;
+  height:200px;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.gallery-grid img:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(0,183,255,0.4);
+}
+
+    /* NEWS */
+    .news{background:#0a0a0a;}
+    .news-items{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.5rem;
+      text-align:left;
     }
-
-    .platform-links a:hover {
-      background: var(--soft-gold);
-      color: #000;
+    .news-card{
+      background:#111;
+      border-radius:12px;
+      padding:1rem;
+      transition:0.3s;
     }
+    .news-card:hover{transform:translateY(-5px);}
+    .news-card h3{color:#00b7ff;margin-bottom:0.5rem;}
+    .news-card p{color:#ccc;font-size:0.95rem;}
 
-    /* MUSIC SECTION */
-    .music-section {
-      padding: 80px 20px;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    .music-section h2 {
-      color: var(--soft-gold);
-      margin-bottom: 25px;
-      font-size: 2rem;
-    }
-
-    .music-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .music-buttons a {
-      border: 2px solid var(--soft-gold);
-      border-radius: 30px;
-      padding: 10px 20px;
-      color: var(--soft-gold);
-      transition: 0.3s;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .music-buttons a:hover {
-      background: var(--soft-gold);
-      color: #000;
-    }
-
-    /* EVENTS */
-    .events {
-      padding: 80px 20px;
-      background: #000;
-      overflow-x: hidden;
-    }
-
-    .events h2 {
-      color: var(--soft-gold);
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .events .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      width: 100%;
-    }
-
-    .events img,
-    .events iframe {
-      width: 100%;
-      max-width: 100%;
-      height: 220px;
-      border-radius: 10px;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* EXPLORE */
     .explore {
-      padding: 80px 20px;
-      background: #111;
-      overflow-x: hidden;
-    }
+  background: #000;
+  text-align: center;
+  padding: 80px 20px;
+}
 
-    .explore h2 {
-      color: var(--soft-gold);
-      text-align: center;
-      margin-bottom: 40px;
-    }
+.explore h2 {
+  font-size: 2.5rem;
+  color: #00b7ff;
+  margin-bottom: 0.5rem;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
-      width: 100%;
-    }
+.explore p {
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  color: #ddd;
+  font-size: 1.05rem;
+}
 
-    .card {
-      background: white;
-      color: black;
-      border-radius: 15px;
-      padding: 25px;
-      text-align: center;
-      transition: transform .3s;
-    }
+.explore-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
 
-    .card:hover {
-      transform: translateY(-8px);
+.explore-card {
+  background: #111;
+  border-radius: 15px;
+  width: 260px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 15px rgba(0, 183, 255, 0.15);
+}
+
+.explore-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(0, 183, 255, 0.35);
+}
+
+.explore-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.explore-card h3 {
+  color: #00b7ff;
+  font-size: 1.3rem;
+  margin: 15px 15px 10px;
+}
+
+.explore-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin: 0 15px 15px;
+}
+
+.explore-card .btn {
+  display: block;
+  text-align: center;
+  background: #00b7ff;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 0 15px 20px;
+  transition: background 0.3s;
+  text-decoration: none;
+}
+
+.explore-card .btn:hover {
+  background: #008ecc;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+  .explore-card {
+    width: 45%;
+  }
+}
+@media (max-width: 600px) {
+  .explore-card {
+    width: 90%;
+  }
+}
+
+    /* SUBSCRIBE */
+    .subscribe{background:#000;}
+    .subscribe input{
+      padding:0.8rem;
+      border:none;
+      border-radius:30px;
+      width:280px;
+      margin-right:0.5rem;
     }
+    .subscribe button{
+      padding:0.8rem 1.5rem;
+      border:none;
+      border-radius:30px;
+      background:#00b7ff;
+      color:#000;
+      font-weight:600;
+      cursor:pointer;
+      transition:transform 0.3s;
+    }
+    .subscribe button:hover{transform:scale(1.05);}
 
     /* SLIDER */
     .slider {
@@ -501,8 +587,8 @@
     }
   </style>
 </head>
-
 <body>
+
   <!-- HEADER -->
   <header>
     <div class="container">
@@ -511,7 +597,7 @@
           <img src="/logo.jpg" alt="Dave Jethro logo" loading="lazy">
           <div>
             <h1>Dave Jethro</h1>
-            <div style="font-size:.82rem;color:var(--muted);margin-top:2px">Artist · Songwriter</div>
+            <div style="font-size:.82rem;color:var(--muted);margin-top:2px">Musician · Songwriter</div>
           </div>
         </a>
 
@@ -521,8 +607,8 @@
             <li><a href="/">Home</a></li>
             <li><a href="/about/">About Us</a></li>
             <li><a href="/music/">Dave Music</a></li>
-            <li><a href="/sound/">Sound System</a></li>
-            <li><a href="/band/">Band</a></li>
+            <li><a href="/sound/">GG Sound</a></li>
+            <li><a href="/band/">Aueral Band</a></li>
             <li><a href="/merch/">Merchandise</a></li>
             <li><a href="/insight/">Insights</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -557,122 +643,113 @@
     </div>
   </section>
 
-<!-- SONGS SECTION -->
-<section class="songs">
-  <h2>Featured Songs</h2>
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <h2>About Dave Jethro</h2>
+    <p>Dave Jethro is a visionary artist redefining modern soundscapes. His music blends deep emotion, storytelling, and sonic innovation that captures hearts across the world. From soulful ballads to electrifying performances, Dave’s art resonates with passion and authenticity.</p>
+  </section>
+
+  <!-- MUSIC -->
+  <section id="music" class="music">
+    <h2>Listen On</h2>
+    <div class="platforms">
+      <a href="https://open.spotify.com/artist/17SSOb2xa2XG67FJTvv7qA?si=4a6smQmaSwe1StAd61xOeQ">Spotify</a>
+      <a href="https://music.apple.com/ug/artist/dave-jethro/1763246959">Apple Music</a>
+      <a href="https://youtube.com/@davejethro?si=DCMnN3ti9-dPUuYk">YouTube</a>
+      <a href="https://soundcloud.com/davejethro">SoundCloud</a>
+      <a href="https://audiomack.com/davejethro">Audiomack</a>
+    </div>
+  </section>
+
+  <!-- DISCOGRAPHY -->
+  <section id="discography" class="discography">
+    <h2>Discography</h2>
+    <div class="albums">
+      <div class="album"><img src="https://i.pinimg.com/1200x/68/8d/06/688d068f9058752d9af9021fae82e88c.jpg"><h3>2AM Album</h3><p>2026 · 12 Tracks</p></div>
+      <div class="album"><img src="https://i.pinimg.com/736x/c0/11/e5/c011e5a69b48466390b6ef16689321c8.jpg"><h3>Moments of Grace EP</h3><p>2026 · 8 Tracks</p></div>
+      <div class="album"><img src="https://i.pinimg.com/736x/66/b2/f8/66b2f88bb95e1414d9bca2deb5b78379.jpg"><h3>Waves of Emotion</h3><p>2027 · 6 Tracks</p></div>
+    </div>
+  </section>
+
+  <!-- SHOWS -->
+  <section id="shows" class="shows">
+    <h2>Upcoming Shows</h2>
+    <div class="show-list">
+      <div class="show">
+        <h4>Kampala Music Fest</h4>
+        <p>📍 Lugogo Cricket Oval — Dec 10, 2025</p>
+      </div>
+      <div class="show">
+        <h4>Nairobi Vibes Night</h4>
+        <p>📍 Ngong Racecourse — Jan 25, 2026</p>
+      </div>
+      <div class="show">
+        <h4>Lagos AfroBeat Gala</h4>
+        <p>📍 Civic Centre — Feb 15, 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+<section id="videos" class="videos">
+  <h2>Featured Videos</h2>
+  <p>Watch some of Dave Jethro’s most captivating performances and visual stories.</p>
   <div class="video-grid">
-
-    <!-- Real Love -->
-    <div class="video-item">
-      <iframe width="853" height="480" 
-        src="https://www.youtube.com/embed/BRbOCPROcq0?start=0&end=60&rel=0" 
-        title="Real Love - Dave Jethro (Lyrics)" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-      <a class="watch-full" href="https://www.youtube.com/watch?v=BRbOCPROcq0" target="_blank">🎧 Watch Full on YouTube</a>
-    </div>
-
-    <!-- HIGHER -->
-    <div class="video-item">
-      <iframe width="853" height="480" 
-        src="https://www.youtube.com/embed/FWH2_OC2qVs?start=0&end=60&rel=0" 
-        title="HIGHER - Dave Jethro (Official Lyrics Video)" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-      <a class="watch-full" href="https://www.youtube.com/watch?v=FWH2_OC2qVs" target="_blank">🎧 Watch Full on YouTube</a>
-    </div>
-
-    <!-- GLO -->
-    <div class="video-item">
-      <iframe width="853" height="480" src="https://www.youtube.com/embed/vuuuAADGBCM?start=0&end=60&rel=0" title="Dave Jethro - GLO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <a class="watch-full" href="https://www.youtube.com/watch?v=vuuuAADGBCM" target="_blank">🎧 Watch Full on YouTube</a>
-    </div>
-
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/Fj2Y5sCmNck" title="Dave Jethro Performs ‘If There’s a Question of My Heart’ Live at Irene Ntale’s Wedding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/9kWT6y2JWYI" title="Worship Medley – The Blood of Jesus | Dave Jethro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/Y6vhIQhqb8k" title="The Best Part – Savy Henry (Live Wedding Cover)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 </section>
 
-<!-- PLATFORMS -->
-<section class="platforms">
-  <h2>Available on Major Platforms</h2>
-  <div class="platform-links">
-    <a href="https://open.spotify.com/artist/17SSOb2xa2XG67FJTvv7qA?si=4a6smQmaSwe1StAd61xOeQ" target="_blank"><i class="fab fa-spotify"></i> Spotify</a>
-    <a href="https://music.apple.com/ug/artist/dave-jethro/1763246959" target="_blank"><i class="fab fa-apple"></i> Apple Music</a>
-  </div>
-</section>
 
-<!-- ✅ MUSIC SECTION -->
-<section id="music" class="music-section">
-  <h2>Listen on Streaming Platforms</h2>
-
-  <!-- Buttons -->
-  <div class="music-buttons">
-    <a href="https://soundcloud.com/{YOUR_SOUNDCLOUD_LINK}" target="_blank">
-      <i class="fab fa-soundcloud"></i> SoundCloud
-    </a>
-    <a href="https://www.deezer.com/artist/{YOUR_DEEZER_ID}" target="_blank">
-      <i class="fab fa-deezer"></i> Deezer
-    </a>
-    <a href="https://open.spotify.com/artist/17SSOb2xa2XG67FJTvv7qA?si=4a6smQmaSwe1StAd61xOeQ" target="_blank">
-      <i class="fab fa-spotify"></i> Spotify
-    </a>
-    <a href="https://music.apple.com/ug/artist/dave-jethro/1763246959" target="_blank">
-      <i class="fab fa-apple"></i> Apple Music
-    </a>
-    <a href="https://www.youtube.com/@davejethro" target="_blank">
-      <i class="fab fa-youtube"></i> YouTube
-    </a>
-  </div>
-</section>
-
-<!-- EVENTS -->
-<section class="events">
-  <h2>Latest Events</h2>
-  <div class="gallery">
-    <!-- Images -->
-
-     <!-- YouTube Video -->
-    <div class="event-video">
-      <iframe width="853" height="480" src="https://www.youtube.com/embed/9kWT6y2JWYI" title="Worship Medley – The Blood of Jesus | Dave Jethro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div> 
-    <div class="event-video">
-      <iframe width="853" height="480" src="https://www.youtube.com/embed/Fj2Y5sCmNck" title="Dave Jethro Performs ‘If There’s a Question of My Heart’ Live at Irene Ntale’s Wedding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <!-- NEWS -->
+  <section id="news" class="news">
+    <h2>Latest News</h2>
+    <div class="news-items">
+      <div class="news-card"><h3>New Single “Higher” Released</h3><p>Dave Jethro drops a new anthem blending Afrobeat and R&B vibes—out now on all streaming platforms.</p></div>
+      <div class="news-card"><h3>Dave Wins Male Rising Artist 2026</h3><p>At the recent Global Sound Awards, Dave Jethro took home the top honor for his outstanding musical influence.</p></div>
+      <div class="news-card"><h3>Tour Dates Announced</h3><p>Dave’s 2026 World Tour is confirmed! Check the schedule for cities and venues near you.</p></div>
     </div>
-    <div class="event-video">
-      <iframe width="853" height="480" src="https://www.youtube.com/embed/Y6vhIQhqb8k" title="The Best Part – Savy Henry (Live Wedding Cover)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-  
-<!-- EXPLORE -->
-<section class="explore">
+  </section>
+
+  <!-- EXPLORE -->
+<section id="explore" class="explore">
   <h2>Explore</h2>
-  <div class="grid">
-    <div class="card">
-      <i class="fas fa-music fa-2x" style="color:#d4af37;"></i>
-      <h3>Music</h3>
-      <p>Experience the latest soulful and Afro-gospel releases.</p>
+  <p>Discover every side of Dave Jethro’s creative universe — from his solo music to his band, sound production, and merchandise.</p>
+
+  <div class="explore-grid">
+    <div class="explore-card">
+      <img src="per6.jpg" alt="Dave Jethro Music">
+      <h3>Dave Music</h3>
+      <p>Experience the full catalog of Dave’s music — singles, EPs, and albums that blend passion with sound innovation.</p>
+      <a href="/music/" class="btn">Visit Page</a>
     </div>
-    <div class="card">
-      <i class="fas fa-volume-up fa-2x" style="color:#d4af37;"></i>
-      <h3>GG Sounds</h3>
-      <p>High-quality sound for every event.</p>
+
+    <div class="explore-card">
+      <img src="sounds.jpg" alt="GG Sound">
+      <h3>GG Sound</h3>
+      <p>Home of top-tier audio production and creative sound design. Discover the heartbeat behind the music.</p>
+      <a href="/sound/" class="btn">Visit Page</a>
     </div>
-    <div class="card">
-      <i class="fas fa-microphone-alt fa-2x" style="color:#d4af37;"></i>
-      <h3>Auera Band</h3>
-      <p>Live performances that move audiences.</p>
+
+    <div class="explore-card">
+      <img src="bands.jpg" alt="Aueral Band">
+      <h3>Aueral Band</h3>
+      <p>Get to know the band that brings Dave’s vision to life on stage — raw energy and sonic artistry combined.</p>
+      <a href="/band/" class="btn">Visit Page</a>
     </div>
-    <div class="card">
-      <i class="fas fa-shopping-bag fa-2x" style="color:#d4af37;"></i>
+
+    <div class="explore-card">
+      <img src="merch.jpg" alt="Dave Jethro Merchandise">
       <h3>Merchandise</h3>
-      <p>Shop exclusive apparel and collectibles.</p>
+      <p>Shop official Dave Jethro apparel, accessories, and limited-edition merch for the true fans.</p>
+      <a href="/merch/" class="btn">Visit Page</a>
     </div>
   </div>
 </section>
 
-<!-- MOMENTS IN MOTION -->
+
+  <!-- MOMENTS IN MOTION -->
 <section class="section" style="background:#111; overflow:hidden;">
   <h2>Moments in Motion</h2>
   <div class="slider">
@@ -739,7 +816,18 @@
   </style>
 </section>
 
-<!-- Footer -->
+
+  <!-- SUBSCRIBE -->
+  <section id="subscribe" class="subscribe">
+    <h2>Stay Updated</h2>
+    <p>Join Dave’s community and never miss a beat.</p>
+    <form>
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
   <footer id="contact">
     <div class="container footer-top">
       <div>
@@ -783,52 +871,12 @@
       document.querySelector('nav ul').classList.toggle('show');
     });
 
-    // Scroll reveal
-    const reveals=document.querySelectorAll('.reveal');
-    const observer=new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting)entry.target.classList.add('visible');
-      });
-    },{threshold:0.2});
-    reveals.forEach(r=>observer.observe(r));
-
     // Audio player
     function playSample(src){
       const player=document.getElementById('player');
       player.src=src;player.play();
     }
   </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
