@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dave Jethro — Lyrics Library</title>
+  <meta name="description" content="Dave Jethro — Lyrics library. Echoes, No Lost Letters, Lights Off, 2AM.">
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Spectral:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+  /* =========================
+     DESIGN SYSTEM & GLOBAL
+     ========================= */
+  :root{
+    --neon: #00fff7;
+    --neon-2: #00a8ff;
+    --bg-0: #050505;
+    --bg-1: #0a0a0a;
+    --card: #0e0e10;
+    --muted: #9b9b9b;
+    --glass: rgba(255,255,255,0.03);
+    --radius: 14px;
+    --max-w: 1200px;
+    --ease: cubic-bezier(.2,.9,.25,1);
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,var(--bg-0) 0%, #070707 55%);
+    color:#eaeaea;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+
+  /* ---------------- HEADER ---------------- */
+    header{position:sticky;top:0;z-index:60;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{width:54px;height:54px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,0.06)}
+    .brand h1{font-family:"Lora";font-size:1.05rem;font-weight:700}
+    nav ul{display:flex;gap:16px;list-style:none}
+    nav a{font-size:.95rem;padding:8px;border-radius:8px;transition:all .18s}
+    nav a:hover{color:var(--soft-gold);background:rgba(212,175,55,0.06)}
+    .menu-toggle{display:none;background:transparent;border:none;color:#fff;font-size:1.6rem;cursor:pointer}
+
+    @media(max-width:820px){
+      .menu-toggle{display:flex}
+      nav ul{
+        display:none;position:absolute;right:18px;top:74px;
+        background:#080708;padding:12px;border-radius:10px;
+        flex-direction:column;min-width:200px;
+        box-shadow:0 18px 40px rgba(0,0,0,0.7)
+      }
+      nav ul.show{display:flex}
+      nav ul li{margin:6px 0}
+    }
+
+  /* ================= HERO SECTION ================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  background: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.75), #000);
+  z-index: 1;
+}
+
+/* Text Content */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: 0 20px;
+  animation: fadeIn 1.6s ease forwards;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg,#00fff7,#0084ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 18px rgba(0,255,245,0.4);
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  color: #ccc;
+  margin-top: 12px;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
+.hero-buttons {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-hero {
+  padding: 12px 32px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-hero.neon {
+  background: #00fff7;
+  color: #000;
+  box-shadow: 0 0 18px #00fff7;
+}
+
+.btn-hero.neon:hover {
+  background: #00e3d9;
+  box-shadow: 0 0 26px #00fff7;
+}
+
+.btn-hero.outline {
+  border: 2px solid #00fff7;
+  color: #00fff7;
+}
+
+.btn-hero.outline:hover {
+  background: rgba(0,255,247,0.15);
+}
+
+/* Floating Particles */
+.particles span {
+  position: absolute;
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #00fff7;
+  border-radius: 50%;
+  opacity: 0.25;
+  animation: float 8s linear infinite;
+}
+
+.particles span:nth-child(1){top:80%;left:15%;animation-delay:1s}
+.particles span:nth-child(2){top:20%;left:40%;animation-delay:2s}
+.particles span:nth-child(3){top:65%;left:75%;animation-delay:3s}
+.particles span:nth-child(4){top:10%;left:25%;animation-delay:4s}
+.particles span:nth-child(5){top:55%;left:50%;animation-delay:5s}
+.particles span:nth-child(6){top:30%;left:70%;animation-delay:1.2s}
+.particles span:nth-child(7){top:85%;left:60%;animation-delay:2.5s}
+.particles span:nth-child(8){top:45%;left:20%;animation-delay:3.2s}
+.particles span:nth-child(9){top:15%;left:85%;animation-delay:4.4s}
+.particles span:nth-child(10){top:70%;left:30%;animation-delay:5.6s}
+
+@keyframes float {
+  0% {transform: translateY(0); opacity: .15;}
+  50% {transform: translateY(-40px); opacity: .45;}
+  100% {transform: translateY(0); opacity: .15;}
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% {opacity: 0; transform: translateY(20px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+/* Mobile Fixes */
+@media(max-width: 780px){
+  .hero-title { font-size: 2.6rem; }
+  .hero-tagline { font-size: 1rem; }
+  .hero { height: 75vh; }
+}
+
+
+  /* ===== Small Hero (compact for a lyrics page) ===== */
+  .hero-small{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:28px 0;
+    border-bottom:1px solid rgba(255,255,255,0.03);
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  }
+  .hero-left{display:flex;align-items:center;gap:18px}
+  .hero-art{
+    width:96px;height:96px;border-radius:12px;overflow:hidden;
+    border:1px solid rgba(0,255,247,0.08);flex-shrink:0;
+    box-shadow:0 8px 30px rgba(0,0,0,0.6), 0 0 28px rgba(0,255,247,0.02) inset;
+    background:linear-gradient(45deg,#0b0b0b,#111);
+  }
+  .hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-meta h2{margin:0;font-size:1.35rem;letter-spacing:.6px;background:linear-gradient(90deg,var(--neon),var(--neon-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-meta p{margin:6px 0 0;color:var(--muted);font-size:.95rem}
+
+  .hero-cta{margin-left:auto;display:flex;gap:12px;align-items:center}
+  .btn {
+    padding:10px 18px;border-radius:999px;font-weight:600;border:1px solid rgba(255,255,255,0.04);
+    background:transparent;color:#eaeaea;cursor:pointer;transition:all .18s;
+  }
+  .btn.listen{background:linear-gradient(90deg,var(--neon),var(--neon-2));color:#000;box-shadow:0 6px 30px rgba(0,255,247,0.08)}
+  .btn.secondary{border-color:rgba(0,255,247,0.12);color:var(--neon)}
+  .btn:focus{outline:3px solid rgba(0,255,247,0.08)}
+
+  /* ===== SPLIT LAYOUT ===== */
+  .split {
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:28px;
+    align-items:start;
+    padding:38px 0 80px;
+  }
+  @media(max-width:960px){
+    .split{grid-template-columns:1fr; padding:18px 0 60px}
+  }
+
+  /* ===== LEFT: Song List ===== */
+  .song-list {
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+    padding:18px;border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .list-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .search {
+    flex:1;display:flex;align-items:center;gap:10px;background:var(--glass);padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)
+  }
+  .search input{background:transparent;border:0;color:inherit;font-size:0.95rem;outline:none;width:100%}
+  .controls{display:flex;gap:8px}
+  .control-btn{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 10px;border-radius:10px;color:var(--muted);cursor:pointer;font-size:.9rem}
+  .control-btn:hover{border-color:var(--neon);color:var(--neon)}
+
+  .tracks{margin-top:6px;max-height:66vh;overflow:auto;padding-right:6px}
+  @media(max-width:960px){ .tracks{max-height:none} }
+
+  .track {
+    display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;cursor:pointer;
+    transition:all .18s; border:1px solid transparent;
+  }
+  .track:hover{transform:translateX(6px); background:rgba(0,255,247,0.02)}
+  .track.active{background:linear-gradient(90deg,rgba(0,255,247,0.04),rgba(0,160,255,0.03)); border-color:rgba(0,255,247,0.08); box-shadow:0 8px 28px rgba(0,0,0,0.6) inset}
+  .track .meta{flex:1}
+  .track .title{font-weight:600;color:var(--neon);margin:0}
+  .track .sub{font-size:.88rem;color:var(--muted);margin-top:4px}
+
+  .track .badge{font-size:.8rem;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);border:1px solid rgba(255,255,255,0.03)}
+
+  /* ===== RIGHT: Lyrics Panel ===== */
+  .panel{
+    background:linear-gradient(180deg,#070707,#0b0b0b);
+    border-radius:var(--radius);padding:28px;border:1px solid rgba(255,255,255,0.03);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  }
+  .panel-head{display:flex;align-items:center;gap:18px}
+  .panel-head .title{font-size:1.6rem;font-weight:700;background:linear-gradient(90deg,var(--neon),var(--neon-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0}
+  .panel-head .meta{color:var(--muted);font-size:.95rem}
+  .panel-actions{margin-left:auto;display:flex;gap:10px;align-items:center}
+
+  .lyrics {
+    margin-top:20px;
+    padding:20px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
+    border-radius:12px;border-left:4px solid rgba(0,255,247,0.06);
+    max-height:62vh;overflow:auto;
+  }
+  .lyrics pre{white-space:pre-wrap;font-size:16px;line-height:1.8;color:#e9f9f9;margin:0}
+  .meaning{margin-top:18px;padding:16px;border-radius:10px;background:#0a0a0a;border-left:4px solid var(--neon-2)}
+  .meaning h4{margin:0 0 8px;color:var(--neon)}
+  .meaning p{margin:0;color:var(--muted)}
+
+  /* small helpers */
+  .muted{color:var(--muted);font-size:.95rem}
+  .tiny{font-size:.82rem;color:var(--muted)}
+
+  /* scrollbar */
+  .tracks::-webkit-scrollbar, .lyrics::-webkit-scrollbar{width:8px}
+  .tracks::-webkit-scrollbar-thumb, .lyrics::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.04);border-radius:10px}
+
+  /* mobile: stack and show list first */
+  @media(max-width:960px){
+    .hero-cta{margin-top:12px}
+    .panel{padding:18px}
+    .lyrics{max-height:none}
+  }
+
+  /* focus / keyboard nav hint */
+  .track:focus{outline:3px solid rgba(0,255,247,0.06)}
+
+   /* Footer */
+footer {
+  background: #000;
+  color: #fff;
+}
+
+/* Reduce top section height */
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 0;              /* reduced from 50px */
+  border-bottom: 1px solid #333;
+}
+
+.footer-top h4 {
+  color: var(--soft-gold);
+  margin-bottom: 10px;           /* reduced */
+}
+
+.footer-top p,
+.footer-top li,
+.footer-top a {
+  font-size: .85rem;             /* reduced font size */
+  color: #ccc;
+  margin: 3px 0;                 /* reduced spacing between items */
+}
+
+.footer-top ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Social icons smaller and tighter */
+.social-links {
+  display: flex;
+  gap: 12px;                     /* reduced gap */
+  margin-top: 6px;
+  font-size: 1.2rem;             /* reduced size */
+}
+
+.social-links a {
+  color: var(--soft-gold);
+  transition: color .3s;
+}
+
+.social-links a:hover {
+  color: #fff;
+}
+
+/* Slim bottom section */
+.footer-bottom {
+  text-align: center;
+  padding: 0;              /* remove all inside padding */
+  margin: 0;               /* no outside space */
+  line-height: 1.1;        /* tighter text height */
+  font-size: .8rem;
+  color: #aaa;
+}
+
+footer {
+  padding-bottom: 0.5 !important;
+  margin-bottom: 0.5 !important;
+}
+
+    
+/* ============================================================
+   🔥 UNIVERSAL RESPONSIVENESS FIXES
+   Makes: 
+   - Navigation fully responsive
+   - Hero text scale correctly
+   - Split view stack correctly on all devices
+   - Song list scroll safe on smaller screens
+   ============================================================ */
+
+/* ===== MOBILE NAVIGATION ===== */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  nav ul {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    border-radius: 14px;
+    display: none;
+    flex-direction: column;
+    width: 220px;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+}
+
+/* ===== HERO FULL RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  .hero-title { font-size: 3.2rem; }
+}
+@media (max-width: 820px) {
+  .hero { height: 70vh; padding: 20px; }
+  .hero-title { font-size: 2.5rem; }
+  .hero-tagline { font-size: .95rem; }
+  .hero-buttons { flex-direction: column; gap: 14px; }
+}
+@media (max-width: 520px) {
+  .hero-title { font-size: 2rem; }
+}
+
+/* ===== HERO–SMALL ===== */
+@media (max-width: 700px) {
+  .hero-small {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-left {
+    flex-direction: column;
+  }
+  .hero-cta {
+    margin-left: 0;
+  }
+}
+
+/* ===== SPLIT LAYOUT FIX ===== */
+@media (max-width: 1100px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make song list smaller on mobile */
+@media (max-width: 820px) {
+  .song-list {
+    padding: 14px;
+  }
+  .tracks {
+    max-height: 320px;
+  }
+}
+
+/* Lyrics panel mobile text scaling */
+@media (max-width: 820px) {
+  .panel-head .title { font-size: 1.3rem; }
+  .lyrics pre { font-size: 14px; }
+}
+
+/* ===== FOOTER ===== */
+@media (max-width: 700px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .social-links {
+    justify-content: left;
+  }
+}
+
+footer {
+  margin-top: 40px;  /* Pushes footer downward */
+  padding: 30px 20px;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="/">
+          <img src="/logo.jpg" alt="Dave Jethro logo" loading="lazy">
+          <div>
+            <h1>Dave Jethro</h1>
+            <div style="font-size:.82rem;color:var(--muted);margin-top:2px">Artist · Songwriter</div>
+          </div>
+        </a>
+
+        <nav>
+          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="/music/">Dave Music</a></li>
+            <li><a href="/sound/">Sound System</a></li>
+            <li><a href="/band/">Band</a></li>
+            <li><a href="/merch/">Merchandise</a></li>
+            <li><a href="/insight/">Insights</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  
+  <!-- ================= HERO SECTION ================= -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">Dave Jethro</h1>
+    <p class="hero-tagline">Where Spirit Meets Sound</p>
+
+    <div class="hero-buttons">
+      <a href="/music/" class="btn-hero neon">Listen Now</a>
+      <a href="/about/" class="btn-hero outline">About Dave</a>
+    </div>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</section>
+
+
+  <main class="container" role="main" aria-labelledby="pageTitle">
+
+    <!-- SMALL HERO -->
+    <section class="hero-small" aria-hidden="false">
+      <div class="hero-left">
+        <div class="hero-art" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=60" alt="Dave Jethro artwork">
+        </div>
+        <div class="hero-meta">
+          <h2 id="pageTitle">Lyrics Library</h2>
+          <p>Explore lyrics, meanings and studio notes — Echoes, No Lost Letters, Lights Off, 2AM</p>
+        </div>
+      </div>
+
+      <div class="hero-cta" role="region" aria-label="Hero actions">
+        <a class="btn listen" href="/music/">Listen</a>
+        <button class="btn secondary" id="openAllBtn" title="Expand all lyrics">Expand all</button>
+      </div>
+    </section>
+
+    <!-- SPLIT VIEW -->
+    <section class="split" aria-labelledby="pageTitle">
+
+      <!-- LEFT: SONG LIST -->
+      <aside class="song-list" aria-label="Song list">
+        <div class="list-header">
+          <div class="search" role="search">
+            <i class="fa fa-search" aria-hidden="true" style="opacity:.6"></i>
+            <input id="searchInput" placeholder="Search songs..." aria-label="Search songs">
+          </div>
+
+          <div class="controls">
+            <button class="control-btn" id="prevBtn" title="Previous song"><i class="fa fa-chevron-up"></i></button>
+            <button class="control-btn" id="nextBtn" title="Next song"><i class="fa fa-chevron-down"></i></button>
+          </div>
+        </div>
+
+        <div class="tracks" id="tracks" tabindex="0">
+          <!-- Track items injected by JS -->
+        </div>
+      </aside>
+
+      <!-- RIGHT: LYRICS PANEL -->
+      <article class="panel" aria-live="polite">
+        <div class="panel-head">
+          <div>
+            <h3 class="title" id="songTitle">Select a song</h3>
+            <div class="meta tiny" id="songMeta">Click a title on the left to view lyrics & meaning</div>
+          </div>
+
+          <div class="panel-actions">
+            <button class="btn" id="copyBtn" title="Copy lyrics to clipboard"><i class="fa fa-copy"></i></button>
+            <a class="btn" id="openInNew" href="#" target="_blank" rel="noopener" title="Open song page"><i class="fa fa-external-link-alt"></i></a>
+          </div>
+        </div>
+
+        <div class="lyrics" id="lyricsArea" aria-hidden="true">
+          <pre id="lyricsText">No song selected — choose a title from the left.</pre>
+        </div>
+
+        <div class="meaning" id="meaningBox" aria-hidden="true">
+          <h4>Song meaning</h4>
+          <p id="meaningText">Meanings will appear here when you select a song.</p>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container footer-top">
+      <div>
+        <h4>Inspiration</h4>
+        <p>"Music is not just sound – it’s the heartbeat of every moment, the language of the soul, and the bridge that connects us all."</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/fan/">Family</a></li>
+          <li><a href="/lyrics/">Lyrics</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <p>Phone: +256 764 188 054</p>
+        <p>Email: info@davejethro.com</p>
+        <p>Location: Kampala, Uganda</p>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1A6gNxgX9R/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/dave_jethro?igsh=MW4wYjIydGh2eHQzeg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/dave_jethro1?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/256764188054?text=Hello%20Dave%2C%20I%20would%20like%20to%20inquire..."" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Dave Jethro. All rights reserved. | Built and maintained by Breeford Technologies</p>
+    </div>
+  </footer>
+
+  <script>
+  /***********************
+    DATA: songs & lyrics
+    Replace or edit lyrics/meanings here
+  ***********************/
+  const SONGS = [
+    {
+      id: 'higher',
+      title: 'Higher',
+      subtitle: 'Single',
+      lyrics: `The echoes of you boy
+Keep me awake
+And I am
+Replaying all the moments
+Won't you come
+Toss me to sleep
+So we...
+
+(Verse & bridge continue...)`,
+      meaning: `This song talks about the emotional replay of intimate memories and the longing for someone's presence during quiet night hours.`
+    },
+    {
+      id: 'echoes',
+      title: 'Echoes',
+      subtitle: 'From the 2AM Album',
+      lyrics: `Verse One (Boy)
+Am staring at ma phone screen
+Just wishing for your text
+Saying baby come through
+I wanna feel your taste
+These nights are failing
+I just holding onto these pics
+Our chats gonna 
+mess me up girl
+Wanna come through
+Let’s switch the act now
+It’s a slow dance
+I know the right one
+I can’t keep what 
+I see 
+
+
+Chorus (Boy)
+The echoes of you girl 
+Keep me awake
+And l am
+Replaying all the times
+Wanna me come through
+And toss you to sleep
+So we 
+Can put some silence on
+These echoes echoes
+Echoes echoes girl
+These echoes echoes
+The echoes of you
+
+Verse Two (Girl)
+Come on read the room
+Boy am stuck on this
+Lonely side
+My mind’s got wild thoughts
+I think am the crazy one
+These messy loud nights
+Gat me feeling some type of way
+Am throwing all the signs
+These talks ain’t just for fun
+Boy won’t swing through
+Lemme give you 
+What you need
+
+Chorus (Girl)
+The echoes of you boy 
+Keep me awake
+And l am
+Replaying all the times
+Will you come through
+And toss me to sleep
+So we 
+Can put some silence on
+These echoes echoes
+Echoes echoes boy
+These echoes echoes
+The echoes of you
+
+
+Bridge (both)
+Now am struck out
+Can’t hold it on the inside
+I need you oh
+Every single part of me
+Concentration
+Seizes to be on my list
+Undivided attention
+Only craving for your touch
+
+Your touch x3
+
+Chorus (both)
+The echoes of you boy/girl
+Keep me awake
+And l am
+Replaying all the times
+Won’t you come through
+And toss me to sleep
+So we 
+Can put some silence on
+These echoes echoes
+Echoes echoes boy
+These echoes echoes
+The echoes of you`,
+      meaning: `This song talks about the emotional replay of intimate memories and the longing for someone's presence during quiet night hours.`
+    },
+    {
+      id: 'nolost',
+      title: 'No Lost Letters',
+      subtitle: 'Chorus excerpt',
+      lyrics: `And when the curtains close
+Let's write love letters
+On our skins
+And make blueprints
+Of our signs
+A little signatures
+Here and there`,
+      meaning: `The chorus symbolizes closeness, intimacy, and creating memories on each other's bodies like love signatures.`
+    },
+    {
+      id: 'lightsoff',
+      title: 'Lights Off',
+      subtitle: 'Verse One excerpt',
+      lyrics: `Laying on ma bed and
+As the mind is singing
+The ceiling reflecting
+What we did last night
+Walls are busy smiling
+Whispering in sounds
+And I can still feel
+Your hands on chest
+The temperature is rising
+Ma moods seem excited
+Girl I need you here right now`,
+      meaning: `A night-time, romantic track describing physical and emotional closeness in a late-night studio mood.`
+    },
+    {
+      id: '2am',
+      title: '2AM',
+      subtitle: 'Coming soon',
+      lyrics: `Lyrics coming soon — this space is reserved for the full 2AM lyrics.`,
+      meaning: `Studio notes and meaning will be added when lyrics are finalised.`
+    }
+  ];
+
+  /***********************
+    UI: render track list
+  ***********************/
+  const tracksEl = document.getElementById('tracks');
+  const lyricsText = document.getElementById('lyricsText');
+  const meaningText = document.getElementById('meaningText');
+  const songTitle = document.getElementById('songTitle');
+  const songMeta = document.getElementById('songMeta');
+  const meaningBox = document.getElementById('meaningBox');
+  const lyricsArea = document.getElementById('lyricsArea');
+  const openInNew = document.getElementById('openInNew');
+  const copyBtn = document.getElementById('copyBtn');
+
+  let activeIndex = 0;
+
+  function renderList(filter = '') {
+    tracksEl.innerHTML = '';
+    const q = filter.trim().toLowerCase();
+
+    SONGS.forEach((s, i) => {
+      if (q && !(s.title.toLowerCase().includes(q) || s.subtitle.toLowerCase().includes(q))) return;
+
+      const div = document.createElement('div');
+      div.className = 'track';
+      div.tabIndex = 0;
+      if (i === activeIndex) div.classList.add('active');
+      div.dataset.index = i;
+
+      div.innerHTML = `
+        <div class="meta">
+          <div class="title">${s.title}</div>
+          <div class="sub">${s.subtitle}</div>
+        </div>
+        <div class="badge tiny">#${i+1}</div>
+      `;
+      div.addEventListener('click', () => selectTrack(i, true));
+      div.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectTrack(i, true); }
+      });
+
+      tracksEl.appendChild(div);
+    });
+  }
+
+  function selectTrack(index, focusRight = false) {
+    if (index < 0) index = 0;
+    if (index >= SONGS.length) index = SONGS.length - 1;
+    activeIndex = index;
+
+    // update list active state
+    const items = tracksEl.querySelectorAll('.track');
+    items.forEach(it => it.classList.remove('active'));
+    const activeItem = tracksEl.querySelector('[data-index="'+index+'"]');
+    if (activeItem) activeItem.classList.add('active');
+
+    // update panel
+    const s = SONGS[index];
+    songTitle.textContent = s.title;
+    songMeta.textContent = s.subtitle;
+    lyricsText.textContent = s.lyrics;
+    meaningText.textContent = s.meaning;
+    lyricsArea.setAttribute('aria-hidden','false');
+    meaningBox.setAttribute('aria-hidden','false');
+
+    // set open link (if you have separate song pages)
+    openInNew.href = `/music/${s.id}/`;
+
+    // optionally focus right panel for keyboard users
+    if (focusRight) {
+      document.getElementById('lyricsArea').focus();
+    }
+  }
+
+  // initial render
+  renderList();
+  selectTrack(0);
+
+  /***********************
+    SEARCH + CONTROLS
+  ***********************/
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    renderList(e.target.value);
+    // keep active within filtered results
+    activeIndex = 0;
+    const first = tracksEl.querySelector('.track');
+    if (first) {
+      first.classList.add('active');
+    }
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    selectTrack(activeIndex - 1, true);
+    scrollActiveIntoView();
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    selectTrack(activeIndex + 1, true);
+    scrollActiveIntoView();
+  });
+
+  function scrollActiveIntoView(){
+    const active = tracksEl.querySelector('.track.active');
+    if(active) active.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+
+  // Expand all button toggles meaning and expands lyrics block (mobile nicety)
+  document.getElementById('openAllBtn').addEventListener('click', function(){
+    const isOpen = this.dataset.open === 'true';
+    if(!isOpen){
+      document.querySelectorAll('.track').forEach(t=>t.classList.add('active'));
+      this.textContent = 'Collapse all';
+      this.dataset.open = 'true';
+    } else {
+      document.querySelectorAll('.track').forEach(t=>t.classList.remove('active'));
+      selectTrack(0,false);
+      this.textContent = 'Expand all';
+      this.dataset.open = 'false';
+    }
+  });
+
+  // Copy lyrics
+  copyBtn.addEventListener('click', function(){
+    const text = lyricsText.textContent;
+    navigator.clipboard?.writeText(text).then(()=>{
+      copyBtn.innerHTML = '<i class="fa fa-check"></i>';
+      setTimeout(()=> copyBtn.innerHTML = '<i class="fa fa-copy"></i>', 1200);
+    }).catch(()=> {
+      alert('Unable to copy — your browser may not allow clipboard access.');
+    });
+  });
+
+  // keyboard navigation (up/down)
+  document.addEventListener('keydown', (e) => {
+    if (['ArrowUp','ArrowDown'].includes(e.key)) {
+      e.preventDefault();
+      if (e.key === 'ArrowUp') selectTrack(activeIndex - 1, true);
+      if (e.key === 'ArrowDown') selectTrack(activeIndex + 1, true);
+      scrollActiveIntoView();
+    }
+  });
+
+  // ensure first visible selection after filter
+  tracksEl.addEventListener('focus', () => {
+    scrollActiveIntoView();
+  });
+
+  // Mobile menu
+const menuToggle = document.querySelector(".menu-toggle");
+const navList = document.querySelector("nav ul");
+
+menuToggle.addEventListener("click", () => {
+  navList.classList.toggle("show");
+});
+
+
+  </script>
+</body>
+</html>
