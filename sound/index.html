@@ -463,6 +463,25 @@
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(40px);transition:all .8s ease-out}
     .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 40%;
+        text-align: left;
+        padding: 5px 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
   </style>
 </head>
 
