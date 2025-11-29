@@ -60,125 +60,77 @@
     }
 
 /* ===== HERO SECTION (Redesigned) ===== */
-.hero-sound {
+.hero-liquid {
   position: relative;
   width: 100%;
   height: 75vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(120deg, #0b0c10, #1f2833);
   overflow: hidden;
-  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 
-/* Animated gradient background */
-.hero-bg {
+#liquidCanvas {
   position: absolute;
   inset: 0;
-  background: linear-gradient(-45deg, #000000, #1a1a1a, #111, #000);
-  background-size: 400% 400%;
-  animation: gradientMove 12s ease infinite;
   z-index: 1;
 }
 
-/* Subtle glowing overlay */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 255, 200, 0.1), rgba(0, 0, 0, 0.8));
-  z-index: 2;
-}
-
-/* Centered content */
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   text-align: center;
-  color: #fff;
-  animation: fadeInUp 2s ease forwards;
 }
 
-/* Title */
-.glow-title {
+.liquid-title {
   font-size: 4rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-shadow: 0 0 25px rgba(0, 255, 200, 0.8);
-  margin-bottom: 10px;
-  animation: glowPulse 4s ease-in-out infinite;
+  font-weight: 900;
+  color: #88fff7;
+  text-shadow: 0 0 15px rgba(136,255,247,0.5);
+  animation: floatText 6s ease-in-out infinite;
 }
 
-/* Tagline */
 .hero-tagline {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  margin: 20px 0;
   color: #ccc;
-  letter-spacing: 1px;
-  margin-bottom: 30px;
-  opacity: 0;
-  animation: fadeIn 2.5s 1s ease forwards;
 }
 
-/* Button */
 .hero-btn {
-  padding: 12px 28px;
-  font-size: 1rem;
+  padding: 15px 35px;
+  font-size: 1.1rem;
   color: #000;
-  background: #00ffc8;
+  background: #88fff7;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
+  font-weight: bold;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  animation: pulseBtn 3s infinite;
 }
 
 .hero-btn:hover {
-  background: #00bfa5;
-  transform: scale(1.08);
-  box-shadow: 0 0 15px rgba(0, 255, 200, 0.8);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(136,255,247,0.5);
 }
 
-/* Audio remains hidden */
-audio { display: none; }
-
-/* ===== Animations ===== */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Animations */
+@keyframes floatText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes pulseBtn {
+  0%,100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.08); opacity: 1; }
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+@media(max-width:768px){
+  .liquid-title { font-size: 2.5rem; }
+  .hero-tagline { font-size: 1rem; }
+  .hero-btn { padding: 12px 28px; font-size: 1rem; }
 }
-
-@keyframes glowPulse {
-  0%, 100% { text-shadow: 0 0 25px rgba(0, 255, 200, 0.8); }
-  50% { text-shadow: 0 0 50px rgba(0, 255, 200, 1); }
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .glow-title {
-    font-size: 2.5rem;
-  }
-  .hero-tagline {
-    font-size: 1rem;
-  }
-  .hero-btn {
-    font-size: 0.9rem;
-    padding: 10px 22px;
-  }
-  .hero-sound {
-    height: 80vh;
-  }
-}
-
 
     /* Sections */
     .section {
@@ -462,21 +414,17 @@ footer {
     </div>
   </header>
 
-<!-- ===== HERO SECTION ===== -->
-<section class="hero-sound">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-
+<!-- ===== HERO SECTION (Liquid Music Flow) ===== -->
+<section class="hero-liquid">
+  <canvas id="liquidCanvas"></canvas>
   <div class="hero-content">
-    <h1 class="glow-title">Dave Jethro</h1>
-    <p class="hero-tagline">Feel the Sound. Live the Vibe.</p>
-    <button class="hero-btn">Explore the Music</button>
+    <h1 class="liquid-title">Dave Jethro</h1>
+    <p class="hero-tagline">Flow With the Sound</p>
+    <button class="hero-btn">Enter the Vibe</button>
   </div>
 
-  <!-- Background Audio -->
   <audio id="bgAudio" autoplay loop>
-    <source src="/Download.ogg" type="audio/mpeg" />
-    Your browser does not support the audio element.
+    <source src="/Download.ogg" type="audio/mpeg">
   </audio>
 </section>
 
@@ -802,51 +750,51 @@ footer {
     },{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
 
-  // ===== AUTOPLAY BACKGROUND MESSAGE =====
+ // ===== AUTOPLAY BACKGROUND MESSAGE =====
     window.addEventListener('load', () => {
       const audio = document.getElementById('bgAudio');
       audio.play().catch(err => console.log("Autoplay prevented:", err));
     });
 
-    // ===== SOUND-REACTIVE WAVE ANIMATION =====
-    const canvas = document.getElementById("soundCanvas");
-    const ctx = canvas.getContext("2d");
-    let w, h, t = 0;
 
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = document.querySelector('.hero-sound').offsetHeight;
+    // ===== Liquid Flow Animation =====
+const canvas = document.getElementById('liquidCanvas');
+const ctx = canvas.getContext('2d');
+let w,h,t=0;
+
+function resizeCanvas(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=document.querySelector('.hero-liquid').offsetHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function drawFlow(){
+  ctx.clearRect(0,0,w,h);
+
+  for(let i=0; i<5; i++){
+    const yOffset = Math.sin(t + i) * 30;
+    const gradient = ctx.createLinearGradient(0,0,w,h);
+    gradient.addColorStop(0, `rgba(8, 255, 247, ${0.05 + i*0.05})`);
+    gradient.addColorStop(1, `rgba(8, 255, 247, 0)`);
+    ctx.fillStyle = gradient;
+
+    ctx.beginPath();
+    ctx.moveTo(0, h/5*i + yOffset);
+    for(let x=0; x<w; x+=20){
+      ctx.lineTo(x, h/5*i + yOffset + Math.sin(x*0.01 + t + i)*40);
     }
+    ctx.lineTo(w,h);
+    ctx.lineTo(0,h);
+    ctx.closePath();
+    ctx.fill();
+  }
 
-    window.addEventListener('resize', resize);
-    resize();
+  t += 0.02;
+  requestAnimationFrame(drawFlow);
+}
 
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      const colors = [
-        "rgba(255, 99, 71, 0.25)",     // red-orange
-        "rgba(0, 191, 255, 0.25)",     // sky blue
-        "rgba(255, 215, 0, 0.25)",     // gold
-        "rgba(147, 112, 219, 0.25)"    // purple
-      ];
-
-      for (let i = 0; i < 4; i++) {
-        ctx.beginPath();
-        ctx.moveTo(0, h / 2);
-        for (let x = 0; x <= w; x += 20) {
-          const y = h / 2 + Math.sin(x * 0.01 + t + i) * 40 * Math.sin(t * 0.8 + i);
-          ctx.lineTo(x, y);
-        }
-        ctx.strokeStyle = colors[i];
-        ctx.lineWidth = 2.5;
-        ctx.stroke();
-      }
-
-      t += 0.02;
-      requestAnimationFrame(draw);
-    }
-
-    draw();
+drawFlow();
 
   </script>
 </body>
