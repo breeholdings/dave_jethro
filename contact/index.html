@@ -87,91 +87,172 @@ nav a:hover {
   cursor: pointer;
 }
 
-/* ===== HERO SECTION ===== */
+ /* Main Section */
 .hero {
   position: relative;
+  width: 100%;
   min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(135deg, #0d324d 0%, #093028 100%);
+  padding: 2rem 1rem;
   overflow: hidden;
-  padding: 4rem 1rem;
 }
 
-/* Animated background layers */
-.wave-bg {
+/* Neon Pulse Background */
+.neon-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: moveWaves 25s ease-in-out infinite alternate;
-  z-index: 0;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(6, 109, 128, 0.35), transparent 60%);
+  animation: pulse 3s infinite;
 }
-.floating-dots::before,
-.floating-dots::after {
-  content: "";
-  position: absolute;
-  width: 250%;
-  height: 250%;
-  top: -75%;
-  left: -75%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 2px);
-  background-size: 80px 80px;
-  animation: floatDots 40s linear infinite;
-  z-index: 1;
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
-.floating-dots::after {
-  animation-delay: -15s;
-  opacity: 0.4;
-}
-.hero-content {
+
+/* Center Content */
+.content {
   position: relative;
-  z-index: 2;
-  max-width: 750px;
-  padding: 0 20px;
-  animation: fadeInHero 2s ease forwards;
-}
-.hero-content h2 {
-  color: #a7ffeb;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-  animation: slideDown 1.8s ease forwards;
-}
-.hero-content p {
-  color: #e0f7fa;
-  font-size: clamp(0.95rem, 2.3vw, 1.2rem);
-  opacity: 0;
-  animation: fadeInText 2.2s ease forwards 0.8s;
+  z-index: 10;
+  max-width: 850px;
+  padding: 20px;
 }
 
-/* HERO Animations */
-@keyframes moveWaves {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(-5%, -5%) rotate(10deg); }
-  100% { transform: translate(5%, 5%) rotate(-10deg); }
+/* Neon Circle */
+.circle {
+  width: clamp(120px, 30vw, 200px);
+  height: clamp(120px, 30vw, 200px);
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  border: 2px solid rgb(0, 204, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 25px rgba(4, 113, 128, 0.7);
+  animation: pulse 2.5s infinite;
 }
-@keyframes floatDots {
-  from { transform: translate(0, 0) rotate(0deg); }
-  to { transform: translate(2%, 2%) rotate(360deg); }
+
+.circle-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
-@keyframes fadeInHero {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+
+/* Heading */
+.title {
+  font-size: clamp(1.8rem, 6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom right, white, rgb(149, 163, 168));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(232, 240, 241, 0.7);
 }
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+
+/* Buttons */
+  .btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .btn-primary {
+    background: rgb(6, 79, 138);
+    color: white;
+  }
+
+  .btn-primary:hover { transform: scale(1.05); }
+
+  .btn-outline {
+    border: 1px solid #555;
+    background: transparent;
+    color: white;
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+  .btn-blue {
+    background: dodgerblue;
+    color: white;
+  }
+
+  .btn-blue:hover { transform: scale(1.05); }
+
+/* Floating Music Icons */
+.icon {
+  position: absolute;
+  opacity: 0.15;
+  font-size: clamp(30px, 7vw, 65px);
+  animation: float 6s infinite;
 }
-@keyframes fadeInText {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+
+@keyframes float {
+  0% { transform: translateY(-20px); }
+  50% { transform: translateY(20px); }
+  100% { transform: translateY(-20px); }
 }
+
+.icon1 { left: 10px; top: 90px; animation-duration: 6s; }
+.icon2 { right: 20px; top: 160px; animation-duration: 5s; }
+.icon3 { left: 50%; bottom: 40px; transform: translateX(-50%); animation-duration: 7s; }
+
+/* ------- MOBILE ADJUSTMENTS -------- */
+@media (max-width: 600px) {
+  .hero {
+    min-height: 60vh;
+    padding: 1.5rem 1rem;
+  }
+
+  .btns {
+    gap: 10px;
+  }
+
+  .icon {
+    opacity: 0.08;
+  }
+
+  .icon1 { top: 40px; left: 5px; }
+  .icon2 { top: 100px; right: 5px; }
+  .icon3 { bottom: 20px; }
+}
+
+@media (max-width: 400px) {
+
+  .circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+}
+
+.circle-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
 
 /* ===== SECTION STYLING ===== */
 .section {
@@ -459,13 +540,19 @@ footer {
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="wave-bg"></div>
-    <div class="floating-dots"></div>
-    <div class="hero-content">
-      <h2>Contact Dave Jethro</h2>
-      <p>We’d love to hear from you.</p>
+    <div class="neon-bg"></div>
+
+    <div class="content">
+      <div class="circle"><img src="HEROS.jpeg" alt="Artist Photo" class="circle-img"></div>
+
+      <h1 class="title">Contact Dave Jethro</h1>
+
+      <div class="btns">
+        <button class="btn btn-primary">Collaborations</button>
+        <button class="btn btn-outline">Bookings</button>
+        <button class="btn btn-blue">Interviews</button>
+      </div>
     </div>
   </section>
 
@@ -552,7 +639,7 @@ footer {
         <h4>Quick Links</h4>
         <ul>
           <li><a href="/fan/">Family</a></li>
-          <li><a href="/lyrics/">Lyrics</a></li>
+          <li><a href="/insight/">Insight</a></li>
           <li><a href="/faq/">FAQ</a></li>
         </ul>
       </div>
@@ -565,11 +652,11 @@ footer {
       <div>
         <h4>Follow Us</h4>
         <div class="social-links">
-          <a href="https://www.facebook.com/share/1A6gNxgX9R/?mibextid=wwXIfr" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/dave_jethro?igsh=MW4wYjIydGh2eHQzeg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://x.com/dave_jethro1?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://youtube.com/@davejethro?si=gP4CaPGCJe-LdC5k" target="_blank"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.tiktok.com/@dave_jethro?_t=ZM-90BcP14EUv2&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+          <a href="https://www.facebook.com/share/1A6gNxgX9R/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/dave_jethro" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/dave_jethro1?s=21" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com/@davejethro" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@dave_jethro" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           <a href="https://wa.me/256764188054?text=Hello%20Dave%2C%20I%20would%20like%20to%20inquire..." target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
