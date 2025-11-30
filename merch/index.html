@@ -53,105 +53,315 @@
       nav ul li{margin:6px 0}
     }
 
-    /* ---------------- HERO ---------------- */
-.hero {
-  position: relative;
-  min-height: 75vh;
-  background: linear-gradient(180deg, #050405 0%, #0a0612 100%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  padding: 40px 20px;
+  /* ================= HERO ================= */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      background: radial-gradient(circle at center, #0b0b0b 20%, #000 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/blue.jpeg') center/cover no-repeat;
+      opacity: 0.35;
+      transform: scale(1.05);
+      animation: zoom-slow 22s ease-in-out infinite alternate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3), #000);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(212,175,55,0.12), transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+      padding: 0 5%;
+    }
+
+    .hero-copy {
+      flex: 1 1 440px;
+      max-width: 540px;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      color: #d4af37;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+    }
+
+    .hero-title {
+      font-family: "Lora", serif;
+      font-size: 3rem;
+      margin: 14px 0 10px;
+      background: linear-gradient(90deg, #fff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-glow 4s ease-in-out infinite alternate;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #d4af37, #f6e27a);
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+    }
+
+    .btn-ghost {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-portrait {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(212,175,55,0.25);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-portrait:hover img {
+      transform: scale(1.1);
+    }
+
+    .album-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    @keyframes zoom-slow {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.15); }
+    }
+
+    @keyframes text-glow {
+      0% { text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+      100% { text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 90%;
+  }
+
+  .hero-portrait {
+    width: 280px;
+    height: 320px;
+    margin: 0 auto;
+  }
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at 50% 30%, rgba(255,42,139,0.15), transparent 70%);
-  animation: glowShift 8s ease-in-out infinite alternate;
-  z-index: 1;
+/* For tablets and mid screens */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 70px 0;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .hero-portrait {
+    width: 240px;
+    height: 280px;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
 }
 
-@keyframes glowShift {
-  0% { opacity: 0.6; transform: scale(1); }
-  100% { opacity: 0.9; transform: scale(1.1); }
+/* For small phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+  }
+
+  .hero-portrait {
+    width: 200px;
+    height: 240px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
-.hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 780px;
-}
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: black;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 40%;
+        text-align: left;
+        padding: 10px 0;
+      }
 
-.hero-content h2 {
-  font-size: clamp(1.8rem, 5vw, 3.6rem);
-  font-weight: 800;
-  background: linear-gradient(90deg, var(--gold), var(--pink), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
-  margin-bottom: 14px;
-}
+      nav ul.show {
+        display: flex;
+      }
 
-.hero-content p {
-  font-size: clamp(1rem, 2.2vw, 1.3rem);
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 30px;
-}
 
-.hero-btn {
-  background: linear-gradient(90deg, var(--pink), var(--blue));
-  color: #fff;
-  padding: 14px 36px;
-  border-radius: 30px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.35s ease;
-  box-shadow: 0 0 15px rgba(255,42,139,0.4);
-}
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
 
-.hero-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 25px rgba(0,198,255,0.7);
-  background: linear-gradient(90deg, var(--blue), var(--pink));
-}
+      .hero-card {
+        margin-top: 20px;
+      }
 
-/* Floating merch items */
-.hero-merch {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-  z-index: 2;
-}
+      iframe {
+        height: 200px;
+      }
+    }
 
-.float-item {
-  position: absolute;
-  width: 120px;
-  opacity: 0.75;
-  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
-  border-radius: 12px;
-  animation: float 8s ease-in-out infinite;
-}
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
 
-.float1 { top: 10%; left: 12%; animation-delay: 0s; }
-.float2 { top: 70%; right: 10%; animation-delay: 2s; width: 130px; }
-.float3 { bottom: 15%; left: 60%; animation-delay: 1s; width: 100px; }
+      .pfp {
+        width: 60px;
+        height: 60px;
+      }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(2deg); }
-}
-
-@media(max-width: 820px){
-  .float-item { display: none; }
-}
-
+      iframe {
+        height: 180px;
+    }
+  }
 
     /* ---------------- SECTIONS ---------------- */
     .section{
@@ -283,23 +493,28 @@
     </div>
   </header>
   
-  <!-- Hero -->
-<section class="hero">
-  <div class="hero-overlay"></div>
-  
-  <div class="hero-merch">
-    <img src="/blue.jpeg" alt="Dave Hoodie" class="float-item float1">
-    <img src="/cap.jpg" alt="DJ Cap" class="float-item float2">
-    <img src="/mug.jpg" alt="DJ Mug" class="float-item float3">
-  </div>
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero — Dave Jethro">
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy fade-in">
+        <div class="kicker">Collection By</div>
+        <h2 class="hero-title">Dave Jethro</h2>
+        <p class="hero-sub">
+          Step into the world of Dave Jethro with exclusive merchandise that speaks your style. From bold apparel to unique accessories, each piece is crafted to reflect his vibe and let you carry a piece of the experience wherever you go.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/256764188054?text=I%27m%20interested%20in%20making%20a%20booking%20for%20your%20merchandise"><i class="fas fa-song"></i>Book</a>
+          <a class="btn btn-ghost" href="https://wa.me/256764188054?text=I%27m%20interested%20in%20ordering%20your%20merchandise"><i class="fas fa-waves"></i>Order</a>
+        </div>
+      </div>
 
-  <div class="hero-content">
-    <h2>Official Dave Jethro Merchandise</h2>
-    <p>Bold • Stylish • Original — Wear the Sound.</p>
-    <a href="#clothes" class="hero-btn">Shop Now</a>
-  </div>
-</section>
-
+      <div class="hero-portrait fade-in">
+        <img src="/rrr.jpeg" alt="Dave Jethro portrait" />
+        <div class="album-glow"></div>
+      </div>
+    </div>
+  </section>
 
   <!-- Clothes -->
   <section id="clothes" class="section">
