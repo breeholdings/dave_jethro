@@ -347,6 +347,48 @@ nav a:hover{color:var(--gold);background:rgba(212,175,55,0.06)}
   .btn-primary, .btn-ghost { font-size: 0.85rem; padding: 8px 14px; }
 }
 
+/* iPad + Medium Tablets (portrait & landscape) */
+@media (max-width: 860px) {
+  .hero {
+    padding: 50px 5%;
+  }
+
+  .hero .glass {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    max-width: 850px;   /* prevent container from being too wide on iPad */
+    padding: 35px 28px;
+    gap: 32px;
+  }
+
+  .hero .left,
+  .hero .right {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .card-floating {
+    width: 90%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+
 /* FIX HERO OVERFLOW AND ALIGNMENT ON SMALL SCREENS */
 @media (max-width: 600px) {
   .hero {
