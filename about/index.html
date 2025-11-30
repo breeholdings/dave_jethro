@@ -59,78 +59,315 @@
       nav ul li{margin:6px 0}
     }
 
-/* ===== HERO SECTION (Redesigned) ===== */
-.hero-liquid {
-  position: relative;
-  width: 100%;
-  height: 75vh;
-  background: linear-gradient(120deg, #0b0c10, #1f2833);
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
+/* ================= HERO ================= */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      background: radial-gradient(circle at center, #0b0b0b 20%, #000 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/hero.jpg') center/cover no-repeat;
+      opacity: 0.35;
+      transform: scale(1.05);
+      animation: zoom-slow 22s ease-in-out infinite alternate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3), #000);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(212,175,55,0.12), transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+      padding: 0 5%;
+    }
+
+    .hero-copy {
+      flex: 1 1 440px;
+      max-width: 540px;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      color: #d4af37;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+    }
+
+    .hero-title {
+      font-family: "Lora", serif;
+      font-size: 3rem;
+      margin: 14px 0 10px;
+      background: linear-gradient(90deg, #fff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-glow 4s ease-in-out infinite alternate;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #d4af37, #f6e27a);
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+    }
+
+    .btn-ghost {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-portrait {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(212,175,55,0.25);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-portrait:hover img {
+      transform: scale(1.1);
+    }
+
+    .album-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    @keyframes zoom-slow {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.15); }
+    }
+
+    @keyframes text-glow {
+      0% { text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+      100% { text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 90%;
+  }
+
+  .hero-portrait {
+    width: 280px;
+    height: 320px;
+    margin: 0 auto;
+  }
 }
 
-#liquidCanvas {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+/* For tablets and mid screens */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 70px 0;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .hero-portrait {
+    width: 240px;
+    height: 280px;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+/* For small phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+  }
+
+  .hero-portrait {
+    width: 200px;
+    height: 240px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
-.liquid-title {
-  font-size: 4rem;
-  font-weight: 900;
-  color: #88fff7;
-  text-shadow: 0 0 15px rgba(136,255,247,0.5);
-  animation: floatText 6s ease-in-out infinite;
-}
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
 
-.hero-tagline {
-  font-size: 1.5rem;
-  margin: 20px 0;
-  color: #ccc;
-}
+      nav ul.show {
+        display: flex;
+      }
 
-.hero-btn {
-  padding: 15px 35px;
-  font-size: 1.1rem;
-  color: #000;
-  background: #88fff7;
-  border: none;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  animation: pulseBtn 3s infinite;
-}
 
-.hero-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(136,255,247,0.5);
-}
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
 
-/* Animations */
-@keyframes floatText {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
+      .hero-card {
+        margin-top: 20px;
+      }
 
-@keyframes pulseBtn {
-  0%,100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.08); opacity: 1; }
-}
+      iframe {
+        height: 200px;
+      }
+    }
 
-@media(max-width:768px){
-  .liquid-title { font-size: 2.5rem; }
-  .hero-tagline { font-size: 1rem; }
-  .hero-btn { padding: 12px 28px; font-size: 1rem; }
-}
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .pfp {
+        width: 60px;
+        height: 60px;
+      }
+
+      iframe {
+        height: 180px;
+    }
+  }
 
     /* Sections */
     .section {
@@ -404,7 +641,7 @@ footer {
             <li><a href="/about/">About Us</a></li>
             <li><a href="/music/">Dave Music</a></li>
             <li><a href="/sound/">GG Sound</a></li>
-            <li><a href="/band/">Aueral Band</a></li>
+            <li><a href="/band/">Auera Band</a></li>
             <li><a href="/merch/">Merchandise</a></li>
             <li><a href="/insight/">Insights</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -414,19 +651,30 @@ footer {
     </div>
   </header>
 
-<!-- ===== HERO SECTION (Liquid Music Flow) ===== -->
-<section class="hero-liquid">
-  <canvas id="liquidCanvas"></canvas>
-  <div class="hero-content">
-    <h1 class="liquid-title">Dave Jethro</h1>
-    <p class="hero-tagline">Flow With the Sound</p>
-    <button class="hero-btn">Enter the Vibe</button>
-  </div>
+<!-- HERO -->
+  <section class="hero" aria-label="Hero — Dave Jethro">
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy fade-in">
+        <div class="kicker">About Us</div>
+        <h2 class="hero-title">Dave Jethro</h2>
+        <p class="hero-sub">
+          Dave Jethro is a passionate creator and visionary, blending creativity with purpose in everything he does. Known for his dynamic energy and innovative approach, he inspires, connects, and brings ideas to life in ways that leave a lasting impact.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/music/"><i class="fas fa-song"></i>Dave Music</a>
+          <a class="btn btn-ghost" href="/sound/"><i class="fas fa-waves"></i>GG Sound</a>
+          <a class="btn btn-ghost" href="/band/"><i class="fas fa-drums"></i>Auera Band</a>
+          <a class="btn btn-ghost" href="/merch/"><i class="fas fa-drums"></i>Merchandise</a>
+        </div>
+      </div>
 
-  <audio id="bgAudio" autoplay loop>
-    <source src="/Download.ogg" type="audio/mpeg">
-  </audio>
-</section>
+      <div class="hero-portrait fade-in">
+        <img src="/HEROS.jpeg" alt="Dave Jethro portrait" />
+        <div class="album-glow"></div>
+      </div>
+    </div>
+  </section>
 
 
   <!-- About Section -->
@@ -749,52 +997,6 @@ footer {
       });
     },{threshold:0.2});
     reveals.forEach(r=>observer.observe(r));
-
- // ===== AUTOPLAY BACKGROUND MESSAGE =====
-    window.addEventListener('load', () => {
-      const audio = document.getElementById('bgAudio');
-      audio.play().catch(err => console.log("Autoplay prevented:", err));
-    });
-
-
-    // ===== Liquid Flow Animation =====
-const canvas = document.getElementById('liquidCanvas');
-const ctx = canvas.getContext('2d');
-let w,h,t=0;
-
-function resizeCanvas(){
-  w=canvas.width=window.innerWidth;
-  h=canvas.height=document.querySelector('.hero-liquid').offsetHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function drawFlow(){
-  ctx.clearRect(0,0,w,h);
-
-  for(let i=0; i<5; i++){
-    const yOffset = Math.sin(t + i) * 30;
-    const gradient = ctx.createLinearGradient(0,0,w,h);
-    gradient.addColorStop(0, `rgba(8, 255, 247, ${0.05 + i*0.05})`);
-    gradient.addColorStop(1, `rgba(8, 255, 247, 0)`);
-    ctx.fillStyle = gradient;
-
-    ctx.beginPath();
-    ctx.moveTo(0, h/5*i + yOffset);
-    for(let x=0; x<w; x+=20){
-      ctx.lineTo(x, h/5*i + yOffset + Math.sin(x*0.01 + t + i)*40);
-    }
-    ctx.lineTo(w,h);
-    ctx.lineTo(0,h);
-    ctx.closePath();
-    ctx.fill();
-  }
-
-  t += 0.02;
-  requestAnimationFrame(drawFlow);
-}
-
-drawFlow();
 
   </script>
 </body>
