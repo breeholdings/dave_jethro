@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dave Jethro — Moods</title>
-  <meta name="description" content="Dave Jethro — Mood song list capturing your every moment.">
+  <title>Dave Jethro — Mood</title>
+  <meta name="description" content="Dave Jethro — Mood song list capturing your every moment">
   <link rel="icon" href="favicon.ico">
 
   <!-- Font Awesome -->
@@ -608,7 +608,28 @@ footer {
   color: #aaa;
 }
 
+/* Search Bar Styling */
+.song-search-wrapper {
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+}
 
+#songSearchInput {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+#songSearchInput:focus {
+  border-color: var(--soft-gold);
+  background: rgba(255,255,255,0.12);
+}
 
 </style>
 </head>
@@ -669,10 +690,24 @@ footer {
 
 <!-- MAIN SECTION -->
 <section class="emotion-generator">
-  <h1>Emotion Generator</h1>
+  <h1>Songs Of Dave Jethro</h1>
   <p>Tap your feeling and discover the Dave Jethro track that matches your vibe.</p>
 
+  <!-- SONG SEARCH -->
+<div class="song-search-wrapper">
+  <input 
+    type="text" 
+    id="songSearchInput" 
+    placeholder="Search for a song..." 
+    onkeyup="searchSongs()" 
+  />
+</div>
+
   <div class="mood-grid">
+    <div class="mood-card" onclick="showSongs('All')">
+      <div class="mood-icon">🎵</div>
+      <div>All Songs</div>
+    </div>
     <div class="mood-card" onclick="showSongs('Worship')">
       <div class="mood-icon">🙇‍♀️🙇</div>
       <div>Worship</div>
@@ -697,13 +732,9 @@ footer {
       <div class="mood-icon">💔</div>
       <div>Heartbroken</div>
     </div>
-    <div class="mood-card" onclick="showSongs('Motivated')">
-      <div class="mood-icon">⚡</div>
-      <div>Motivated</div>
-    </div>
-    <div class="mood-card" onclick="showSongs('In Love')">
-      <div class="mood-icon">❤️</div>
-      <div>In Love</div>
+    <div class="mood-card" onclick="showSongs('Romantic')">
+      <div class="mood-icon">🌃</div>
+      <div>Romantic</div>
     </div>
   </div>
 
@@ -751,66 +782,113 @@ footer {
   </footer>
 
 <script>
-const moodSongs = {
-  "Worship": [
-    { title: "Worship Medley", url: "/Worship Medley.m4a" },
-    { title: "Joyride", url: "songs/happy2.mp3" }
-  ],  
-  "Praise": [
-    { title: "GLO", url: "/glo.m4a" },
-    { title: "Real Love", url: "/real.m4a" }
-  ],  
-  "Thanksgiving": [
-    { title: "Higher", url: "/higher.m4a" },
-    { title: "Joyride", url: "songs/happy2.mp3" }
-  ], 
-  "Happy": [
-    { title: "Sunrise Moments", url: "songs/happy1.mp3" },
-    { title: "Joyride", url: "songs/happy2.mp3" }
-  ],
-  "Angry": [
-    { title: "Fire in My Veins", url: "songs/angry1.mp3" },
-    { title: "Breaking Chains", url: "songs/angry2.mp3" }
-  ],
-  "Heartbroken": [
-    { title: "Jealous Cover", url: "/jealous.m4a" },
-    { title: "Tears in the Rain", url: "songs/heartbroken2.mp3" }
-  ],
-  "Motivated": [
-    { title: "Rise & Go", url: "songs/motivated1.mp3" },
-    { title: "Never Give Up", url: "songs/motivated2.mp3" }
-  ],
-  "In Love": [
-    { title: "Question Of My Heart", url: "/question.m4a" },
-    { title: "Best Thing", url: "/best.m4a" }
-  ]
-};
+// ================================
+// SONG DATABASE
+// ================================
+const songs = [
+  // Worship
+  { title: "Worship Medley - Dave Jethro", mood: "Worship", file: "/worship Medley.m4a" },
+  { title: "Holy One", mood: "Worship", file: "/songs/holy-one.mp3" },
 
+  // Praise
+  { title: "Glo - Dave Jethro", mood: "Praise", file: "/glo.m4a" },
+
+  // Thanksgiving
+  { title: "Higher - Dave Jethro", mood: "Thanksgiving", file: "/higher.m4a" },
+  { title: "Real Love - Dave Jethro", mood: "Thanksgiving", file: "/real.m4a" },
+
+  // Happy
+  { title: "Bright Day", mood: "Happy", file: "/songs/bright-day.mp3" },
+
+  // Angry
+  { title: "Fire Within", mood: "Angry", file: "/songs/fire-within.mp3" },
+
+  // Heartbroken
+  { title: "Faded Love", mood: "Heartbroken", file: "/songs/faded-love.mp3" },
+
+  // Motivated
+  { title: "2AM - Dave Jethro", mood: "Romantic", file: "/2AM.m4a" },
+  { title: "Echoes - Dave Jethro ft M Bree", mood: "Romantic", file: "/echoes.m4a" },
+
+  // In Love
+  { title: "2AM - Dave Jethro", mood: "In Love", file: "/2AM.m4a" },
+  { title: "Echoes - Dave Jethro ft M Bree", mood: "Night", file: "/echoes.m4a" },
+];
+
+// ================================
+// GLOBAL VARIABLES
+// ================================
+const audioPlayer = document.getElementById("audioPlayer");
+
+// ================================
+// SHOW SONGS BY MOOD
+// ================================
 function showSongs(mood) {
-  const container = document.getElementById('songContainer');
-  container.innerHTML = '';
-  const songs = moodSongs[mood];
-  songs.forEach(song => {
-    const div = document.createElement('div');
-    div.className = 'song-item';
-    div.innerHTML = `
-      <span>${song.title}</span>
+  const filtered = mood === "All" ? songs : songs.filter(song => song.mood === mood);
+  renderSongs(filtered);
+}
+
+// ================================
+// SEARCH FOR SONGS
+// ================================
+function searchSongs() {
+  const query = document.getElementById("songSearchInput").value.toLowerCase();
+  
+  // Hide list if search is empty
+  if (query.trim() === "") {
+    document.getElementById("songContainer").style.display = "none";
+    return;
+  }
+
+  const filtered = songs.filter(song => 
+    song.title.toLowerCase().includes(query) || song.mood.toLowerCase().includes(query)
+  );
+
+  renderSongs(filtered);
+}
+
+// ================================
+// RENDER SONG LIST
+// ================================
+function renderSongs(list) {
+  const container = document.getElementById("songContainer");
+
+  if (list.length === 0) {
+    container.innerHTML = "<p>No songs found.</p>";
+    container.style.display = "block";
+    return;
+  }
+
+  container.innerHTML = list.map(song => `
+    <div class="song-item">
+      <span><strong>${song.title}</strong> — ${song.mood}</span>
       <div>
-        <button onclick="playSong('${song.url}')">Listen</button>
-        <a href="${song.url}" download><button>Download</button></a>
+        <button onclick="playSong('${song.file}')">▶ Play</button>
+        <a href="${song.file}" download>
+          <button>⬇ Download</button>
+        </a>
       </div>
-    `;
-    container.appendChild(div);
-  });
-  container.style.display = 'block';
+    </div>
+  `).join("");
+
+  container.style.display = "block";
 }
 
-function playSong(url) {
-  const player = document.getElementById('audioPlayer');
-  player.src = url;
-  player.play();
+// ================================
+// PLAY SONG FUNCTION
+// ================================
+function playSong(file) {
+  audioPlayer.src = file;
+  audioPlayer.play();
 }
+
+// ================================
+// MOBILE MENU TOGGLE
+// ================================
+document.querySelector(".menu-toggle").addEventListener("click", () => {
+  document.querySelector("nav ul").classList.toggle("show");
+});
+ 
 </script>
-
 </body>
 </html>
