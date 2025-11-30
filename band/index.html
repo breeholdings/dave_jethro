@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aueral Band</title>
+  <title>Auera Band</title>
   <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- Font Awesome -->
@@ -54,135 +54,315 @@
       nav ul li{margin:6px 0}
     }
 
- /* HERO BASE */
-.hero {
-  position: relative;
-  min-height: 75vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-  color: #fff;
-  background: radial-gradient(circle at center, #1b0024, #0a0012 80%);
+ /* ================= HERO ================= */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      background: radial-gradient(circle at center, #0b0b0b 20%, #000 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/bands.jpg') center/cover no-repeat;
+      opacity: 0.35;
+      transform: scale(1.05);
+      animation: zoom-slow 22s ease-in-out infinite alternate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3), #000);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(212,175,55,0.12), transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+      padding: 0 5%;
+    }
+
+    .hero-copy {
+      flex: 1 1 440px;
+      max-width: 540px;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      color: #d4af37;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+    }
+
+    .hero-title {
+      font-family: "Lora", serif;
+      font-size: 3rem;
+      margin: 14px 0 10px;
+      background: linear-gradient(90deg, #fff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-glow 4s ease-in-out infinite alternate;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #d4af37, #f6e27a);
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+    }
+
+    .btn-ghost {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-portrait {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(212,175,55,0.25);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-portrait:hover img {
+      transform: scale(1.1);
+    }
+
+    .album-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    @keyframes zoom-slow {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.15); }
+    }
+
+    @keyframes text-glow {
+      0% { text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+      100% { text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 90%;
+  }
+
+  .hero-portrait {
+    width: 280px;
+    height: 320px;
+    margin: 0 auto;
+  }
 }
 
-/* VIDEO BACKGROUND */
-.hero-video {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0.25;
-  z-index: 1;
-}
-
-/* COLOR OVERLAY */
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(120deg, rgba(120,0,255,0.3), rgba(255,0,150,0.2), rgba(0,120,255,0.25));
-  animation: pulse 8s infinite alternate ease-in-out;
-  z-index: 2;
-}
-
-/* CONTENT */
-.hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 800px;
-  padding: 0 20px;
-  animation: fadeUp 1.6s ease-out both;
-}
-
-/* TITLE */
-.hero-title {
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #d4af37, #ff00cc, #3399ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: glowShift 6s infinite alternate ease-in-out;
-}
-
-/* SUBTEXT */
-.hero-subtext {
-  margin: 25px auto 40px;
-  font-size: 1.2rem;
-  color: #eee;
-  max-width: 650px;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-/* BUTTONS */
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.hero-btn {
-  padding: 14px 34px;
-  border-radius: 50px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-decoration: none;
-  transition: all 0.4s ease;
-}
-.hero-btn.primary {
-  background: linear-gradient(90deg, #ff00cc, #3399ff);
-  color: #fff;
-  box-shadow: 0 0 18px rgba(255, 0, 200, 0.3);
-}
-.hero-btn.secondary {
-  border: 2px solid #ff00cc;
-  color: #ff00cc;
-  background: transparent;
-}
-.hero-btn:hover {
-  transform: scale(1.07) translateY(-3px);
-  box-shadow: 0 0 25px rgba(255, 0, 200, 0.5);
-}
-.hero-btn.secondary:hover {
-  background: linear-gradient(90deg, #ff00cc, #3399ff);
-  color: #fff;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from {opacity: 0; transform: translateY(40px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-@keyframes pulse {
-  0% {opacity: 0.3;}
-  100% {opacity: 0.5;}
-}
-@keyframes glowShift {
-  0% {text-shadow: 0 0 20px rgba(255,0,200,0.4);}
-  100% {text-shadow: 0 0 35px rgba(0,150,255,0.6);}
-}
-
-/* RESPONSIVE */
+/* For tablets and mid screens */
 @media (max-width: 768px) {
   .hero {
-    min-height: 75vh;
+    height: auto;
+    padding: 70px 0;
   }
+
   .hero-title {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+    line-height: 1.2;
   }
-  .hero-subtext {
+
+  .hero-sub {
     font-size: 1rem;
+    padding: 0 10px;
   }
-  .hero-buttons {
-    flex-direction: column;
-    gap: 15px;
+
+  .hero-portrait {
+    width: 240px;
+    height: 280px;
+  }
+
+  .hero-ctas {
+    justify-content: center;
   }
 }
+
+/* For small phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+  }
+
+  .hero-portrait {
+    width: 200px;
+    height: 240px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-card {
+        margin-top: 20px;
+      }
+
+      iframe {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .pfp {
+        width: 60px;
+        height: 60px;
+      }
+
+      iframe {
+        height: 180px;
+    }
+  }
 
     /* SECTION ANIMATIONS */
     .section{padding:60px 20px;opacity:0;transform:translateY(30px);transition:all 0.8s ease-out;}
@@ -364,7 +544,7 @@
             <li><a href="/about/">About Us</a></li>
             <li><a href="/music/">Dave Music</a></li>
             <li><a href="/sound/">GG Sound</a></li>
-            <li><a href="/band/">Aueral Band</a></li>
+            <li><a href="/band/">Auera Band</a></li>
             <li><a href="/merch/">Merchandise</a></li>
             <li><a href="/insight/">Insights</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -375,28 +555,34 @@
   </header>
 
   <!-- HERO -->
-<section class="hero">
-  <div class="hero-overlay"></div>
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="/band-performance.mp4" type="video/mp4" />
-  </video>
+  <section class="hero" aria-label="Hero — Dave Jethro">
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy fade-in">
+        <div class="kicker">Live Sound & Events</div>
+        <h2 class="hero-title">Auera Band</h2>
+        <p class="hero-sub">
+          Discover the electrifying sound of Auera Band – where every beat ignites your soul and every lyric tells a story. Experience music that moves you, live the vibe!
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/256764188054?text=I%27m%20interested%20in%20Auera%20Band"><i class="fas fa-play"></i>Book Band</a>
+          <a class="btn btn-ghost" href="/band/"><i class="fas fa-sound"></i> Learn More</a>
+        </div>
+      </div>
 
-  <div class="hero-content">
-    <h1 class="hero-title">Aueral Band</h1>
-    <p class="hero-subtext">Bringing sound to life with every beat and every stage we step on.</p>
-    <div class="hero-buttons">
-      <a href="#performances" class="hero-btn primary">Watch Performances</a>
-      <a href="#book" class="hero-btn secondary">Book Us</a>
+      <div class="hero-portrait fade-in">
+        <img src="/bands.jpg" alt="Dave Jethro portrait" />
+        <div class="album-glow"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- ABOUT -->
   <section id="about-band" class="section">
-    <h2>About Aueral Band</h2>
+    <h2>About Auera Band</h2>
     <div class="container about">
       <div><img src="/bands.jpg" alt="Aueral Band performing"></div>
-      <div><p>Aueral Band is the live performance powerhouse behind Dave Jethro and numerous events across Uganda and beyond. With skilled musicians, vocalists, and a passion for live music, Auera Band transforms every stage into a memorable experience. From intimate gatherings to large-scale shows, the band’s energy and professionalism set them apart.</p></div>
+      <div><p>Auera Band is the live performance powerhouse behind Dave Jethro and numerous events across Uganda and beyond. With skilled musicians, vocalists, and a passion for live music, Auera Band transforms every stage into a memorable experience. From intimate gatherings to large-scale shows, the band’s energy and professionalism set them apart.</p></div>
     </div>
   </section>
 
@@ -407,37 +593,38 @@
   </h2>
 
   <div class="categories" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;max-width:1100px;margin:0 auto;">
-    
-    <!-- VOCALISTS -->
+
+    <!-- STRINGS -->
     <div class="category" style="background:#111;border-radius:20px;padding:30px;box-shadow:0 0 15px rgba(255,0,127,0.2);transition:transform 0.3s;">
-      <img src="/bands.jpg" alt="Vocalists" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
-      <h3 style="color:#d4af37;margin-bottom:10px;">Vocalists</h3>
-      <p style="color:#ccc;">From lead singers to backing harmonists — powerful voices that bring life, soul, and stage energy to every performance.</p>
+      <img src="https://i.pinimg.com/1200x/47/61/9e/47619e827b3aadb550eacc049a7fe7aa.jpg" alt="Strings" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
+      <h3 style="color:#d4af37;margin-bottom:10px;">Strings</h3>
+      <p style="color:#ccc;">Guitars, basses, violins, and other string instruments that create melody, harmony, and rhythm for every performance.</p>
     </div>
 
-    <!-- INSTRUMENTALISTS -->
+    <!-- PERCUSSION -->
     <div class="category" style="background:#111;border-radius:20px;padding:30px;box-shadow:0 0 15px rgba(255,0,127,0.2);transition:transform 0.3s;">
-      <img src="/bands.jpg" alt="Instrumentalists" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
-      <h3 style="color:#d4af37;margin-bottom:10px;">Instrumentalists</h3>
-      <p style="color:#ccc;">Drummers, guitarists, bassists, keyboardists, and more — skilled musicians who shape the heartbeat of your event’s sound.</p>
+      <img src="https://i.pinimg.com/736x/30/eb/62/30eb6291418d487c12ccb9792f8d4393.jpg" alt="Percussion" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
+      <h3 style="color:#d4af37;margin-bottom:10px;">Percussion</h3>
+      <p style="color:#ccc;">Drums, congas, bongos, and other percussion instruments that provide rhythm, drive, and energy to the band’s sound.</p>
     </div>
 
-    <!-- SOUND ENGINEERS -->
+    <!-- KEYBOARDS -->
     <div class="category" style="background:#111;border-radius:20px;padding:30px;box-shadow:0 0 15px rgba(255,0,127,0.2);transition:transform 0.3s;">
-      <img src="/bands.jpg" alt="Sound Engineers" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
-      <h3 style="color:#d4af37;margin-bottom:10px;">Sound Engineers</h3>
-      <p style="color:#ccc;">Behind every perfect performance are skilled sound engineers ensuring clarity, balance, and flawless live mixes for your event.</p>
+      <img src="https://i.pinimg.com/736x/fb/2b/03/fb2b03c4ab6a9fcb2331f6fe5978eb4e.jpg" alt="Keyboards" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
+      <h3 style="color:#d4af37;margin-bottom:10px;">Keyboards</h3>
+      <p style="color:#ccc;">Pianos, synthesizers, and organs that add harmonic depth, atmosphere, and melodic layers to any arrangement.</p>
     </div>
 
-    <!-- EVENT TECHNICIANS -->
+    <!-- WIND INSTRUMENTS -->
     <div class="category" style="background:#111;border-radius:20px;padding:30px;box-shadow:0 0 15px rgba(255,0,127,0.2);transition:transform 0.3s;">
-      <img src="/bands.jpg" alt="Event Technicians" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
-      <h3 style="color:#d4af37;margin-bottom:10px;">Event Technicians</h3>
-      <p style="color:#ccc;">Lighting experts and stage crew handling setup, transitions, and ambiance — ensuring your event runs smoothly and looks spectacular.</p>
+      <img src="https://i.pinimg.com/736x/9b/49/33/9b4933e14069a24309e832dca6292b97.jpg" alt="Wind Instruments" style="border-radius:50%;width:120px;height:120px;object-fit:cover;margin-bottom:15px;border:2px solid #d4af37;">
+      <h3 style="color:#d4af37;margin-bottom:10px;">Wind Instruments</h3>
+      <p style="color:#ccc;">Saxophones, trumpets, flutes, and other wind instruments that bring texture, melody, and flair to the band’s sound.</p>
     </div>
 
   </div>
 </section>
+
 
 
   <!-- PERFORMANCES -->
@@ -453,7 +640,7 @@
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPivmeUfhYpZ1tG3IDQakWvwKuKUuRjPuQKg&s" alt="Wedding Performance" style="width:100%;height:200px;object-fit:cover;filter:brightness(0.7);transition:0.4s;">
       <div style="position:absolute;bottom:0;left:0;width:100%;padding:25px;background:linear-gradient(0deg,rgba(0,0,0,0.9),rgba(0,0,0,0));text-align:left;">
         <h3 style="color:#d4af37;font-size:1.2rem;margin-bottom:6px;">Wedding Performance</h3>
-        <p style="color:#ddd;font-size:0.95rem;">Aueral Band live at Serena Hotel Kampala.</p>
+        <p style="color:#ddd;font-size:0.95rem;">Auera Band live at Serena Hotel Kampala.</p>
       </div>
       <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(90deg,#ff007f,#d4af37);color:#000;font-weight:bold;padding:10px 22px;border-radius:30px;opacity:0;transition:opacity 0.3s;">🎬 Watch Now</span>
     </a>
@@ -513,7 +700,7 @@
   <section id="reviews" class="section">
     <h2>What Clients Say</h2>
     <div class="container packages">
-      <div class="package"><p>"Aueral Band made our wedding night magical! The guests couldn’t stop dancing."</p><h4>- Sarah & Mark, Kampala</h4></div>
+      <div class="package"><p>"Auera Band made our wedding night magical! The guests couldn’t stop dancing."</p><h4>- Sarah & Mark, Kampala</h4></div>
       <div class="package"><p>"Professional, energetic, and truly talented — they’re our go-to band for all events."</p><h4>- NTV Events Team</h4></div>
     </div>
   </section>
@@ -522,9 +709,9 @@
   <section id="packages" class="section">
     <h2>Booking Packages</h2>
     <div class="container packages">
-      <div class="package"><h3>Full Band Package</h3><p>All band members included – best for weddings & large events.</p><a href="https://wa.me/256764188054?text=I'd%20like%20to%20book%20the%20Full%20Band%20Package%20with%20Aueral%20Band." target="_blank">Book Now</a></div>
-      <div class="package"><h3>Small Band Setup</h3><p>Perfect for intimate events – singer, pianist, and drummer.</p><a href="https://wa.me/256764188054?text=I'd%20like%20to%20book%20the%20Small%20Band%20Setup%20with%20Aueral%20Band." target="_blank">Book Now</a></div>
-      <div class="package"><h3>Custom Booking</h3><p>Choose only the members you need from our categories.</p><a href="https://wa.me/256764188054?text=I%20want%20to%20book%20specific%20band%20members%20from%20Aueral%20Band." target="_blank">Book Now</a></div>
+      <div class="package"><h3>Full Band Package</h3><p>All band members included – best for weddings & large events.</p><a href="https://wa.me/256764188054?text=I'd%20like%20to%20book%20the%20Full%20Band%20Package%20with%20Auera%20Band." target="_blank">Book Now</a></div>
+      <div class="package"><h3>Small Band Setup</h3><p>Perfect for intimate events – singer, pianist, and drummer.</p><a href="https://wa.me/256764188054?text=I'd%20like%20to%20book%20the%20Small%20Band%20Setup%20with%20Auera%20Band." target="_blank">Book Now</a></div>
+      <div class="package"><h3>Custom Booking</h3><p>Choose only the members you need from our categories.</p><a href="https://wa.me/256764188054?text=I%20want%20to%20book%20specific%20band%20members%20from%20Auera%20Band." target="_blank">Book Now</a></div>
     </div>
   </section>
 
@@ -549,7 +736,7 @@
   </footer>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/256764188054?text=Hello!%20I'd%20like%20to%20book%20Aueral%20Band%20for%20an%20event." class="whatsapp-float" target="_blank">
+  <a href="https://wa.me/256764188054?text=Hello!%20I'd%20like%20to%20book%20Auera%20Band%20for%20an%20event." class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
 
