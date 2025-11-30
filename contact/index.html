@@ -64,20 +64,10 @@ header {
   font-weight: 700;
   color: #fff;
 }
-nav ul {
-  display: flex;
-  gap: 18px;
-  list-style: none;
-}
-nav a {
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-nav a:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #00bfa5;
-}
+nav ul{display:flex;gap:16px;list-style:none}
+    nav a{font-size:.95rem;padding:8px;border-radius:8px;transition:all .18s}
+    nav a:hover{color:var(--soft-gold);background:rgba(212,175,55,0.06)}
+
 .menu-toggle {
   display: none;
   color: #fff;
@@ -354,12 +344,12 @@ nav a:hover {
       nav ul {
         display: none;
         flex-direction: column;
-        background: rgba(0,0,0,0.95);
+        background: black;
         position: absolute;
         top: 100%;
         right: 0;
-        width: 100%;
-        text-align: center;
+        width: 40%;
+        text-align: left;
         padding: 10px 0;
       }
 
@@ -621,7 +611,7 @@ footer {
     position: absolute;
     right: 18px;
     top: 70px;
-    background: #001b1b;
+    background: black;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     padding: 12px;
