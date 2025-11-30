@@ -211,6 +211,13 @@
       background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
     }
 
+    /* Center buttons on tablets like iPad Air */
+@media (max-width: 1024px) {
+  .hero-ctas {
+    justify-content: center !important;
+  }
+}
+
     @keyframes zoom-slow {
       from { transform: scale(1.05); }
       to { transform: scale(1.15); }
@@ -334,6 +341,9 @@
         display: flex;
       }
 
+      .hero-title {
+        text-align: center;
+      }
 
       .hero-inner {
         flex-direction: column;
