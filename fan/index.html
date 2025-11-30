@@ -50,16 +50,319 @@
       nav ul li{margin:6px 0}
     }
 
-    /* Hero */
-    .hero-fans {
-      height:75vh;
-      background:url('/fun5.jpg') no-repeat center/cover;
-      position:relative;
-      display:flex;justify-content:center;align-items:center;text-align:center;
+      /* ================= HERO ================= */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      background: radial-gradient(circle at center, #0b0b0b 20%, #000 100%);
     }
-    .hero-fans::after {content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);}
-    .hero-fans h2 {position:relative;z-index:1;color:#d4af37;font-size:3rem;}
 
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/fun5.jpg') center/cover no-repeat;
+      opacity: 0.35;
+      transform: scale(1.05);
+      animation: zoom-slow 22s ease-in-out infinite alternate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3), #000);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(212,175,55,0.12), transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+      padding: 0 5%;
+    }
+
+    .hero-title {
+      text-align:left;
+    }
+
+    .hero-copy {
+      flex: 1 1 440px;
+      max-width: 540px;
+    }
+
+    .kicker {
+      text-transform: uppercase;
+      color: #d4af37;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+    }
+
+    .hero-title {
+      font-family: "Lora", serif;
+      font-size: 3rem;
+      margin: 14px 0 10px;
+      background: linear-gradient(90deg, #fff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-glow 4s ease-in-out infinite alternate;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #d4af37, #f6e27a);
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+    }
+
+    .btn-ghost {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-portrait {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(212,175,55,0.25);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-portrait:hover img {
+      transform: scale(1.1);
+    }
+
+    .album-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    @keyframes zoom-slow {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.15); }
+    }
+
+    @keyframes text-glow {
+      0% { text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+      100% { text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 90%;
+  }
+
+  .hero-portrait {
+    width: 280px;
+    height: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* For tablets and mid screens */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 70px 0;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .hero-portrait {
+    width: 240px;
+    height: 280px;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+}
+
+/* For small phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+  }
+
+  .hero-portrait {
+    width: 200px;
+    height: 240px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: black;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 40%;
+        text-align: left;
+        padding: 10px 0;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-card {
+        margin-top: 20px;
+      }
+
+      iframe {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .pfp {
+        width: 60px;
+        height: 60px;
+      }
+
+      iframe {
+        height: 180px;
+    }
+  }
 
     section {padding:70px 20px;}
     section h2 {
@@ -274,7 +577,7 @@
             <li><a href="/about/">About Us</a></li>
             <li><a href="/music/">Dave Music</a></li>
             <li><a href="/sound/">GG Sound</a></li>
-            <li><a href="/band/">Aueral Band</a></li>
+            <li><a href="/band/">Auera Band</a></li>
             <li><a href="/merch/">Merchandise</a></li>
             <li><a href="/insight/">Insights</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -285,10 +588,28 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero-fans">
-    <h2></h2>
-  </section>
+  <section class="hero" aria-label="Hero — Dave Jethro">
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy fade-in">
+        <div class="kicker">The Community Of</div>
+        <h2 class="hero-title">Dave Jethro</h2>
+        <p class="hero-sub">
+          Join the Dave Jethro Family, a community of passionate fans who share the love for his music and vision. Here, every supporter is more than a fan—they’re part of the journey, connected by energy, inspiration, and the rhythm that brings us all together.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/fan/"><i class="fas fa-family"></i>Join The Family</a>
+          <a class="btn btn-ghost" href="/music/"><i class="fas fa-email"></i>Subscribe</a>
+        </div>
+      </div>
 
+      <div class="hero-portrait fade-in">
+        <img src="/fun6.jpg" alt="Dave Jethro portrait" />
+        <div class="album-glow"></div>
+      </div>
+    </div>
+  </section>
+  
   <!-- FAN STATS SECTION -->
 <section class="fan-stats">
   <h2>Our Amazing Family</h2>
