@@ -17,7 +17,7 @@
 }
 body {
   font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-  background: #0b0b12;
+  background: #c4582e;
   color: #f5f5f5;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -87,171 +87,314 @@ nav a:hover {
   cursor: pointer;
 }
 
- /* Main Section */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem 1rem;
-  overflow: hidden;
-}
+/* ================= HERO ================= */
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      background: radial-gradient(circle at center, #0b0b0b 20%, #000 100%);
+    }
 
-/* Neon Pulse Background */
-.neon-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(6, 109, 128, 0.35), transparent 60%);
-  animation: pulse 3s infinite;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('/hero.jpg') center/cover no-repeat;
+      opacity: 0.35;
+      transform: scale(1.05);
+      animation: zoom-slow 22s ease-in-out infinite alternate;
+    }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3), #000);
+    }
 
-/* Center Content */
-.content {
-  position: relative;
-  z-index: 10;
-  max-width: 850px;
-  padding: 20px;
-}
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 40%, rgba(212,175,55,0.12), transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
 
-/* Neon Circle */
-.circle {
-  width: clamp(120px, 30vw, 200px);
-  height: clamp(120px, 30vw, 200px);
-  margin: 0 auto 30px;
-  border-radius: 50%;
-  border: 2px solid rgb(0, 204, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 25px rgba(4, 113, 128, 0.7);
-  animation: pulse 2.5s infinite;
-}
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      width: 100%;
+      padding: 0 5%;
+    }
 
-.circle-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-}
+    .hero-copy {
+      flex: 1 1 440px;
+      max-width: 540px;
+    }
 
-/* Heading */
-.title {
-  font-size: clamp(1.8rem, 6vw, 4rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  background: linear-gradient(to bottom right, white, rgb(149, 163, 168));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px rgba(232, 240, 241, 0.7);
-}
+    .kicker {
+      text-transform: uppercase;
+      color: #d4af37;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+    }
 
-/* Buttons */
-  .btns {
-    display: flex;
+    .hero-title {
+      font-family: "Lora", serif;
+      font-size: 3rem;
+      margin: 14px 0 10px;
+      background: linear-gradient(90deg, #fff, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-glow 4s ease-in-out infinite alternate;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #d4af37, #f6e27a);
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+    }
+
+    .btn-ghost {
+      border: 1px solid #d4af37;
+      color: #d4af37;
+      background: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-portrait {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(212,175,55,0.25);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-portrait:hover img {
+      transform: scale(1.1);
+    }
+
+    .album-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    }
+
+    @keyframes zoom-slow {
+      from { transform: scale(1.05); }
+      to { transform: scale(1.15); }
+    }
+
+    @keyframes text-glow {
+      0% { text-shadow: 0 0 10px rgba(212,175,55,0.4); }
+      100% { text-shadow: 0 0 20px rgba(212,175,55,0.8); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO RESPONSIVE TUNING */
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    padding: 80px 0;
+  }
+
+  .hero-inner {
+    flex-direction: column;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 90%;
+  }
+
+  .hero-portrait {
+    width: 280px;
+    height: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* For tablets and mid screens */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 70px 0;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .hero-portrait {
+    width: 240px;
+    height: 280px;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+}
+
+/* For small phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+  }
+
+  .hero-portrait {
+    width: 200px;
+    height: 240px;
   }
 
   .btn {
-    padding: 12px 28px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
+    font-size: 0.9rem;
+    padding: 8px 14px;
   }
 
-  .btn-primary {
-    background: rgb(6, 79, 138);
-    color: white;
-  }
-
-  .btn-primary:hover { transform: scale(1.05); }
-
-  .btn-outline {
-    border: 1px solid #555;
-    background: transparent;
-    color: white;
-  }
-
-  .btn-outline:hover { background: rgba(255,255,255,0.1); }
-
-  .btn-blue {
-    background: dodgerblue;
-    color: white;
-  }
-
-  .btn-blue:hover { transform: scale(1.05); }
-
-/* Floating Music Icons */
-.icon {
-  position: absolute;
-  opacity: 0.15;
-  font-size: clamp(30px, 7vw, 65px);
-  animation: float 6s infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(-20px); }
-  50% { transform: translateY(20px); }
-  100% { transform: translateY(-20px); }
-}
-
-.icon1 { left: 10px; top: 90px; animation-duration: 6s; }
-.icon2 { right: 20px; top: 160px; animation-duration: 5s; }
-.icon3 { left: 50%; bottom: 40px; transform: translateX(-50%); animation-duration: 7s; }
-
-/* ------- MOBILE ADJUSTMENTS -------- */
-@media (max-width: 600px) {
-  .hero {
-    min-height: 60vh;
-    padding: 1.5rem 1rem;
-  }
-
-  .btns {
+  .hero-ctas {
+    flex-direction: column;
     gap: 10px;
   }
-
-  .icon {
-    opacity: 0.08;
-  }
-
-  .icon1 { top: 40px; left: 5px; }
-  .icon2 { top: 100px; right: 5px; }
-  .icon3 { bottom: 20px; }
 }
 
-@media (max-width: 400px) {
+    /* MOBILE RESPONSIVE STYLES */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+      }
 
-  .circle {
-    width: 120px;
-    height: 120px;
-  }
+      nav ul.show {
+        display: flex;
+      }
 
-  .title {
-    font-size: 1.6rem;
-  }
 
-  .btn {
-    padding: 10px 20px;
-  }
-}
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
 
-.circle-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+      .hero-card {
+        margin-top: 20px;
+      }
+
+      iframe {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .pfp {
+        width: 60px;
+        height: 60px;
+      }
+
+      iframe {
+        height: 180px;
+    }
   }
 
 /* ===== SECTION STYLING ===== */
@@ -530,7 +673,7 @@ footer {
             <li><a href="/about/">About Us</a></li>
             <li><a href="/music/">Dave Music</a></li>
             <li><a href="/sound/">GG Sound</a></li>
-            <li><a href="/band/">Aueral Band</a></li>
+            <li><a href="/band/">Auera Band</a></li>
             <li><a href="/merch/">Merchandise</a></li>
             <li><a href="/insight/">Insights</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -540,18 +683,26 @@ footer {
     </div>
   </header>
 
-  <section class="hero">
-    <div class="neon-bg"></div>
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero — Dave Jethro">
+    <div class="overlay"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy fade-in">
+        <div class="kicker">Contact The Team Of</div>
+        <h2 class="hero-title">Dave Jethro</h2>
+        <p class="hero-sub">
+          Want to connect with Dave Jethro? Reach out now and start a conversation that sparks ideas, collaborations, and inspiration!
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/256764188054?text=I%27m%20interested%20in%20collaborating%20with%20you."><i class="fas fa-song"></i>Collaborations</a>
+          <a class="btn btn-ghost" href="https://wa.me/256764188054?text=I%27m%20interested%20in%20booking%20you."><i class="fas fa-calendar-check"></i>Bookings</a>
+          <a class="btn btn-ghost" href="https://wa.me/256764188054?text=I%27m%20interested%20in%20having%20an%20interview%20of%20you."><i class="fas fa-calendar-check"></i>Interviews</a>
+        </div>
+      </div>
 
-    <div class="content">
-      <div class="circle"><img src="/HEROS.jpeg" alt="Artist Photo" class="circle-img"></div>
-
-      <h1 class="title">Contact Dave Jethro</h1>
-
-      <div class="btns">
-        <button class="btn btn-primary">Collaborations</button>
-        <button class="btn btn-outline">Bookings</button>
-        <button class="btn btn-blue">Interviews</button>
+      <div class="hero-portrait fade-in">
+        <img src="/HEROS.jpeg" alt="Dave Jethro portrait" />
+        <div class="album-glow"></div>
       </div>
     </div>
   </section>
