@@ -556,7 +556,7 @@ footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
-  padding: 50px 20px; /* added 20px left/right padding */
+  padding: 50px 0; /* added 20px left/right padding */
   border-bottom: 1px solid #333;
 }
 
@@ -603,7 +603,7 @@ footer {
 /* Bottom section */
 .footer-bottom {
   text-align: center;
-  padding: 15px 20px; /* added horizontal padding */
+  padding: 15px 0; /* added horizontal padding */
   font-size: .9rem;
   color: #aaa;
 }
@@ -728,10 +728,6 @@ footer {
       <div class="mood-icon">🔥</div>
       <div>Angry</div>
     </div>
-    <div class="mood-card" onclick="showSongs('Heartbroken')">
-      <div class="mood-icon">💔</div>
-      <div>Heartbroken</div>
-    </div>
     <div class="mood-card" onclick="showSongs('Romantic')">
       <div class="mood-icon">🌃</div>
       <div>Romantic</div>
@@ -803,10 +799,7 @@ const songs = [
   // Angry
   { title: "Fire Within", mood: "Angry", file: "/songs/fire-within.mp3" },
 
-  // Heartbroken
-  { title: "Faded Love", mood: "Heartbroken", file: "/songs/faded-love.mp3" },
-
-  // Motivated
+  // Romantic
   { title: "2AM - Dave Jethro", mood: "Romantic", file: "/2AM.m4a" },
   { title: "Echoes - Dave Jethro ft M Bree", mood: "Romantic", file: "/echoes.m4a" },
   
