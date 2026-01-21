@@ -812,8 +812,15 @@ footer {
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2025 Dave Jethro. All rights reserved. | Built and maintained by Breeford Technologies</p>
-    </div>
+  <p>
+    &copy; <span id="year"></span> Dave Jethro. All rights reserved. |
+    Built and maintained by 
+    <a href="https://www.breefordtech.com" target="_blank" rel="noopener noreferrer">
+      Breeford Technologies
+    </a>
+  </p>
+</div>
+
   </footer>
 
   <!-- MENU TOGGLE SCRIPT -->
@@ -825,6 +832,8 @@ footer {
       const expanded = menuBtn.getAttribute("aria-expanded") === "true";
       menuBtn.setAttribute("aria-expanded", !expanded);
     });
+    
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
