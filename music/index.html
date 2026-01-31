@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,24 +75,6 @@
     a{color:inherit}
 
     /* HERO FIX — prevent header overlap on small screens */
-.stage {
-  position: relative;
-  min-height: calc(100vh - 70px); /* subtract header height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-top: 70px; /* ensures header spacing */
-}
-
-/* When screen is smaller, allow more scroll space */
-@media (max-width: 600px) {
-  .stage {
-    min-height: calc(100vh - 60px);
-    margin-top: 60px;
-    padding-top: 20px;
-  }
-}
 
 /* Ensure hero card fits comfortably */
 .hero-card {
@@ -125,38 +108,30 @@
     /* === HERO / CINEMATIC STAGE === */
     /* Hero: animated neon background + particles via canvas */
     /* ----------- HERO ----------- */
-.hero {
-  position: relative;
-  height: 75vh; /* full screen height */
+..hero {
+  min-height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  background: radial-gradient(circle at top, rgba(0, 0, 0, 0.85), #000);
-  overflow: hidden;
-  z-index: 1;
+  background-image: url('/davej.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: url('your-hero-image-or-video.gif') center/cover no-repeat;
-  opacity: 0.25;
-  z-index: -1;
+  inset: 0;
+  background: url('davej.png') center / cover no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+  display: none;
 }
+
 
 .hero-content {
   position: relative;
   z-index: 2;
-  color: #fff;
-  padding: 2rem;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 25px rgba(0, 255, 200, 0.4);
 }
 
 main {
@@ -168,17 +143,33 @@ main {
 }
 
 
-    .stage {
+.stage {
   position: relative;
-  min-height: calc(100vh - 70px); /* allow for header height */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; /* stack nicely on small screens */
-  overflow: visible; /* show all content */
-  margin-top: 70px; /* keep header spacing */
-  padding: 40px 0; /* breathing space top/bottom */
+  overflow: hidden;
 }
+
+/* background image layer */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/davej.png') center / cover no-repeat;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+/* keep everything above the background */
+.bg-gradient,
+#particle-canvas,
+.hero-card {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* On small devices, allow taller scroll space */
 @media (max-width: 600px) {
@@ -186,6 +177,7 @@ main {
     min-height: auto; /* don't force screen height */
     margin-top: 60px;
     padding: 60px 0;
+    background: url('/jj.png') center / cover no-repeat;
   }
 }
     /* layered animated gradients */
@@ -279,24 +271,107 @@ main {
     main{position:relative;z-index:10;margin-top:-120px;padding:40px 20px 120px}
     .container{max-width:var(--maxWidth);margin:0 auto}
 
-    /* Releases grid with 3D feel */
-    .releases{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:24px;
-    }
-    .release{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border:1px solid rgba(255,255,255,0.04);
-      padding:14px;border-radius:14px;position:relative;overflow:hidden;
-      transform-style:preserve-3d;transition:transform .4s, box-shadow .4s;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
-    }
-    .release:hover{transform:translateY(-12px) rotateX(6deg) translateZ(8px);box-shadow:0 30px 80px rgba(0,0,0,0.7)}
-    .release .art{height:160px;border-radius:10px;overflow:hidden;margin-bottom:12px;border:1px solid rgba(255,255,255,0.03)}
-    .release .meta{display:flex;justify-content:space-between;align-items:center}
-    .release h3{margin:0;font-size:16px}
-    .release p{margin:6px 0 0;color:rgba(233,238,248,0.65);font-size:13px}
+/* =========================
+   RELEASES GRID (5 PER ROW)
+   ========================= */
 
-    .release .mini-controls{display:flex;gap:8px;align-items:center;margin-top:12px}
+.releases {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* FORCE 5 columns */
+  gap: 22px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+/* =========================
+   RELEASE CARD
+   ========================= */
+
+.release-card {
+  width: auto !important;      /* 🔥 critical override */
+  max-width: none !important;  /* 🔥 critical override */
+  display: block;              /* remove row / flex behavior */
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 14px;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+.release-card:hover {
+  transform: translateY(-12px) rotateX(6deg) translateZ(8px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+/* =========================
+   COVER IMAGE
+   ========================= */
+
+.release-card .cover {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  display: block;
+}
+
+/* =========================
+   TEXT
+   ========================= */
+
+.release-card h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+.release-card p {
+  margin: 6px 0 0;
+  color: rgba(233, 238, 248, 0.65);
+  font-size: 13px;
+}
+
+/* =========================
+   PLAY BUTTON
+   ========================= */
+
+.release-card button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+
+  background: linear-gradient(90deg, var(--neon1), var(--neon2));
+  color: #000;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.release-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   SAFETY: PREVENT WIDTH LEAKS
+   ========================= */
+
+.release-card * {
+  max-width: 100%;
+}
 
     /* video carousel */
     .videos-row{margin-top:44px;display:flex;gap:14px;overflow-x:auto;padding-bottom:8px}
@@ -533,6 +608,65 @@ main {
   }
 }
 
+.tag{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  margin-bottom:12px;
+}
+.artist{opacity:.75;font-size:14px}
+.mood{font-size:13px;opacity:.6}
+
+.playing {
+  outline:2px solid var(--neon2);
+  box-shadow:0 0 40px rgba(255,0,120,.4);
+}
+.cover.playing img{
+  animation: spin 12s linear infinite;
+}
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.meta{
+  font-size:11px;
+  opacity:.5;
+  display:block;
+  margin-top:4px;
+}
+
+.now-playing{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:#000;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  padding:10px 16px;
+  border-top:1px solid rgba(255,255,255,.08);
+  z-index:99;
+}
+.now-playing img{
+  width:44px;height:44px;border-radius:6px;
+}
+
+#videos h2{
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  font-size:13px;
+}
+
+.pill{
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+}
+
+
     
   </style>
 </head>
@@ -578,8 +712,10 @@ main {
     <div class="hero-card" role="region" aria-label="Dave Jethro music hero">
       <!-- left -->
       <div class="hero-left">
-        <h1>Dave Jethro — Higher</h1>
-        <p>Dark neon, gravity-defying beats, and stories carved in rhythm. Press play to step inside the mood — a world of studio-grade production and cinematic introspection.</p>
+        <span class="tag">NEW SINGLE</span>
+         <h1>Higher</h1>
+         <p class="artist">by Dave Jethro</p>
+         <p class="mood">Afro-electronic · Late-night · Introspective</p>
 
         <div class="hero-ctas">
           <button class="btn primary" id="play-latest" title="Play latest single">
@@ -590,8 +726,8 @@ main {
             <i class="fa-solid fa-microphone-lines"></i> Live Player
           </button>
 
-          <a class="btn ghost" href="#releases" title="Scroll to releases">Releases</a>
-          <a class="btn ghost" href="#videos" title="Featured videos">Videos</a>
+          <a class="btn ghost" href="https://www.youtube.com/@davejethro" title="Scroll to releases">Releases</a>
+          <a class="btn ghost" href="https://www.youtube.com/@davejethro" title="Featured videos">Videos</a>
         </div>
 
         <div style="display:flex;gap:18px;align-items:center;margin-top:18px">
@@ -643,12 +779,23 @@ main {
   <!-- MAIN CONTENT -->
   <main>
     <div class="container">
-      <!-- Releases -->
-      <section id="releases" aria-labelledby="releases-title">
-        <h2 style="margin:0;color:transparent;background:linear-gradient(90deg,var(--neon1),var(--neon2));-webkit-background-clip:text;background-clip:text;font-size:20px">Latest Releases</h2>
-        <div class="releases" id="releases-list">
-          <!-- Releases generated by JS -->
-        </div>
+  <!-- Releases -->
+<section aria-labelledby="releases-title">
+  <h2 id="releases-title"
+      style="margin:0;color:transparent;
+      background:linear-gradient(90deg,var(--neon1),var(--neon2));
+      -webkit-background-clip:text;background-clip:text;
+      font-size:20px">
+    Latest Releases
+  </h2>
+
+  <!-- JS injects release cards here -->
+  <div id="releases" class="releases"></div>
+
+</section>
+
+
+</div>
 
         <!-- Platforms -->
         <div class="platforms" style="margin-top:18px" aria-hidden="false">
@@ -669,6 +816,7 @@ main {
           </a>
         </div>
       </section>
+</div>
 
       <!-- Videos -->
       <section id="videos" aria-labelledby="videos-title" style="margin-top:34px">
@@ -677,6 +825,15 @@ main {
           <!-- video cards injected by JS -->
         </div>
       </section>
+
+      <span class="pill">Afro-Electronic</span>
+      <span class="pill">Late Night</span>
+      <span class="pill">Chill</span>
+
+      <img id="np-cover">
+      <span id="np-title"></span>
+
+
 
       <!-- Tour & Merch -->
       <div class="row-2">
@@ -763,398 +920,218 @@ main {
 </div>
   </footer>
 
-  <!-- Audio + script -->
-  <script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Mobile menu toggle
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      document.querySelector('nav ul').classList.toggle('show');
-    });
+  /* ======================================================
+     BASIC UI
+  ====================================================== */
+  document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+    document.querySelector('nav ul')?.classList.toggle('show');
+  });
 
-    // Scroll reveal
-    const reveals=document.querySelectorAll('.reveal');
-    const observer=new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting)entry.target.classList.add('visible');
-      });
-    },{threshold:0.2});
-    reveals.forEach(r=>observer.observe(r));
-
-    // Audio player
-    function playSample(src){
-      const player=document.getElementById('player');
-      player.src=src;player.play();
-    }
-
-    // Audio preview limit
-    document.querySelectorAll('audio[data-preview]').forEach(aud => {
-      aud.addEventListener('timeupdate', function(){
-        if(this.currentTime >= 60){
-          this.pause();
-          this.currentTime = 0;
-          const tip = document.createElement('div');
-          tip.textContent = "Preview ended — full track available on streaming platforms.";
-          Object.assign(tip.style,{
-            position:'fixed',left:'50%',top:'18px',transform:'translateX(-50%)',
-            background:'rgba(0,0,0,0.85)',color:'#fff',padding:'10px 14px',
-            borderRadius:'10px',zIndex:9999,fontSize:'.95rem'
-          });
-          document.body.appendChild(tip);
-          setTimeout(()=> tip.remove(), 3200);
-        }
-      });
-    });
-
-    /* -------------------------
-       CONFIG: Replace these with real assets
-       ------------------------- */
-    const releasesData = [
-      {
-        id: 'midnight-flow',
-        title: 'Higher',
-        desc: 'Late-night soundscape — textures & groove.',
-        cover: '/higher.jpg',
-        audio: '/higher.m4a',
-      },
-      {
-        id: 'energy',
-        title: 'Glo',
-        desc: 'Big-room rhythm with afro-influenced percussion.',
-        cover: '/glo.jpg',
-        audio: '/glo.m4a',
-      },
-      {
-        id: 'reflections',
-        title: 'Real Love',
-        desc: 'Moody, introspective — piano-led reflections.',
-        cover: '/real.jpg',
-        audio: '/real.m4a',
-      }
-    ];
-
-    const featuredVideos = [
-  { id: 'BRbOCPROcq0', title: 'Real Love Lyrics' },
-  { id: 'FWH2_OC2qVs', title: 'Higher Lyrics' },
-  { id: 'vuuuAADGBCM', title: 'Glo' }
-];
-
-
-    // Platform links (edit)
-    document.getElementById('spotify').href = 'https://open.spotify.com/artist/REPLACE';
-    document.getElementById('apple').href = 'https://music.apple.com/artist/REPLACE';
-    document.getElementById('youtube').href = 'https://www.youtube.com/@REPLACE';
-    document.getElementById('soundcloud').href = 'https://soundcloud.com/REPLACE';
-
-    /* -------------------------
-       Build releases UI
-       ------------------------- */
-    const releasesList = document.getElementById('releases-list');
-    releasesData.forEach((r, idx) => {
-      const el = document.createElement('div');
-      el.className = 'release';
-      el.innerHTML = `
-        <div class="art"><img src="${r.cover}" alt="${r.title} cover" style="width:100%;height:100%;object-fit:cover" loading="lazy"></div>
-        <div class="meta">
-          <div>
-            <h3>${r.title}</h3>
-            <p class="muted">${r.desc}</p>
-          </div>
-          <div style="text-align:right">
-            <div class="muted">2025</div>
-            <div style="margin-top:8px">
-              <button class="btn ghost mini-play" data-index="${idx}" aria-label="Play ${r.title}">
-                <i class="fa-solid fa-play"></i>
-              </button>
-              <a class="btn ghost" href="#" style="margin-left:8px">Buy</a>
-            </div>
-          </div>
-        </div>
-      `;
-      releasesList.appendChild(el);
-    });
-
-    /* -------------------------
-       Build video carousel
-       ------------------------- */
-    const vrow = document.getElementById('videos-row');
-    featuredVideos.forEach(v => {
-      const card = document.createElement('div');
-      card.className = 'video-card';
-      card.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/${v.id}?rel=0&showinfo=0" title="${v.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div style="padding:10px"><strong>${v.title}</strong></div>
-      `;
-      vrow.appendChild(card);
-    });
-
-    /* -------------------------
-       Audio player + visualizer
-       ------------------------- */
-    let audioCtx, analyser, sourceNode, dataArray, bufferLength;
-    const audio = new Audio();
-    audio.crossOrigin = "anonymous";
-    audio.preload = 'metadata';
-
-    // default queue
-    let queue = releasesData.map(r => r.audio);
-    let current = 0;
-
-    // DOM refs
-    const playBtn = document.getElementById('play');
-    const playLatestBtn = document.getElementById('play-latest');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const progressEl = document.getElementById('progress').querySelector('i');
-    const currentTimeEl = document.querySelector('.timebars .time');
-    const durationEl = document.getElementById('duration');
-    const coverImg = document.getElementById('cover-img');
-
-    // visualizer canvas
-    const vizCanvas = document.getElementById('viz');
-    const vizCtx = vizCanvas.getContext('2d');
-
-    function initAudioEngine(){
-      if(audioCtx) return;
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 256;
-      bufferLength = analyser.frequencyBinCount;
-      dataArray = new Uint8Array(bufferLength);
-
-      sourceNode = audioCtx.createMediaElementSource(audio);
-      sourceNode.connect(analyser);
-      analyser.connect(audioCtx.destination);
-
-      resizeViz();
-      requestAnimationFrame(drawViz);
-    }
-
-    function resizeViz(){
-      vizCanvas.width = Math.min(420, window.innerWidth - 40) * devicePixelRatio;
-      vizCanvas.height = 56 * devicePixelRatio;
-      vizCtx.scale(devicePixelRatio, devicePixelRatio);
-    }
-
-    function drawViz(){
-      if(!analyser){ requestAnimationFrame(drawViz); return; }
-      analyser.getByteFrequencyData(dataArray);
-      const w = vizCanvas.width / devicePixelRatio;
-      const h = vizCanvas.height / devicePixelRatio;
-      vizCtx.clearRect(0,0,w,h);
-
-      const barWidth = w / bufferLength * 1.6;
-      let x = 0;
-      for(let i=0;i<bufferLength;i++){
-        const v = dataArray[i] / 255;
-        const barHeight = Math.max(2, v * h * 1.2);
-        // gradient color
-        const grad = vizCtx.createLinearGradient(0,0,0,h);
-        grad.addColorStop(0, 'rgba(255,0,140,0.9)');
-        grad.addColorStop(1, 'rgba(0,240,255,0.9)');
-        vizCtx.fillStyle = grad;
-        vizCtx.fillRect(x, h - barHeight, barWidth * 0.9, barHeight);
-        x += barWidth;
-      }
-      requestAnimationFrame(drawViz);
-    }
-
-    // load track
-    function loadTrack(index){
-      index = (index + queue.length) % queue.length;
-      current = index;
-      const track = releasesData[current];
-      audio.src = queue[current];
-      audio.load();
-      coverImg.src = track.cover || '/assets/cover-art.jpg';
-      durationEl.textContent = '0:00';
-      currentTimeEl.textContent = '0:00';
-      // initialize audioContext on first user gesture
-      initAudioEngine();
-    }
-
-    // update progress
-    audio.addEventListener('timeupdate', () => {
-      const pct = (audio.currentTime / (audio.duration || 1)) * 100;
-      progressEl.style.width = pct + '%';
-      currentTimeEl.textContent = formatTime(audio.currentTime);
-      if(audio.duration) durationEl.textContent = formatTime(audio.duration);
-    });
-
-    audio.addEventListener('ended', () => {
-      nextTrack();
-    });
-
-    function playPause(){
-      if(audioCtx && audioCtx.state === 'suspended'){ audioCtx.resume(); }
-      if(audio.paused){
-        audio.play().catch(e => { console.warn('Play prevented:', e); });
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      } else {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
-    }
-
-    function prevTrack(){
-      loadTrack(current - 1);
-      audio.play();
-      playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    }
-    function nextTrack(){
-      loadTrack(current + 1);
-      audio.play();
-      playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    }
-
-    // format seconds
-    function formatTime(s){
-      if(!s || isNaN(s)) return '0:00';
-      const m = Math.floor(s/60); const sec = Math.floor(s%60);
-      return m + ':' + (sec < 10 ? '0'+sec : sec);
-    }
-
-    // attach controls
-    playBtn.addEventListener('click', () => {
-      // first user gesture: create audio context
-      if(!audioCtx) initAudioEngine();
-      playPause();
-    });
-    playLatestBtn.addEventListener('click', () => {
-      // play the first item (latest)
-      loadTrack(0);
-      audio.play().catch(()=>{ /* fallback handled by user gesture */});
-      playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-    });
-    prevBtn.addEventListener('click', prevTrack);
-    nextBtn.addEventListener('click', nextTrack);
-
-    // mini-play buttons (releases)
-    document.querySelectorAll('.mini-play').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const i = Number(btn.getAttribute('data-index'));
-        loadTrack(i);
-        audio.play().catch(()=>{});
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        // scroll to player
-        document.querySelector('.player').scrollIntoView({behavior:'smooth', block:'center'});
-      });
-    });
-
-    // progress seek
-    document.getElementById('progress').parentElement.addEventListener('click', (ev) => {
-      const rect = ev.currentTarget.getBoundingClientRect();
-      const x = ev.clientX - rect.left;
-      const pct = x / rect.width;
-      audio.currentTime = pct * (audio.duration || 0);
-    });
-
-    // init queue & UI
-    function init(){
-      // copy audio URLs to queue
-      queue = releasesData.map(r => r.audio);
-      loadTrack(0);
-
-      // wire up mini-play listeners (after DOM elements created)
-      document.querySelectorAll('.mini-play').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const i = Number(btn.dataset.index);
-          loadTrack(i);
-          audio.play();
-        });
-      });
-    }
-
-    init();
-
-    /* -------------------------
-       PARTICLE BACKGROUND (canvas)
-       ------------------------- */
-    const pCanvas = document.getElementById('particle-canvas');
-    const pctx = pCanvas.getContext('2d');
-    let particles = [];
-    function resizeParticles(){
-      pCanvas.width = window.innerWidth;
-      pCanvas.height = window.innerHeight;
-    }
-    function createParticles(n=80){
-      particles = [];
-      for(let i=0;i<n;i++){
-        particles.push({
-          x: Math.random()*pCanvas.width,
-          y: Math.random()*pCanvas.height,
-          r: Math.random()*2+0.6,
-          vx: (Math.random()-0.5)*0.6,
-          vy: (Math.random()-0.5)*0.6,
-          hue: Math.random()*360
-        });
-      }
-    }
-    function drawParticles(){
-      pctx.clearRect(0,0,pCanvas.width,pCanvas.height);
-      for(const p of particles){
-        p.x += p.vx; p.y += p.vy;
-        if(p.x < -10) p.x = pCanvas.width + 10;
-        if(p.x > pCanvas.width + 10) p.x = -10;
-        if(p.y < -10) p.y = pCanvas.height + 10;
-        if(p.y > pCanvas.height + 10) p.y = -10;
-
-        const g = pctx.createRadialGradient(p.x,p.y,p.r/2,p.x,p.y,p.r*8);
-        g.addColorStop(0, `hsla(${p.hue},90%,60%,0.18)`);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        pctx.fillStyle = g;
-        pctx.beginPath();
-        pctx.arc(p.x,p.y,p.r*6,0,Math.PI*2);
-        pctx.fill();
-      }
-      requestAnimationFrame(drawParticles);
-    }
-    // responsive
-    window.addEventListener('resize', () => {
-      resizeViz();
-      resizeParticles();
-    });
-
-    resizeParticles(); createParticles(90); drawParticles();
-
-    /* -------------------------
-       Tiny UI enhancements
-       ------------------------- */
-    // subscribe form (demo)
-    document.getElementById('subscribeForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const mail = document.getElementById('email').value;
-      // in production, send to your newsletter endpoint
-      alert('Thanks! ' + mail + ' — you are on the list 🎧');
-      document.getElementById('email').value = '';
-    });
-
-    // lazy-check: if cover missing, use fallback
-    coverImg.addEventListener('error', ()=> coverImg.src='/assets/cover-art.jpg');
-
-    // make mini-play buttons functional (re-create because we built DOM earlier)
-    document.querySelectorAll('.mini-play').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const i = Number(btn.getAttribute('data-index'));
-        loadTrack(i);
-        audio.play();
-      });
-    });
-
-    // Smooth reveal for hero content (tiny entrance)
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.hero-card').style.transform = 'translateY(8px)';
-      setTimeout(()=>document.querySelector('.hero-card').style.transform = '', 850);
-    });
-
-    // accessibility: keyboard space toggles play
-    window.addEventListener('keydown', (e) => {
-      if(e.code === 'Space' && document.activeElement.tagName !== 'INPUT'){
-        e.preventDefault();
-        playBtn.click();
-      }
-    });
-    
   document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+
+  /* ======================================================
+     DATA
+  ====================================================== */
+  const releasesData = [
+    {
+      title: 'Higher',
+      desc: 'Late-night soundscape — textures & groove.',
+      cover: '/higher.jpg',
+      audio: '/higher.m4a'
+    },
+    {
+      title: 'Glo',
+      desc: 'Big-room rhythm with afro-influenced percussion.',
+      cover: '/glo.jpg',
+      audio: '/glo.m4a'
+    },
+    {
+      title: 'Real Love',
+      desc: 'Moody, introspective — piano-led reflections.',
+      cover: '/real.jpg',
+      audio: '/real.m4a'
+    }
+  ];
+
+  const featuredVideos = [
+    { id: 'BRbOCPROcq0', title: 'Real Love Lyrics' },
+    { id: 'FWH2_OC2qVs', title: 'Higher Lyrics' },
+    { id: 'vuuuAADGBCM', title: 'Glo' }
+  ];
+
+  /* ======================================================
+     AUDIO ENGINE
+  ====================================================== */
+  const PREVIEW_LIMIT = 60;
+  let previewTimer = null;
+
+  const audio = new Audio();
+  audio.preload = 'metadata';
+  audio.crossOrigin = 'anonymous';
+
+  let audioCtx, analyser, sourceNode;
+  let currentIndex = 0;
+
+  /* ======================================================
+     DOM REFERENCES
+  ====================================================== */
+  const playBtn = document.getElementById('play');
+  const playLatestBtn = document.getElementById('play-latest');
+  const prevBtn = document.getElementById('prev');
+  const nextBtn = document.getElementById('next');
+  const progressFill = document.querySelector('#progress i');
+  const currentTimeEl = document.querySelector('.timebars .time');
+  const durationEl = document.getElementById('duration');
+  const coverImg = document.getElementById('cover-img');
+  const titleEl = document.querySelector('.hero-left h1');
+  const releasesContainer = document.getElementById('releases');
+  const videosRow = document.getElementById('videos-row');
+
+  /* ======================================================
+     AUDIO CONTEXT + VISUALIZER
+  ====================================================== */
+  const vizCanvas = document.getElementById('viz');
+  const vizCtx = vizCanvas.getContext('2d');
+
+  function initAudioEngine() {
+    if (audioCtx) return;
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 256;
+
+    sourceNode = audioCtx.createMediaElementSource(audio);
+    sourceNode.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    resizeViz();
+    requestAnimationFrame(drawViz);
+  }
+
+  function resizeViz() {
+    const dpr = window.devicePixelRatio || 1;
+    vizCanvas.width = 420 * dpr;
+    vizCanvas.height = 56 * dpr;
+    vizCanvas.style.width = '100%';
+    vizCanvas.style.height = '56px';
+    vizCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function drawViz() {
+    if (!analyser) return requestAnimationFrame(drawViz);
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(data);
+    vizCtx.clearRect(0, 0, vizCanvas.width, vizCanvas.height);
+
+    const barWidth = (420 / data.length) * 1.6;
+    let x = 0;
+    data.forEach(v => {
+      const h = (v / 255) * 50;
+      const g = vizCtx.createLinearGradient(0, 0, 0, 56);
+      g.addColorStop(0, '#ff0078');
+      g.addColorStop(1, '#00f0ff');
+      vizCtx.fillStyle = g;
+      vizCtx.fillRect(x, 56 - h, barWidth, h);
+      x += barWidth;
+    });
+    requestAnimationFrame(drawViz);
+  }
+
+  /* ======================================================
+     AUDIO PLAYBACK
+  ====================================================== */
+  function loadTrack(index) {
+    currentIndex = (index + releasesData.length) % releasesData.length;
+    const track = releasesData[currentIndex];
+    audio.src = track.audio;
+    audio.load();
+    coverImg.src = track.cover;
+    titleEl.textContent = `Dave Jethro — ${track.title}`;
+    currentTimeEl.textContent = '0:00';
+    durationEl.textContent = '1:00';
+  }
+
+  function playTrack() {
+    initAudioEngine();
+    audio.play().catch(() => {});
+    clearTimeout(previewTimer);
+    previewTimer = setTimeout(stopPreview, PREVIEW_LIMIT * 1000);
+    playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+  }
+
+  function stopPreview() {
+    audio.pause();
+    audio.currentTime = 0;
+    playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  }
+
+  playBtn.onclick = () => audio.paused ? playTrack() : stopPreview();
+  playLatestBtn.onclick = () => { loadTrack(0); playTrack(); };
+  prevBtn.onclick = () => { loadTrack(currentIndex - 1); playTrack(); };
+  nextBtn.onclick = () => { loadTrack(currentIndex + 1); playTrack(); };
+
+  audio.addEventListener('timeupdate', () => {
+    const t = Math.min(audio.currentTime, PREVIEW_LIMIT);
+    progressFill.style.width = (t / PREVIEW_LIMIT) * 100 + '%';
+    currentTimeEl.textContent = formatTime(t);
+  });
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec < 10 ? '0' : ''}${sec}`;
+  }
+
+  /* ======================================================
+     RENDER RELEASES
+  ====================================================== */
+  releasesData.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'release-card';
+    card.innerHTML = `
+      <img src="${item.cover}" class="cover" alt="${item.title}">
+      <h3>${item.title}</h3>
+      <p>${item.desc}</p>
+      <button>▶ Play Preview</button>
+    `;
+    card.querySelector('button').onclick = () => {
+      loadTrack(index);
+      playTrack();
+      document.querySelector('.player').scrollIntoView({ behavior: 'smooth' });
+    };
+    releasesContainer.appendChild(card);
+  });
+
+  /* ======================================================
+     RENDER FEATURED VIDEOS (SAFE)
+  ====================================================== */
+  featuredVideos.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/${v.id}?rel=0"
+        title="${v.title}"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+      <div style="padding:10px"><strong>${v.title}</strong></div>
+    `;
+    videosRow.appendChild(card);
+  });
+
+  /* ======================================================
+     INIT
+  ====================================================== */
+  loadTrack(0);
+  window.addEventListener('resize', resizeViz);
+
+});
+
+const npCover = document.getElementById('np-cover');
+const npTitle = document.getElementById('np-title');
+
+</script>
+
 </body>
 </html>
