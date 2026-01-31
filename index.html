@@ -30,6 +30,42 @@
     a{color:inherit;text-decoration:none}
     .container{width:92%;max-width:1200px;margin:0 auto}
 
+    /* Splash Screen Styles */
+#splash {
+  position: fixed;
+  inset: 0; /* shorthand for top/left/right/bottom: 0 */
+  width: 100vw;
+  height: 100vh;
+  background-color: #000002;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 1.5rem; /* prevents edge overflow on small screens */
+  text-align: center;
+
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+/* Main title */
+#splash h1 {
+  font-size: clamp(3rem, 12vw, 10rem);
+  color: rgb(224, 125, 5);
+  margin: 0;
+  line-height: 1;
+}
+
+/* Subtitle */
+#splash h2 {
+  font-size: clamp(1.2rem, 4vw, 3rem);
+  font-weight: normal;
+  margin-top: 0.75rem;
+}
+
 
     /* ---------------- HEADER ---------------- */
     header{position:sticky;top:0;z-index:60;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px)}
@@ -689,6 +725,14 @@
 </head>
 <body>
 
+  <!-- Splash Screen -->
+  <div id="splash">
+    <h2>Welcome</h2>
+    <h2>To</h2>
+    <h1>Dave Jethro</h1>
+    <h2><i>Official Website...</i></h2>
+  </div>
+
   <!-- HEADER -->
   <header>
     <div class="container">
@@ -992,13 +1036,18 @@
   });
   
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  window.addEventListener('load', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.style.opacity = '0';
+        setTimeout(() => {
+          splash.style.display = 'none';
+          document.getElementById('main-content').style.display = 'block';
+        }, 1000);
+      }, 2500);
+    });
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
